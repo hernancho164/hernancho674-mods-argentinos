@@ -1,0 +1,3072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hernancho674 - Proyectos & Mods</title>
+    <!-- Favicon / Logo de la pestaña -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <style>
+        /* --- DECLARACIÓN DE FUENTES PERSONALIZADAS --- */
+        @font-face {
+            font-family: 'Smash';
+            src: url('smash.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'TF2Build';
+            src: url('TF2BUILD.TTF') format('truetype'), url('tf2build.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'CSRegular';
+            src: url('cs_regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'DemonPanic';
+            src: url('Demon Panic.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MK4';
+            src: url('MK4.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'VCRMono';
+            src: url('VCR_OSD_MONO_1.001.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Base02';
+            src: url('Base 02.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'TrebucBD';
+            src: url('trebucbd.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Mk1';
+            src: url('mk1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gmodPan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 3s ease;
+            opacity: 0;
+            animation: fadeInPage 1.2s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
+
+        body.modo-alerta {
+            background-color: #000000 !important;
+        }
+
+        body.bloqueado-total {
+            overflow: hidden !important;
+            pointer-events: none !important;
+            user-select: none;
+        }
+
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75)), url('Menu.png') no-repeat center center;
+            background-size: 115% 115%;
+            animation: gmodPan 25s ease infinite;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+        }
+
+        #intro-screen.oculto {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .intro-content-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #intro-screen h1 {
+            color: #ffcc00;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 15px 0;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 204, 0, 0.4);
+            text-align: center;
+            width: 100%;
+        }
+
+        #intro-screen p {
+            color: #dddddd;
+            font-size: 1.15rem;
+            margin: 0 0 35px 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-intro {
+            position: relative;
+            background: linear-gradient(to bottom, #ffee55 0%, #ffcc00 50%, #e6a800 50%, #ffbb00 100%);
+            color: #000000;
+            padding: 16px 45px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 35px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 35px 35px 0 0;
+            pointer-events: none;
+        }
+
+        .btn-intro:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 25px rgba(255, 221, 0, 1), 0 8px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255, 255, 255, 1);
+            background: linear-gradient(to bottom, #fff275 0%, #ffdb1a 50%, #f5b800 50%, #ffcc1a 100%);
+        }
+
+        .site-banner {
+            background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
+            border-bottom: 2px solid #ffcc00;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+            transition: border-color 3s ease, background 3s ease;
+        }
+
+        body.modo-alerta .site-banner {
+            border-color: #ff0000;
+            background: linear-gradient(to bottom, #0d0000, #000000);
+        }
+
+        .site-banner-link {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .site-banner-link img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #ffcc00;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.modo-alerta .site-banner-link img {
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+
+        .site-title-container h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        body.modo-alerta .site-title-container h1 {
+            color: #ff0000;
+        }
+
+        .site-title-container span {
+            font-size: 13px;
+            color: #aaaaaa;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .site-banner-link:hover img {
+            border-color: #ffff55;
+            box-shadow: 0 0 22px rgba(255, 204, 0, 1), 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        body.modo-alerta .site-banner-link:hover img {
+            border-color: #ff5555;
+            box-shadow: 0 0 22px rgba(255, 0, 0, 1), 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .site-banner-link:hover .site-title-container h1 {
+            color: #ffff55;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 5px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        body.modo-alerta .site-banner-link:hover .site-title-container h1 {
+            color: #ff5555;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 1), 0 0 5px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .site-banner-link:hover .site-title-container span {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .banner-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .custom-tooltip-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .banner-top-actions a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #161616;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .banner-top-actions a:hover {
+            border-color: #ffcc00;
+            background-color: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+        }
+
+        body.modo-alerta .banner-top-actions a:hover {
+            border-color: #ff0000;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .banner-top-actions img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .custom-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            top: 125%;
+            right: 0;
+            background-color: #0b0b0b;
+            color: #ffcc00;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 2px solid #ffcc00;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            transition: opacity 0.2s ease, transform 0.2s ease, border-color 3s ease, color 3s ease;
+            transform: translateY(-5px);
+            pointer-events: none;
+        }
+
+        body.modo-alerta .custom-tooltip {
+            border-color: #ff0000;
+            color: #ff5555;
+        }
+
+        .custom-tooltip-wrapper:hover .custom-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-header {
+            background-color: #0b0b0b;
+            border-bottom: 3px solid #ffcc00;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2);
+            transition: border-color 3s ease;
+        }
+
+        body.modo-alerta .nav-header {
+            border-color: #ff0000;
+        }
+
+        .nav-tabs {
+            display: flex;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .tab {
+            padding: 14px 20px;
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-right: 1px solid #222;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .tab:hover {
+            background-color: #1f1f1f;
+            color: #ffcc00;
+        }
+
+        body.modo-alerta .tab:hover {
+            color: #ff0000;
+        }
+
+        .tab.active {
+            background: linear-gradient(to bottom, #ffcc00, #e6b800);
+            color: #000000;
+            transition: background 3s ease, color 3s ease;
+        }
+
+        body.modo-alerta .tab.active {
+            background: linear-gradient(to bottom, #ff0000, #b30000);
+            color: #ffffff;
+        }
+
+        .dropdown {
+            position: relative;
+            display: flex;
+            flex: 1;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0b0b0b;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+            border: 2px solid #ffcc00;
+            border-top: none;
+            z-index: 10;
+            text-align: left;
+            transition: border-color 3s ease;
+        }
+
+        body.modo-alerta .dropdown-content {
+            border-color: #ff0000;
+        }
+
+        .dropdown-content a {
+            color: #b3b3b3;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 1px solid #1a1a1a;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1f1f1f;
+            color: #ffcc00;
+        }
+
+        body.modo-alerta .dropdown-content a:hover {
+            color: #ff0000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px 80px 20px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .content-body {
+            position: relative;
+            background-color: #1a1a1a;
+            border: 4px solid #ffcc00;
+            border-radius: 8px;
+            padding: 40px;
+            color: #f1f1f1;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            transition: border-color 3s ease, background-color 3s ease;
+        }
+
+        body.modo-alerta .content-body {
+            border-color: #ff0000;
+            background-color: #000000;
+        }
+
+        .content-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(to bottom, rgba(255, 204, 0, 0.4), rgba(255, 204, 0, 0));
+            border-radius: 6px 6px 0 0;
+            pointer-events: none;
+            transition: background 3s ease;
+        }
+
+        body.modo-alerta .content-body::before {
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0));
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar-old-mod {
+            background-color: #111;
+            border: 3px solid #b38600;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+            transition: border-color 3s ease, background-color 3s ease;
+        }
+
+        body.modo-alerta .sidebar-old-mod {
+            border-color: #b30000;
+            background-color: #050505;
+        }
+
+        .sidebar-old-mod h3 {
+            font-size: 15px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #b38600;
+            padding-bottom: 6px;
+            margin-top: 0;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: color 3s ease, border-color 3s ease;
+        }
+
+        body.modo-alerta .sidebar-old-mod h3 {
+            color: #ff0000;
+            border-color: #b30000;
+        }
+
+        .sidebar-old-mod p {
+            font-size: 13px;
+            color: #aaa;
+            margin: 10px 0 15px 0;
+            line-height: 1.4;
+        }
+
+        .btn-old {
+            display: block;
+            text-align: center;
+            background-color: #222;
+            color: #ffcc00;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #444;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-old:hover {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        body.modo-alerta .btn-old:hover {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        h2.section-title {
+            font-size: 24px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #ffcc00;
+            padding-bottom: 8px;
+            margin-top: 0;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            transition: color 3s ease, border-color 3s ease;
+        }
+
+        body.modo-alerta h2.section-title {
+            color: #ff0000;
+            border-color: #ff0000;
+        }
+
+        /* --- ESTILOS PARA EL VISOR DE CANCELADOS / PLANIFICADOS (ESTILO GTA V) --- */
+        .gta-carousel-container {
+            position: relative;
+            width: 100%;
+            min-height: 480px;
+            background-color: #000;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .gta-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1;
+        }
+
+        .gta-estado-badge {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffcc00;
+            border: 2px solid #ffcc00;
+            padding: 6px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            z-index: 5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .gta-estado-badge.cancelado {
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+
+        .gta-estado-badge.futuro {
+            color: #44ccff;
+            border-color: #44ccff;
+        }
+        .gta-estado-badge.pausado {
+            color: #ff9933;
+            border-color: #ff9933;
+        }
+
+        .gta-info-content {
+            position: relative;
+            z-index: 5;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.75) 80%, transparent 100%);
+            margin: -30px;
+            padding: 50px 60px 30px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gta-info-content h3 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+            letter-spacing: 1px;
+        }
+
+        .gta-info-content p {
+            font-size: 1.05rem;
+            color: #dddddd;
+            max-width: 850px;
+            margin: 0;
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            text-align: left;
+        }
+
+        .gta-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            font-size: 35px;
+            width: 55px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            user-select: none;
+            border-radius: 4px;
+        }
+
+        .gta-arrow:hover {
+            background: rgba(255, 204, 0, 0.8);
+            color: #000;
+            border-color: #ffcc00;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .gta-arrow.left { left: 20px; }
+        .gta-arrow.right { right: 20px; }
+
+        /* --- APLICACIÓN DE FUENTES PERSONALIZADAS A TÍTULOS ESPECÍFICOS --- */
+        #tf2 h2.section-title,
+        #tf2classified h2.section-title {
+            font-family: 'TF2Build', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #hl1 h2.section-title,
+        #hl1opposing h2.section-title {
+            font-family: 'VCRMono', monospace;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        #hl2 h2.section-title {
+            font-family: 'TrebucBD', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #postal2 h2.section-title {
+            font-family: 'Smash', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #dodsource h2.section-title {
+            font-family: 'Base02', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #ricochet h2.section-title {
+            font-family: 'Mk1', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #l4d2 h2.section-title {
+            font-family: 'MK4', sans-serif;
+            font-size: 2.4rem;
+            letter-spacing: 2px;
+        }
+
+        #cs16 h2.section-title,
+        #cssource h2.section-title,
+        #csother h2.section-title {
+            font-family: 'CSRegular', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        .media-box {
+            position: relative;
+            background-color: #0b0b0b;
+            border: 4px solid #ffcc00;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+            transition: border-color 3s ease, background-color 3s ease;
+        }
+
+        body.modo-alerta .media-box {
+            border-color: #ff0000;
+            background-color: #000000;
+        }
+
+        .media-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .media-box > img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .media-box:hover > img {
+            transform: scale(1.02);
+        }
+
+        .media-box img.rotating-logo,
+        .media-box img.static-logo,
+        .media-box img.classified-logo,
+        .media-box img.postal-logo {
+            position: absolute !important;
+            bottom: 12px !important;
+            left: 12px !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            object-fit: contain !important;
+            box-shadow: none !important;
+            z-index: 5;
+            pointer-events: none;
+            display: block !important;
+        }
+        .media-box img.rotating-logo { width: 85px !important; height: 85px !important; animation: spin 6s linear infinite; }
+        .media-box img.static-logo { width: 150px !important; height: auto !important; }
+        .media-box img.classified-logo { width: 140px !important; height: auto !important; left: 12px !important; bottom: 12px !important; }
+        .media-box img.postal-logo { width: 130px !important; height: auto !important; }
+
+        p {
+            line-height: 1.7;
+            font-size: 16px;
+            color: #cccccc;
+            font-weight: 500;
+        }
+
+        .dev-badge {
+            background-color: #d35400;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .warning-box {
+            background-color: #b7950b;
+            color: #000;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 2px dashed #f1c40f;
+            transition: background-color 3s ease, border-color 3s ease, color 3s ease;
+        }
+
+        body.modo-alerta .warning-box {
+            background-color: #990000;
+            color: #fff;
+            border-color: #ff3333;
+        }
+
+        .download-container {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-video {
+            display: inline-block;
+            background-color: #cc0000;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 4px 10px rgba(204, 0, 0, 0.4);
+            margin-bottom: 20px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-video:hover {
+            background-color: #e60000;
+            transform: translateY(-2px);
+        }
+
+
+        /* ===== CATÁLOGO DE VIDEOS ===== */
+        .vc { margin: 22px 0; max-width: 100%; }
+        .vc-escenario { position: relative; aspect-ratio: 16/9; overflow: hidden; border: 3px solid #ffcc00; border-radius: 6px; background: #000; box-shadow: 0 0 22px rgba(255,204,0,.25); }
+        .vc-pista { display: flex; height: 100%; transition: transform .6s cubic-bezier(.77,0,.18,1); }
+        .vc-slide { flex: 0 0 100%; position: relative; height: 100%; cursor: pointer; background: #000; }
+        .vc-slide > img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.55); transition: transform .6s ease, filter .6s ease; }
+        .vc-slide.short > img { object-fit: contain; }
+        .vc-slide:hover > img { transform: scale(1.04); filter: brightness(.8); }
+        .vc-slide iframe { width: 100%; height: 100%; border: 0; display: block; }
+        .vc-slide.short iframe { width: auto; aspect-ratio: 9/16; margin: 0 auto; }
+        .vc-play { position: absolute; inset: 0; margin: auto; width: 76px; height: 76px; background: #cc0000; border: 3px solid #fff; border-radius: 50%; transition: transform .25s, background .25s; }
+        .vc-play::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-30%,-50%); border-left: 24px solid #fff; border-top: 14px solid transparent; border-bottom: 14px solid transparent; }
+        .vc-slide:hover .vc-play { transform: scale(1.15); background: #e60000; }
+        .vc-badge { position: absolute; top: 10px; left: 10px; background: #cc0000; color: #fff; font-size: 12px; font-weight: bold; padding: 3px 9px; border-radius: 3px; }
+        .vc-flecha { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 44px; height: 44px; border: 2px solid #ffcc00; border-radius: 50%; background: rgba(0,0,0,.75); color: #ffcc00; font-size: 20px; cursor: pointer; transition: background .2s, color .2s; }
+        .vc-flecha:hover, .vc-flecha:focus-visible { background: #ffcc00; color: #000; outline: none; }
+        .vc-prev { left: 10px; } .vc-next { right: 10px; }
+        .vc-tira { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; padding-bottom: 6px; }
+        .vc-mini { flex: 0 0 130px; border: 2px solid transparent; border-radius: 4px; padding: 0; background: none; cursor: pointer; opacity: .5; transition: opacity .25s, border-color .25s, transform .25s; position: relative; }
+        .vc-mini img { width: 100%; display: block; border-radius: 2px; aspect-ratio: 16/9; object-fit: cover; background: #000; }
+        .vc-mini.short img { object-fit: contain; }
+        .vc-mini:hover { opacity: .9; transform: translateY(-3px); }
+        .vc-mini.activa { opacity: 1; border-color: #ffcc00; }
+        .vc-cuenta { color: #aaa; font-size: 13px; margin-top: 8px; }
+        @media (max-width: 600px) { .vc-flecha { width: 36px; height: 36px; } .vc-play { width: 60px; height: 60px; } .vc-mini { flex-basis: 100px; } }
+        @media (prefers-reduced-motion: reduce) { .vc-pista, .vc-slide > img { transition: none; } }
+
+
+        .btn-download {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffee55 0%, #ffcc00 50%, #e6a800 50%, #ffbb00 100%);
+            color: #000000;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 35px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 18px rgba(255, 204, 0, 0.8), 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: background 3s ease, box-shadow 3s ease, color 3s ease, transform 0.2s ease;
+        }
+
+        body.modo-alerta .btn-download {
+            background: linear-gradient(to bottom, #ff5555 0%, #cc0000 50%, #880000 50%, #aa0000 100%);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 35px 35px 0 0;
+            pointer-events: none;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(to bottom, #fff275 0%, #ffdb1a 50%, #f5b800 50%, #ffcc1a 100%);
+            box-shadow: 0 0 25px rgba(255, 221, 0, 1), 0 8px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        body.modo-alerta .btn-download:hover {
+            background: linear-gradient(to bottom, #ff7777 0%, #e60000 50%, #a30000 50%, #cc0000 100%);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 8px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+        }
+
+        .section-content { display: none; }
+        .section-content.active { display: block; animation: fadeInUp 0.4s ease-out; }
+
+        #serj-widget {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        #serj-img {
+            width: 90px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.9));
+        }
+
+        #serj-widget:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        /* ===== INTRO DE ENTRADA (logo) ===== */
+        #splash-intro { --f: 1; position: fixed; inset: 0; z-index: 20005; display: none; align-items: center; justify-content: center; background: radial-gradient(ellipse at center, #14110a 0%, #000 70%); transition: opacity .35s ease; }
+        html.con-splash #splash-intro { display: flex; }
+        html.con-splash #intro-screen .intro-a { animation-play-state: paused; }
+        #splash-intro.sp-salida { opacity: 0; pointer-events: none; }
+        #splash-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+        .sp-centro { position: relative; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+        .sp-logo { width: min(34vmin, 210px); height: min(34vmin, 210px); border-radius: 50%; opacity: 0; box-shadow: 0 0 40px rgba(255,204,0,.55); border: 3px solid #ffcc00; }
+        .sp-in { position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; }
+        .sp-in img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .sp-brillo { position: absolute; inset: 0; background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,.8) 50%, transparent 62%); transform: translateX(-130%); }
+        .sp-sub { font-family: 'Smash', 'Impact', sans-serif; color: #ffcc00; letter-spacing: 8px; font-size: clamp(.9rem, 3.4vmin, 1.5rem); text-transform: uppercase; opacity: 0; text-shadow: 0 0 16px rgba(255,204,0,.5); }
+        .sp-gate { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: none; border: none; cursor: pointer; font-family: 'Smash', 'Impact', sans-serif; color: #ffcc00; font-size: clamp(1.3rem, 4.4vmin, 2.2rem); letter-spacing: 6px; text-transform: uppercase; text-shadow: 0 0 20px rgba(255,204,0,.5); animation: spPulso 1.8s ease-in-out infinite; white-space: nowrap; }
+        .sp-gate:focus, .sp-gate:focus-visible { outline: none; }
+        .sp-saltar { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: #888; font-size: .75rem; letter-spacing: 2px; opacity: 0; text-transform: uppercase; }
+        #splash-intro.sp-run .sp-gate { animation: spFuera calc(.3s * var(--f)) ease forwards; pointer-events: none; }
+        #splash-intro.sp-run .sp-logo { animation: spLogo calc(1.2s * var(--f)) cubic-bezier(.2,.8,.2,1) calc(.25s * var(--f)) forwards, spGlow calc(2.2s * var(--f)) ease-in-out calc(1.4s * var(--f)) infinite alternate; }
+        #splash-intro.sp-run .sp-brillo { animation: spBrillo calc(1s * var(--f)) ease calc(1.3s * var(--f)) forwards; }
+        #splash-intro.sp-run .sp-sub { animation: spSube calc(.9s * var(--f)) ease calc(1.6s * var(--f)) forwards; }
+        #splash-intro.sp-run .sp-saltar { animation: spSube calc(.8s * var(--f)) ease calc(1s * var(--f)) forwards; }
+        @keyframes spPulso { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+        @keyframes spFuera { to { opacity: 0; transform: translate(-50%, -50%) scale(1.15); } }
+        @keyframes spLogo { 0% { opacity: 0; transform: scale(.5); filter: blur(16px) brightness(2.2); } 55% { opacity: 1; filter: blur(0) brightness(1.5); } 100% { opacity: 1; transform: scale(1); filter: blur(0) brightness(1); } }
+        @keyframes spGlow { from { box-shadow: 0 0 34px rgba(255,204,0,.45); } to { box-shadow: 0 0 80px rgba(255,204,0,.95), 0 0 140px rgba(255,170,0,.35); } }
+        @keyframes spBrillo { to { transform: translateX(130%); } }
+        @keyframes spSube { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+        /* ===== BARRIDO CON LA BANDERA ===== */
+        #barrido-bandera { position: fixed; inset: 0; z-index: 20010; display: none; overflow: hidden; }
+        .bb { position: absolute; left: -18vw; width: 136vw; height: calc(33.4vh + 2px); transform: translateX(-110%) skewX(-14deg); will-change: transform; }
+        .bb1 { top: 0; background: #74acdf; }
+        .bb2 { top: 33.3vh; background: #ffffff; }
+        .bb3 { top: 66.6vh; background: #74acdf; }
+        .bb-sol { position: absolute; left: 50%; top: 50%; width: min(36vmin, 280px); height: min(36vmin, 280px); opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+        .bb-sol::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
+            background: repeating-conic-gradient(#f6b40e 0 4deg, transparent 4deg 15deg);
+            -webkit-mask: radial-gradient(circle, transparent 0 46%, #000 47%); mask: radial-gradient(circle, transparent 0 46%, #000 47%); }
+        .bb-sol::after { content: ""; position: absolute; inset: 20%; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #ffd34d 0%, #f6b40e 70%, #c98a00 100%); box-shadow: 0 0 0 3px #c98a00; }
+
+        /* ===== INTRO RENOVADA ===== */
+        #intro-screen { background: #000; animation: none; backdrop-filter: none; -webkit-backdrop-filter: none; justify-content: flex-start; overflow-y: auto; overflow-x: hidden; }
+        .intro-capa { position: absolute; inset: -40px; z-index: 0; transition: transform .15s ease-out; will-change: transform; }
+        .intro-bg { position: absolute; inset: 0; background-position: center; background-size: cover; background-repeat: no-repeat; }
+        .intro-bg-base { background-image: url('Menu.png'); filter: brightness(.75) saturate(1.15); animation: introZoom 30s ease-in-out infinite alternate; }
+        .intro-bg-hover { opacity: 0; transition: opacity .55s ease; filter: brightness(.55) blur(2px) saturate(1.1); }
+        .intro-bg-hover.visible { opacity: 1; }
+        .intro-vineta { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,.05) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.85) 100%),
+                        linear-gradient(to bottom, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.6) 100%); }
+        #intro-particulas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+        .intro-contenido { position: relative; z-index: 3; margin: auto; width: 100%; max-width: 980px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 0; }
+        .intro-a { opacity: 0; animation: introEntra .8s ease forwards; animation-delay: calc(var(--i) * .13s + .15s); width: 100%; display: flex; flex-direction: column; align-items: center; }
+        @keyframes introEntra { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+        @keyframes introZoom { from { transform: scale(1.02); } to { transform: scale(1.12); } }
+        @keyframes introBrillo { to { background-position: -200% center; } }
+        @keyframes introLatido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+        #intro-sonido-hint { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 5; background: rgba(0,0,0,.8); border: 2px solid #ffcc00; color: #ffcc00; font-size: .8rem; font-weight: bold; letter-spacing: 1px; padding: 6px 16px; border-radius: 20px; opacity: 0; transition: opacity .4s; pointer-events: none; white-space: nowrap; }
+        #intro-sonido-hint.visible { opacity: 1; }
+
+        .intro-pre { color: #fff; font-weight: bold; letter-spacing: 6px; text-transform: uppercase; font-size: .95rem; text-shadow: 0 2px 10px rgba(0,0,0,.95); margin-bottom: 6px; }
+        #intro-screen h1.intro-titulo { font-family: 'Smash', 'Impact', sans-serif; font-size: clamp(1.7rem, 8.6vw, 6.2rem); letter-spacing: 3px; line-height: 1; margin: 0; width: auto; text-shadow: none;
+            background: linear-gradient(100deg, #ffb800 0%, #fff3a0 25%, #ffcc00 50%, #fff3a0 75%, #ffb800 100%); background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: introBrillo 6s linear infinite;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,.9)) drop-shadow(0 0 22px rgba(255,204,0,.35)); }
+        .intro-bandera { display: flex; flex-direction: column; width: min(280px, 60vw); margin: 14px auto 12px; border-radius: 2px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.7); }
+        .intro-bandera span { height: 5px; background: #74acdf; }
+        .intro-bandera span:nth-child(2) { background: #fff; }
+        #intro-screen .intro-contenido p { margin: 0 0 22px; font-size: 1.1rem; }
+        .btn-intro.pulso { animation: introLatido 2.4s ease-in-out infinite; }
+        .btn-intro.pulso:hover { animation: none; }
+        .intro-etiqueta { color: #cfcfcf; font-size: .85rem; letter-spacing: 3px; text-transform: uppercase; margin: 26px 0 10px; text-shadow: 0 2px 8px #000; }
+        .intro-juegos { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .intro-juego { position: relative; width: 148px; height: 92px; border: 2px solid rgba(255,204,0,.45); border-radius: 6px; background-size: cover; background-position: center; background-color: #111; cursor: pointer; padding: 0; overflow: hidden;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; box-shadow: 0 4px 14px rgba(0,0,0,.7); }
+        .intro-juego::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.25) 60%, rgba(0,0,0,.1) 100%); transition: background .25s; }
+        .intro-juego span { position: absolute; left: 0; right: 0; bottom: 7px; color: #ffcc00; font-weight: bold; font-size: 12.5px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 6px #000; }
+        .intro-juego:hover, .intro-juego:focus-visible { transform: translateY(-5px) scale(1.07); border-color: #ffcc00; box-shadow: 0 0 20px rgba(255,204,0,.55), 0 8px 20px rgba(0,0,0,.8); outline: none; }
+        .intro-juego:hover::before { background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,0) 70%); }
+        #intro-novedades { margin-top: 22px; }
+        .intro-novedad { display: inline-flex; align-items: center; gap: 12px; max-width: 94%; background: rgba(0,0,0,.72); border: 2px solid #ffcc00; border-radius: 30px; padding: 8px 18px 8px 10px; color: #fff; font-size: .95rem; cursor: pointer; text-align: left;
+            box-shadow: 0 0 18px rgba(255,204,0,.3); transition: transform .2s, box-shadow .2s; }
+        .intro-novedad:hover { transform: translateY(-2px); box-shadow: 0 0 26px rgba(255,204,0,.6); }
+        .nov-tag { background: #cc0000; color: #fff; font-weight: bold; font-size: 11px; letter-spacing: 1px; padding: 3px 9px; border-radius: 12px; animation: introLatido 1.8s ease-in-out infinite; }
+        .nov-flecha { color: #ffcc00; font-size: 1.3rem; line-height: 1; }
+        .intro-pie { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 24px; margin-top: 26px; padding: 14px 18px; box-sizing: border-box; background: rgba(0,0,0,.55); border-top: 2px solid rgba(255,204,0,.5); border-radius: 6px; }
+        .intro-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+        .intro-stat { text-align: center; }
+        .intro-stat b { display: block; color: #ffcc00; font-size: 1.6rem; line-height: 1.1; text-shadow: 0 0 12px rgba(255,204,0,.4); }
+        .intro-stat small { color: #bbb; font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; }
+        .intro-redes { display: flex; gap: 10px; flex-wrap: wrap; }
+        .intro-redes a { display: inline-flex; align-items: center; gap: 7px; background: #161616; border: 2px solid #333; border-radius: 8px; padding: 6px 12px; color: #fff; text-decoration: none; font-weight: bold; font-size: .85rem; transition: all .2s; }
+        .intro-redes a img { width: 20px; height: 20px; object-fit: contain; }
+        .intro-redes a:hover { border-color: #ffcc00; background: #222; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(255,204,0,.3); }
+        .intro-redes a.red-yt { background: #cc0000; border-color: #ff4444; }
+        .intro-redes a.red-yt:hover { background: #e60000; border-color: #fff; }
+        @media (max-width: 700px) {
+            .intro-pre { letter-spacing: 3px; font-size: .75rem; }
+            #intro-screen h1.intro-titulo { letter-spacing: 1px; }
+            .intro-juego { width: 30%; min-width: 100px; height: 74px; }
+            .intro-juego span { font-size: 10.5px; }
+            .intro-pie { justify-content: center; }
+            .intro-stats { gap: 18px; justify-content: center; }
+        }
+        @media (prefers-reduced-motion: reduce) { .intro-a { opacity: 1; animation: none; } .intro-bg-base, #intro-screen h1.intro-titulo, .btn-intro.pulso, .nov-tag { animation: none; } }
+
+        /* ===== MÚSICA POR MOD ===== */
+        #musica-ctrl { position: fixed; right: 18px; bottom: 18px; z-index: 9000; display: flex; align-items: center; gap: 10px; flex-direction: row-reverse; }
+        #musica-btn { width: 46px; height: 46px; border-radius: 50%; border: 2px solid #ffcc00; background: rgba(0,0,0,.85); color: #ffcc00; font-size: 20px; cursor: pointer; display: grid; place-items: center; box-shadow: 0 4px 14px rgba(0,0,0,.7); transition: transform .2s, background .2s, color .2s; }
+        #musica-btn:hover, #musica-btn:focus-visible { background: #ffcc00; color: #000; transform: scale(1.08); outline: none; }
+        #musica-ctrl.silencio #musica-btn { border-color: #777; color: #999; }
+        #musica-vol { width: 0; opacity: 0; transition: width .25s ease, opacity .25s ease; accent-color: #ffcc00; cursor: pointer; }
+        #musica-ctrl:hover #musica-vol, #musica-ctrl:focus-within #musica-vol { width: 100px; opacity: 1; }
+        #musica-nombre { position: absolute; right: 0; bottom: 56px; background: rgba(0,0,0,.85); border: 2px solid #ffcc00; color: #ffcc00; font-size: 12px; font-weight: bold; padding: 6px 12px; border-radius: 4px; white-space: nowrap; opacity: 0; transform: translateY(6px); transition: opacity .4s, transform .4s; pointer-events: none; }
+        #musica-nombre.visible { opacity: 1; transform: none; }
+        @media (hover: none) { #musica-vol { display: none; } }
+        @media (max-width: 600px) { #musica-ctrl { right: 12px; bottom: 12px; } #musica-btn { width: 40px; height: 40px; font-size: 17px; } }
+
+        @keyframes shake {
+            0% { transform: translate(2px, 2px) rotate(0deg); }
+            20% { transform: translate(-4px, 1px) rotate(-1deg); }
+            40% { transform: translate(2px, -3px) rotate(1deg); }
+            60% { transform: translate(-2px, 3px) rotate(0deg); }
+            80% { transform: translate(4px, 2px) rotate(1deg); }
+            100% { transform: translate(2px, 2px) rotate(0deg); }
+        }
+
+        @keyframes caminarSeccion {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
+            25% { transform: translateX(30px) translateY(-5px) rotate(5deg); }
+            50% { transform: translateX(60px) translateY(0px) rotate(-5deg); }
+            75% { transform: translateX(100px) translateY(-5px) rotate(5deg); }
+            100% { transform: translateX(250px) translateY(20px) rotate(15deg); opacity: 0; }
+        }
+
+        .serj-shaking { animation: shake 0.15s infinite !important; }
+        .serj-walking { animation: caminarSeccion 1s ease-in forwards !important; pointer-events: none; }
+
+        #serj-bubble {
+            position: absolute;
+            bottom: 110px;
+            left: 10px;
+            background: #fff;
+            color: #000;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 14px;
+            border: 2px solid #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            z-index: 10000;
+            animation: shake 0.1s infinite;
+            display: none;
+        }
+
+        #serj-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #fff transparent;
+            display: block;
+            width: 0;
+        }
+
+        @keyframes volarPistacho {
+            0% { transform: translate(0, 0) rotate(0deg) scale(0.5); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.2); opacity: 0; }
+        }
+
+        .pistacho-efecto {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 10000;
+            animation: volarPistacho 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        #static-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('static.gif') repeat;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10003;
+            transition: opacity 0.1s ease;
+        }
+
+        #jumpscare-container {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10005;
+            transition: opacity 0.05s ease;
+        }
+
+        #jumpscare-container img {
+            width: 85vw;
+            max-height: 75vh;
+            object-fit: contain;
+            animation: shake 0.06s infinite;
+            filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+        }
+
+        #jumpscare-container h1 {
+            color: #ff0000;
+            font-size: 4.5rem;
+            margin-top: 25px;
+            text-shadow: 4px 4px 0px #000, 0 0 25px #ff0000;
+            letter-spacing: 5px;
+            animation: shake 0.06s infinite;
+        }
+
+        #blackout-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+    
+        /* Sin barra de scroll visible (se sigue pudiendo bajar) */
+        html, body, .gz-ui { scrollbar-width: none; -ms-overflow-style: none; }
+        html::-webkit-scrollbar, body::-webkit-scrollbar, .gz-ui::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        /* Pantalla de inicio: sin scroll ni barra (el contenido se ajusta al alto de la ventana por JS) */
+        #intro-screen { overflow: hidden !important; overscroll-behavior: none; }
+        html:has(#intro-screen:not(.oculto)), html:has(#intro-screen:not(.oculto)) body { overflow: hidden !important; }
+        /* ===== MEJORAS DE ANIMACION ===== */
+        :root { --ease: cubic-bezier(.65,0,.35,1); }
+        .nav-tabs { position: relative; }
+        .nav-barra { position:absolute; left:0; bottom:-3px; height:3px; width:0; background:#fff3b0; box-shadow:0 0 10px #ffcc00; z-index:11; pointer-events:none; transition: left .35s var(--ease), width .35s var(--ease), opacity .2s, background 3s; }
+        body.modo-alerta .nav-barra { background:#ff6666; box-shadow:0 0 10px #f00; }
+        .tab .flecha { display:inline-block; transition: transform .25s var(--ease); }
+        .dropdown:hover .flecha { transform: rotate(180deg); }
+        .dropdown-content { display:block; visibility:hidden; opacity:0; transform:translateY(-8px); pointer-events:none; transition: opacity .22s ease, transform .22s var(--ease), visibility 0s linear .22s, border-color 3s ease; }
+        .dropdown:hover .dropdown-content { visibility:visible; opacity:1; transform:none; pointer-events:auto; transition: opacity .22s ease, transform .22s var(--ease), visibility 0s, border-color 3s ease; }
+        .dropdown-content a { opacity:0; transform:translateX(-10px); background: linear-gradient(90deg, rgba(255,204,0,.22), rgba(255,204,0,.22)) no-repeat left / 0% 100%; transition: opacity .25s ease, transform .25s var(--ease), background-size .3s var(--ease), color .2s; }
+        .dropdown:hover .dropdown-content a { opacity:1; transform:none; }
+        .dropdown:hover .dropdown-content a:nth-child(1) { transition-delay:.04s,.04s,0s,0s; }
+        .dropdown:hover .dropdown-content a:nth-child(2) { transition-delay:.09s,.09s,0s,0s; }
+        .dropdown:hover .dropdown-content a:nth-child(3) { transition-delay:.14s,.14s,0s,0s; }
+        .dropdown-content a:hover { background-size:100% 100%; }
+        /* Entrada de seccion: desliza segun la direccion de la pestaña y escalona */
+        .section-content.active { animation: secEntra .45s var(--ease) both; }
+        @keyframes secEntra { from { opacity:0; transform: translateX(calc(var(--dir,0) * 28px)); } to { opacity:1; transform:none; } }
+        @keyframes secItem { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+        .section-content.active > .section-title { animation: secItem .5s var(--ease) both; }
+        .section-content.active .section-grid > * { animation: secItem .55s var(--ease) both; }
+        .section-content.active .section-grid > *:nth-child(1) { animation-delay:.10s; }
+        .section-content.active .section-grid > *:nth-child(2) { animation-delay:.20s; }
+        /* ===== TRANSICION ENTRE SECCIONES (View Transitions) ===== */
+        .tab.active { transition: background .35s ease, color .35s ease; }
+        .content-body { view-transition-name: contenido; }
+        ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+        ::view-transition-group(contenido) { animation-duration: .6s; animation-timing-function: cubic-bezier(.65,0,.35,1); }
+        ::view-transition-old(contenido) { animation: vtSale .3s cubic-bezier(.5,0,.75,0) both; }
+        ::view-transition-new(contenido) { animation: vtEntra .6s cubic-bezier(.16,1,.3,1) .12s both; }
+        @keyframes vtSale { to { opacity:0; transform: translateX(calc(var(--dir,0) * -60px)) scale(.97); filter: blur(6px); } }
+        @keyframes vtEntra { 0% { opacity:0; transform: translateX(calc(var(--dir,0) * 70px)) scale(.97); filter: blur(8px); } 100% { opacity:1; transform:none; filter:none; } }
+        .section-content.sin-anim, .section-content.sin-anim > .section-title, .section-content.sin-anim .section-grid > * { animation: none !important; }
+        @media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; } }
+        /* ===== TARJETAS "MOD ANTIGUO" ===== */
+        .sidebar-old-mod { position:relative; overflow:hidden; border-width:2px; border-radius:10px; padding:22px 20px 20px;
+            background-image: radial-gradient(ellipse at 50% -10%, rgba(255,204,0,.22), transparent 65%), repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 8px, transparent 8px 16px);
+            box-shadow: 0 10px 26px rgba(0,0,0,.65), inset 0 0 0 1px rgba(255,204,0,.12); }
+        .sidebar-old-mod.rv { transition: opacity .6s ease, transform .6s cubic-bezier(.65,0,.35,1), border-color 3s ease, background-color 3s ease, box-shadow .3s; }
+        .sidebar-old-mod:hover, .sidebar-old-mod.rv-in:hover { transform: translateY(-4px); border-color:#ffcc00; box-shadow: 0 14px 30px rgba(0,0,0,.7), 0 0 22px rgba(255,204,0,.28), inset 0 0 0 1px rgba(255,204,0,.25); }
+        body.modo-alerta .sidebar-old-mod:hover { border-color:#ff0000; box-shadow: 0 14px 30px rgba(0,0,0,.7), 0 0 22px rgba(255,0,0,.35); }
+        .sidebar-old-mod::after { content:''; position:absolute; top:0; left:-80%; width:45%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.09),transparent); transform:skewX(-20deg); pointer-events:none; }
+        .sidebar-old-mod:hover::after { left:140%; transition:left .9s ease; }
+        .old-tag { position:absolute; top:12px; right:-34px; width:120px; text-align:center; transform:rotate(40deg); background:#b38600; color:#000; font-size:10px; font-weight:bold; letter-spacing:2px; padding:3px 0; }
+        body.modo-alerta .old-tag { background:#b30000; color:#fff; }
+        .old-logo { position:relative; width:104px; height:104px; margin:0 auto 18px; perspective:500px; }
+        .old-logo img { display:block; width:100%; height:100%; object-fit:contain; animation: oldGiro 3.6s linear infinite; filter: drop-shadow(0 0 14px rgba(255,204,0,.5)); }
+        .old-logo::after { content:''; position:absolute; left:50%; bottom:-12px; width:70px; height:10px; margin-left:-35px; border-radius:50%; background: radial-gradient(ellipse, rgba(255,204,0,.45), transparent 70%); animation: oldSombra 3.6s linear infinite; }
+        @keyframes oldGiro { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+        @keyframes oldSombra { 0%, 50%, 100% { transform: scaleX(1); opacity:.9; } 25%, 75% { transform: scaleX(.35); opacity:.4; } }
+        .sidebar-old-mod h3 { font-size:12px; letter-spacing:3px; color:#b38600; border-bottom:none; padding-bottom:0; margin-bottom:4px; }
+        .sidebar-old-mod p.old-nombre { font-size:16px; font-weight:bold; color:#ffcc00; text-align:center; margin:0 0 10px; line-height:1.2; }
+        .sidebar-old-mod p { text-align:center; }
+        .btn-old { position:relative; display:flex; align-items:center; justify-content:center; gap:10px; padding:10px 12px; font-size:13px; border-radius:6px; border:1px solid #b38600; background:linear-gradient(#2a2a2a,#161616); overflow:hidden; }
+        .btn-old i { font-style:normal; display:inline-block; transition: transform .25s ease; }
+        .btn-old:hover i { transform: translateX(5px); }
+        @media (prefers-reduced-motion: reduce) { .old-logo img, .old-logo::after { animation:none; } }
+        /* ===== FUENTES POR JUEGO ===== */
+        @font-face { font-family:'TF2'; src:url('TF2.TTF') format('truetype'); font-display:swap; }
+        @font-face { font-family:'FuturoT'; src:url('FUTUROT.TTF') format('truetype'); font-display:swap; }
+        #tf2 .btn-download, #tf2classified .btn-download { font-family:'TF2Build','Impact',sans-serif; letter-spacing:1px; }
+        #tf2 .old-nombre, #tf2classified .old-nombre { font-family:'TF2','Impact',sans-serif; font-size:20px; font-weight:normal; letter-spacing:1px; }
+        #cs16 .btn-download, #cssource .btn-download, #csother .btn-download { font-family:'CSRegular','Impact',sans-serif; letter-spacing:1px; }
+        #cancelados[data-proy="l4d1"] #gta-titulo, #cancelados[data-proy="l4d2"] #gta-titulo, #cancelados[data-proy="l4d1"] #gta-badge, #cancelados[data-proy="l4d2"] #gta-badge { font-family:'FuturoT','Impact',sans-serif; letter-spacing:1px; }
+        #postal2 .btn-download { font-family:'Smash','Impact',sans-serif; letter-spacing:1px; }
+        #cancelados[data-proy="l4d1"] .btn-download, #cancelados[data-proy="l4d2"] .btn-download { font-family:'FuturoT','Impact',sans-serif; letter-spacing:1px; }
+        .intro-juego[data-seccion="tf2"] span { font-family:'TF2Build','Impact',sans-serif; }
+        .intro-juego[data-seccion="cs16"] span { font-family:'CSRegular','Impact',sans-serif; }
+        /* ===== CARTELES DE ESTADO (En desarrollo / Version demo) ===== */
+        .dev-badge { position:relative; display:inline-flex; align-items:center; gap:10px; padding:9px 20px 9px 14px; margin-bottom:18px; border-radius:8px; font-size:13px; font-weight:bold; letter-spacing:3px; text-transform:uppercase; color:#fff; overflow:hidden; text-shadow:0 1px 2px rgba(0,0,0,.6);
+            background-color:#a8400a; background-image: linear-gradient(rgba(255,255,255,.22), rgba(255,255,255,0) 55%), linear-gradient(135deg,#f07a12,#a8400a); border:2px solid #ffb06a; box-shadow: 0 0 18px rgba(255,120,30,.5), inset 0 1px 0 rgba(255,255,255,.4); animation: devLat 2.4s ease-in-out infinite; }
+        .dev-badge::after { content:''; position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent); transform:skewX(-20deg); animation: devBrillo 3.2s ease-in-out infinite; }
+        .dev-badge.dev { padding-left:12px; background-image: repeating-linear-gradient(-45deg, rgba(0,0,0,.22) 0 10px, rgba(0,0,0,0) 10px 20px), linear-gradient(135deg,#f07a12,#a8400a); background-size: 28px 28px, 100% 100%; animation: devLat 2.4s ease-in-out infinite, devRayas 1.2s linear infinite; }
+        .dev-badge.demo { background-color:#1d5f94; background-image: linear-gradient(rgba(255,255,255,.22), rgba(255,255,255,0) 55%), linear-gradient(135deg,#3aa0e8,#1d5f94); border-color:#8fd0ff; box-shadow: 0 0 18px rgba(60,160,235,.5), inset 0 1px 0 rgba(255,255,255,.4); animation-name: demoLat; }
+        .dev-badge.demo::before { content:''; width:10px; height:10px; border-radius:50%; background:#8fffa0; box-shadow:0 0 8px #8fffa0, 0 0 14px #5ae070; animation: devLed 1.1s ease-in-out infinite; }
+        .dev-gif { width:28px; height:28px; display:block; filter: invert(1) brightness(1.3) drop-shadow(0 0 3px rgba(0,0,0,.5)); }
+        @keyframes devLat { 0%,100% { box-shadow: 0 0 14px rgba(255,120,30,.4), inset 0 1px 0 rgba(255,255,255,.4); } 50% { box-shadow: 0 0 26px rgba(255,140,40,.8), inset 0 1px 0 rgba(255,255,255,.4); } }
+        @keyframes demoLat { 0%,100% { box-shadow: 0 0 14px rgba(60,160,235,.4), inset 0 1px 0 rgba(255,255,255,.4); } 50% { box-shadow: 0 0 26px rgba(70,175,255,.8), inset 0 1px 0 rgba(255,255,255,.4); } }
+        @keyframes devBrillo { 0%, 55% { left:-60%; } 100% { left:140%; } }
+        @keyframes devRayas { to { background-position: 28px 0, 0 0; } }
+        @keyframes devLed { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+        @media (prefers-reduced-motion: reduce) { .dev-badge, .dev-badge::after, .dev-badge::before { animation:none !important; } .dev-gif { display:none; } }
+        /* Aparicion al scroll */
+        .rv { opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s var(--ease); }
+        .rv.rv-in { opacity:1; transform:none; }
+        /* Botones de descarga: brillo que cruza + hundido al click */
+        .btn-download::after { content:''; position:absolute; top:0; left:-75%; width:50%; height:100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.85), transparent); transform: skewX(-20deg); pointer-events:none; }
+        .btn-download:hover::after { left:130%; transition: left .6s ease; }
+        .btn-download:active { transform: translateY(1px) scale(.97); }
+        @media (prefers-reduced-motion: reduce) {
+            .nav-barra, .tab .flecha, .dropdown-content, .dropdown-content a, .rv { transition:none !important; }
+            .section-content.active, .section-content.active > .section-title, .section-content.active .section-grid > * { animation:none !important; }
+            .rv { opacity:1; transform:none; }
+        }
+    
+        /* ===== ZONA LIBRE (mods de GTA V) ===== */
+        @font-face { font-family:'Pricedown'; src:url('PRICEDOWN_BL.OTF') format('opentype'); }
+        .oculto-gta { opacity:0; transition: opacity .35s ease; position:relative; }
+        .oculto-gta::before { content:''; position:absolute; inset:-14px -10px; }
+        .oculto-gta:hover { opacity:1; }
+        #gz { position:fixed; inset:0; z-index:30000; background:#000; color:#fff; font-family:'Pricedown','Impact',sans-serif; visibility:hidden; opacity:0; overflow:hidden; transition: opacity .4s ease, visibility 0s linear .4s; }
+        #gz.abierto { visibility:visible; opacity:1; transition: opacity .4s ease; }
+        .gz-fondo { position:absolute; inset:0; clip-path: polygon(0 0,0 0,-30% 100%,-30% 100%); }
+        #gz.f-wall .gz-fondo, #gz.f-ui .gz-fondo { clip-path: polygon(0 0,130% 0,100% 100%,-30% 100%); transition: clip-path 1s cubic-bezier(.77,0,.18,1); }
+        .gz-w { position:absolute; inset:-4%; background:#2a0000 center/cover no-repeat; opacity:0; transition: opacity 1.2s ease; }
+        .gz-w.on { opacity:1; animation: gzKB 16s ease-in-out infinite alternate; }
+        @keyframes gzKB { from { transform: scale(1.04) translate(0,0); } to { transform: scale(1.16) translate(-2%,-1.5%); } }
+        .gz-vineta { position:absolute; inset:0; background: radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,.8) 100%), linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,.55)); pointer-events:none; }
+        #gz.f-ui .gz-vineta { background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 20%, rgba(0,0,0,.85) 100%); transition: background 1s; }
+        .gz-linea { position:absolute; left:0; top:50%; height:3px; width:0; background:#d40000; box-shadow:0 0 18px #ff2a2a; transform:translateY(-50%); }
+        #gz.f-linea .gz-linea { animation: gzLinea 1.1s cubic-bezier(.77,0,.18,1) forwards; }
+        @keyframes gzLinea { 0% { width:0; left:0; opacity:1; } 55% { width:100%; left:0; opacity:1; } 100% { width:0; left:100%; opacity:0; } }
+        .gz-v { position:absolute; left:50%; top:50%; width:min(46vmin,420px); transform: translate(-50%,-50%) scale(3); opacity:0; filter: blur(14px); pointer-events:none; }
+        #gz.f-v .gz-v { animation: gzV 1.5s cubic-bezier(.16,1,.3,1) forwards; }
+        @keyframes gzV { 0% { opacity:0; transform:translate(-50%,-50%) scale(3); filter:blur(14px) brightness(3); } 35% { opacity:1; transform:translate(-50%,-50%) scale(.95); filter:blur(0) brightness(1.8); } 45% { transform:translate(-49%,-51%) scale(1.02); } 55% { transform:translate(-51%,-49.5%) scale(1); } 100% { opacity:1; transform:translate(-50%,-50%) scale(1); filter: drop-shadow(0 0 30px rgba(80,200,60,.7)); } }
+        #gz.f-wall .gz-v { animation: gzVsale 1s cubic-bezier(.77,0,.18,1) forwards; }
+        @keyframes gzVsale { from { opacity:1; transform:translate(-50%,-50%) scale(1); } to { opacity:0; transform:translate(-50%,-80%) scale(.4); filter:blur(6px); } }
+        .gz-wipe i { position:absolute; top:-10%; bottom:-10%; left:-40%; width:40%; transform: skewX(-18deg) translateX(0); background:#b30000; opacity:0; }
+        .gz-wipe i:nth-child(2) { background:#000; width:28%; } .gz-wipe i:nth-child(3) { background:#fff; width:6%; }
+        #gz.f-wall .gz-wipe i { animation: gzWipe 1s cubic-bezier(.77,0,.18,1) forwards; }
+        #gz.f-wall .gz-wipe i:nth-child(2) { animation-delay:.08s; } #gz.f-wall .gz-wipe i:nth-child(3) { animation-delay:.16s; }
+        @keyframes gzWipe { 0% { opacity:1; left:-45%; } 100% { opacity:1; left:150%; } }
+        .gz-titulo { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); text-align:center; pointer-events:none; }
+        .gz-titulo h1 { margin:0; font-weight:normal; font-size:clamp(46px,13vw,170px); line-height:1; letter-spacing:2px; color:#fff; -webkit-text-stroke:3px #000; paint-order:stroke fill; text-shadow:6px 6px 0 #b30000, 0 0 40px rgba(0,0,0,.8); }
+        .gz-titulo h1 span { display:inline-block; opacity:0; }
+        #gz.f-titulo .gz-titulo h1 span { animation: gzSlam .6s cubic-bezier(.2,1.6,.4,1) forwards; animation-delay: calc(var(--k) * 70ms); }
+        @keyframes gzSlam { 0% { opacity:0; transform: translateY(-80px) scale(3) rotate(-6deg); } 100% { opacity:1; transform:none; } }
+        .gz-titulo p { margin:14px 0 0; font-size:clamp(16px,3vw,34px); letter-spacing:8px; color:#ff3b3b; text-shadow:2px 2px 0 #000; opacity:0; }
+        #gz.f-titulo .gz-titulo p { animation: gzSub .8s ease .6s forwards; }
+        @keyframes gzSub { from { opacity:0; letter-spacing:30px; } to { opacity:1; letter-spacing:8px; } }
+        #gz.f-ui .gz-titulo { top:0; transform:none; padding-top:22px; transition: all .9s cubic-bezier(.77,0,.18,1); }
+        #gz.f-ui .gz-titulo h1 { font-size:clamp(34px,6vw,72px); transition: font-size .9s cubic-bezier(.77,0,.18,1); }
+        #gz.f-ui .gz-titulo p { font-size:clamp(12px,1.6vw,18px); margin-top:4px; }
+        .gz-ui { position:absolute; left:0; right:0; top:clamp(120px,17vw,190px); bottom:0; overflow:auto; padding:10px 6vw 60px; opacity:0; transform:translateY(30px); transition: opacity .8s ease .3s, transform .8s cubic-bezier(.16,1,.3,1) .3s; pointer-events:none; }
+        #gz.f-ui .gz-ui { opacity:1; transform:none; pointer-events:auto; }
+        .gz-top { position:absolute; left:18px; top:18px; z-index:5; display:flex; gap:10px; opacity:0; transition: opacity .6s ease .6s; }
+        #gz.f-ui .gz-top { opacity:1; }
+        .gz-btn { font-family:'Pricedown','Impact',sans-serif; font-size:16px; letter-spacing:1px; color:#fff; background:linear-gradient(#c40000,#6e0000); border:2px solid #000; border-radius:6px; padding:9px 16px; cursor:pointer; text-decoration:none; box-shadow:0 3px 0 #000, 0 0 14px rgba(255,0,0,.35); transition: transform .15s, box-shadow .15s; }
+        .gz-btn:hover { transform:translateY(-2px); box-shadow:0 5px 0 #000, 0 0 22px rgba(255,40,40,.7); }
+        .gz-chips { display:flex; justify-content:center; gap:10px; margin-bottom:22px; flex-wrap:wrap; }
+        .gz-chip { display:flex; align-items:center; gap:8px; font-family:inherit; font-size:18px; color:#fff; background:rgba(0,0,0,.6); border:2px solid #b30000; border-radius:30px; padding:6px 18px 6px 10px; cursor:pointer; }
+        .gz-chip img { width:28px; height:28px; object-fit:contain; } .gz-chip.on { background:#b30000; }
+        .gz-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(270px,340px)); justify-content:center; align-items:stretch; gap:20px; max-width:1200px; margin:0 auto; }
+        .gz-card { position:relative; min-height:200px; border-radius:10px; overflow:hidden; border:2px solid #000; background: linear-gradient(160deg,#8a0000 0%,#4a0000 55%,#120000 100%); box-shadow:0 8px 24px rgba(0,0,0,.7); padding:18px; display:flex; flex-direction:column; justify-content:flex-end; opacity:0; transform:translateY(40px) scale(.96); transition: transform .3s, box-shadow .3s; }
+        #gz.f-ui .gz-card { animation: gzCard .7s cubic-bezier(.16,1,.3,1) forwards; animation-delay: calc(.5s + var(--c) * 120ms); }
+        @keyframes gzCard { to { opacity:1; transform:none; } }
+        .gz-card:hover { transform:translateY(-6px) !important; box-shadow:0 14px 34px rgba(255,0,0,.35), 0 8px 24px rgba(0,0,0,.8); }
+        .gz-card::after { content:''; position:absolute; top:0; left:-80%; width:50%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent); transform:skewX(-20deg); }
+        .gz-card:hover::after { left:140%; transition:left .7s ease; }
+        .gz-dest { min-height:240px; border-color:#ff3b3b; box-shadow:0 0 28px rgba(255,40,40,.45), 0 8px 24px rgba(0,0,0,.7); background:linear-gradient(160deg,#b80000 0%,#5a0000 55%,#120000 100%); }
+        .gz-dest h3 { font-size:32px; }
+        .gz-tag { position:absolute; left:14px; top:14px; font-size:13px; letter-spacing:2px; color:#000; background:#fff; padding:3px 9px; border-radius:4px; transform:rotate(-3deg); z-index:2; }
+        .gz-ver { position:absolute; right:10px; top:-6px; font-size:110px; line-height:1; color:rgba(0,0,0,.35); pointer-events:none; }
+        .gz-card h3 { margin:0 0 6px; font-weight:normal; font-size:26px; line-height:1.05; color:#fff; text-shadow:3px 3px 0 #000; position:relative; }
+        .gz-card p { margin:0 0 12px; font-family:Verdana,sans-serif; font-size:12px; color:#f3c7c7; position:relative; }
+        .gz-card .gz-btn { align-self:flex-start; font-size:14px; padding:6px 12px; position:relative; z-index:2; }
+        /* Outro de Mas Alla */
+        #gz.f-out.f-ui .gz-ui { opacity:0; transform:translateY(40px); transition: opacity .35s ease, transform .35s ease; }
+        #gz.f-out .gz-top, #gz.f-out .gz-skip { opacity:0; transition: opacity .25s; }
+        #gz.f-out.f-ui .gz-titulo { transform: scale(1.35); opacity:0; transition: transform .6s ease, opacity .4s ease; }
+        #gz.f-out .gz-wipe i { animation: gzWipeOut .75s cubic-bezier(.77,0,.18,1) forwards; }
+        #gz.f-out .gz-wipe i:nth-child(1) { animation-delay:.1s; } #gz.f-out .gz-wipe i:nth-child(2) { animation-delay:.18s; } #gz.f-out .gz-wipe i:nth-child(3) { animation-delay:.26s; }
+        @keyframes gzWipeOut { 0% { opacity:1; left:150%; } 100% { opacity:1; left:-45%; } }
+        #gz.f-out { animation: gzOut .45s ease .4s forwards; }
+        @keyframes gzOut { to { opacity:0; } }
+        .gz-skip { position:absolute; bottom:14px; right:18px; font-family:Verdana,sans-serif; font-size:11px; color:#aaa; opacity:.7; z-index:6; }
+        #gz.f-ui .gz-skip { display:none; }
+        @media (prefers-reduced-motion: reduce) { .gz-w.on { animation:none; } }
+    </style>
+<script>
+(function () {
+    try {
+        var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var vista = sessionStorage.getItem('intro_vista');
+        if (location.search.indexOf('intro') > -1) vista = null;
+        if (!reducido && !vista) { document.documentElement.classList.add('con-splash'); window.SPLASH = true; }
+    } catch (e) {}
+})();
+</script>
+</head>
+<body>
+
+    <!-- PANTALLA DE PRESENTACIÓN / INTRO -->
+    <div id="intro-screen">
+        <!-- Fondo con parallax: la capa de arriba cambia según el mod que señales -->
+        <div class="intro-capa" id="intro-capa">
+            <div class="intro-bg intro-bg-base"></div>
+            <div class="intro-bg intro-bg-hover" id="intro-bg-hover"></div>
+        </div>
+        <div class="intro-vineta"></div>
+        <canvas id="intro-particulas"></canvas>
+        <div id="intro-sonido-hint">&#128266; Tocá en cualquier lado para activar el sonido</div>
+
+        <div class="intro-contenido">
+            <div class="intro-a" style="--i:0">
+                <span class="intro-pre">Bienvenido a los mods de</span>
+                <h1 class="intro-titulo">Hernancho674</h1>
+                <div class="intro-bandera"><span></span><span></span><span></span></div>
+                <p>Explora contenido, ediciones y adaptaciones argentinas.</p>
+            </div>
+
+            <div class="intro-a" style="--i:1">
+                <button class="btn-intro pulso" onclick="entrarAlSitio()" onmouseenter="reproducirRE4()">Encontrar mods</button>
+            </div>
+
+            <div class="intro-a intro-etiqueta" style="--i:2">o andá directo a…</div>
+            <div class="intro-juegos intro-a" style="--i:3" id="intro-juegos">
+                <button class="intro-juego" data-seccion="tf2" style="background-image:url('tf2.jpg')"><span>Team Fortress 2</span></button>
+                <button class="intro-juego" data-seccion="hl1" style="background-image:url('hl1arg.png')"><span>Half-Life 1</span></button>
+                <button class="intro-juego" data-seccion="hl2" style="background-image:url('hl2arg.png')"><span>Half-Life 2</span></button>
+                <button class="intro-juego" data-seccion="postal2" style="background-image:url('postal2arg.png')"><span>Postal 2</span></button>
+                <button class="intro-juego" data-seccion="cs16" style="background-image:url('counters.png')"><span>Counter-Strike</span></button>
+            </div>
+
+            <div class="intro-a" style="--i:4" id="intro-novedades"></div>
+
+            <div class="intro-a intro-pie" style="--i:5">
+                <div class="intro-stats" id="intro-stats"></div>
+                <div class="intro-redes">
+                    <a href="https://www.youtube.com/@Hernancho674" target="_blank" class="red-yt" onmouseenter="reproducirRE4()">▶ YouTube</a>
+                    <a href="https://gamebanana.com/members/1754561" target="_blank" onmouseenter="reproducirRE4()"><img src="gamebanana.png" alt="">GameBanana</a>
+                    <a href="https://steamcommunity.com/id/Hernancho674Oficial/" target="_blank" onmouseenter="reproducirRE4()"><img src="steam.png" alt="">Steam</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTRO DE ENTRADA: toque para entrar + revelado del logo -->
+    <div id="splash-intro" aria-label="Pantalla de entrada">
+        <canvas id="splash-canvas"></canvas>
+        <div class="sp-centro">
+            <div class="sp-logo"><div class="sp-in"><img src="logo.jpg" alt="Hernancho674"><span class="sp-brillo"></span></div></div>
+            <div class="sp-sub">Mods Argentinos</div>
+        </div>
+        <button id="splash-btn" class="sp-gate" type="button">Tocá para entrar</button>
+        <div class="sp-saltar">Clic o Esc para saltar</div>
+    </div>
+
+    <!-- BARRIDO CON LA BANDERA (transición de la intro) -->
+    <div id="barrido-bandera" aria-hidden="true">
+        <div class="bb bb1"></div><div class="bb bb2"></div><div class="bb bb3"></div>
+        <div class="bb-sol"></div>
+    </div>
+
+    <div id="static-overlay"></div>
+    <div id="jumpscare-container">
+        <img src="edm.png" alt="EDM Jumpscare">
+        <h1>¡CABRONAZOOO!</h1>
+    </div>
+    <div id="blackout-screen"></div>
+
+    <div class="site-banner">
+        <a href="https://www.youtube.com/@Hernancho674" target="_blank" class="site-banner-link" onmouseenter="reproducirRE4()">
+            <img src="logo.jpg" alt="Logo Hernancho674">
+            <div class="site-title-container">
+                <h1>Mods Argentinos</h1>
+                <span>Hernancho674</span>
+            </div>
+        </a>
+
+        <!-- ACCESOS DIRECTOS SUPERIORES -->
+        <div class="banner-top-actions">
+            <!-- MÁS ALLÁ (oculto: aparece al pasar el mouse) -->
+            <div class="custom-tooltip-wrapper oculto-gta">
+                <a href="#" id="gz-abrir" onmouseenter="reproducirRE4()">
+                    <img src="gta5.png" alt="Más Allá">
+                </a>
+                <div class="custom-tooltip">Más Allá</div>
+            </div>
+            <!-- GameBanana -->
+            <div class="custom-tooltip-wrapper">
+                <a href="https://gamebanana.com/members/1754561" target="_blank" onmouseenter="reproducirRE4()">
+                    <img src="gamebanana.png" alt="GameBanana">
+                </a>
+                <div class="custom-tooltip">Perfil de GameBanana</div>
+            </div>
+
+            <!-- Steam -->
+            <div class="custom-tooltip-wrapper">
+                <a href="https://steamcommunity.com/id/Hernancho674Oficial/" target="_blank" onmouseenter="reproducirRE4()">
+                    <img src="steam.png" alt="Steam">
+                </a>
+                <div class="custom-tooltip">Perfil de Steam [No acepto solicitudes]</div>
+            </div>
+
+            <!-- Cafecito -->
+            <div class="custom-tooltip-wrapper">
+                <a href="https://cafecito.app/hernancho674" target="_blank" onmouseenter="reproducirRE4()">
+                    <img src="cafe.png" alt="Cafecito">
+                </a>
+                <div class="custom-tooltip">Donación</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-header">
+        <div class="nav-tabs">
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Team Fortress 2 ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('tf2', event)">TF2 Argentino</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('tf2classified', event)">TF2 Classified</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Half-Life 1 ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1', event)">Half-Life 1 Argentino</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1opposing', event)">Opposing Force [DEMO]</a>
+                </div>
+            </div>
+
+            <a class="tab" onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl2', event)">Half-Life 2</a>
+            <a class="tab" onmouseenter="reproducirSelect()" onclick="cambiarSeccion('postal2', event)">Postal 2 Demo</a>
+            
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Counter-Strikes ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('cs16', event)">Counter-Strike 1.6</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('cssource', event)">Counter-Strike: Source</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('csother', event)">Condition Zero / Resto</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Otros ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('dodsource', event)">Day of Defeat: Source</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('ricochet', event)">Ricochet Argentino</a>
+                </div>
+            </div>
+
+            <!-- PESTAÑA DE PLANIFICADOS / CANCELADOS -->
+            <a class="tab" onmouseenter="reproducirSelect()" onclick="cambiarSeccion('cancelados', event)">Planificados / Cancelados</a>
+
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="content-body">
+
+            <!-- SECCIÓN TF2 ARGENTINO -->
+            <div id="tf2" class="section-content">
+                <h2 class="section-title">Team Fortress Argentino</h2>
+                <div class="section-grid">
+                    <div>
+                        <div class="media-box">
+                            <img src="tf2.jpg" alt="TF2 Argentino">
+                            <img src="tf2-logo.png" alt="Logo giratorio" class="rotating-logo">
+                        </div>
+                        <div class="vc" data-catalogo="tf2">
+                            <div class="vc-escenario">
+                                <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                                <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                                <div class="vc-pista"></div>
+                            </div>
+                            <div class="vc-cuenta"></div>
+                            <div class="vc-tira"></div>
+                        </div>
+                        <p>Transformá tus partidas de Team Fortress 2 con un doblaje completo al español argentino para todos los personajes. Funciona perfectamente en servidores oficiales y modo casual, y no requiere ningún preloader.</p>
+                        <div class="download-container"><a href="https://gamebanana.com/mods/602984" target="_blank" class="btn-download">¡Descargar Mod!</a></div>
+                    </div>
+                    <div class="sidebar-old-mod">
+                        <span class="old-tag">ARCHIVO</span>
+                        <div class="old-logo"><img src="tf2EA.png" alt=""></div>
+                        <h3>Mod Antiguo</h3>
+                        <p class="old-nombre">TF2 Edicion Argentina</p>
+                        <p>La versión clásica inicial que sentó las bases.</p>
+                        <a href="https://gamebanana.com/mods/529033" target="_blank" class="btn-old"><span>Ver Versión Vieja</span><i>&#10140;</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN TF2 CLASSIFIED -->
+            <div id="tf2classified" class="section-content">
+                <h2 class="section-title">Team Fortress 2 Classified</h2>
+                <div class="section-grid">
+                    <div>
+                        <div class="media-box">
+                            <img src="tf2c.png" alt="TF2 Classified">
+                            <img src="tf2clogo.png" alt="Logo Classified" class="classified-logo">
+                        </div>
+                        <div class="vc" data-catalogo="tf2classified">
+                            <div class="vc-escenario">
+                                <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                                <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                                <div class="vc-pista"></div>
+                            </div>
+                            <div class="vc-cuenta"></div>
+                            <div class="vc-tira"></div>
+                        </div>
+                        <p>La evolución definitiva de la experiencia argenta en la plataforma TF2 Classified (antiguamente TF2 Classic). Mucho más extenso, incluye diálogos y skins. Podés instalar las skins y los diálogos por separado si solo te interesa tener las voces.</p>
+                        <div class="download-container">
+                            <a href="https://gamebanana.com/mods/631399" target="_blank" class="btn-download">¡Descargar Classified!</a>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN HALF-LIFE 1 ARGENTINO -->
+            <div id="hl1" class="section-content active">
+                <h2 class="section-title">Half-Life 1 Argentino</h2>
+                <div class="section-grid">
+                    <div>
+                        <div class="media-box">
+                            <img src="hl1arg.png" alt="Half-Life 1 Argentino">
+                            <img src="hl1logo.png" alt="Logo estático HL1" class="static-logo">
+                        </div>
+                        <div class="vc" data-catalogo="hl1">
+                            <div class="vc-escenario">
+                                <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                                <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                                <div class="vc-pista"></div>
+                            </div>
+                            <div class="vc-cuenta"></div>
+                            <div class="vc-tira"></div>
+                        </div>
+                        <p>Jugate toda la campaña de HL1 con nuevos diálogos argentinos y texturas nuevas incluidas.</p>
+                        <div class="warning-box">⚠️ Antes de iniciar una partida: Para tener las texturas activadas en el juego debes poner en la consola <u>r_wadtextures 1</u> de lo contrario las texturas seguirán siendo las normales del HL1.</div>
+                        <div class="download-container">
+                            <a href="https://gamebanana.com/sounds/83779" target="_blank" class="btn-download">Descarga por GameBanana</a>
+                            <a href="https://www.moddb.com/games/half-life/addons/voces-argentinas-half-life-1" target="_blank" class="btn-download">Descarga por ModDB</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-old-mod">
+                        <span class="old-tag">ARCHIVO</span>
+                        <div class="old-logo"><img src="hl1AE.png" alt=""></div>
+                        <h3>Mod Antiguo</h3>
+                        <p class="old-nombre">Half-Life 1 Argentina Edition</p>
+                        <p>El primer experimento con las voces en criollo.</p>
+                        <a href="https://gamebanana.com/mods/548061" target="_blank" class="btn-old"><span>Ver Versión Vieja</span><i>&#10140;</i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN OPPOSING FORCE [DEMO] -->
+            <div id="hl1opposing" class="section-content">
+                <h2 class="section-title">Opposing Force Argentino [DEMO]</h2>
+                <span class="dev-badge demo">Versión Demo</span>
+                <div class="media-box">
+                    <img src="hl1of.png" alt="Opposing Force Argentino">
+                </div>
+                <div class="vc" data-catalogo="hl1opposing">
+                    <div class="vc-escenario">
+                        <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                        <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                        <div class="vc-pista"></div>
+                    </div>
+                    <div class="vc-cuenta"></div>
+                    <div class="vc-tira"></div>
+                </div>
+                <p>Una versión de las voces argentinas para HL1 hechas para la campaña de Opposing Force, actualmente incompleta.</p>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/85013" target="_blank" class="btn-download">¡Descargar Demo!</a></div>
+            </div>
+
+            <div id="hl2" class="section-content">
+                <h2 class="section-title">Half-Life 2 Argentino</h2>
+                <span class="dev-badge dev"><img class="dev-gif" src="development.gif" alt=""><span>En Desarrollo</span></span>
+                <div class="media-box"><img src="hl2arg.png" alt="Half-Life 2 Argentino"></div>
+                <div class="vc" data-catalogo="hl2">
+                    <div class="vc-escenario">
+                        <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                        <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                        <div class="vc-pista"></div>
+                    </div>
+                    <div class="vc-cuenta"></div>
+                    <div class="vc-tira"></div>
+                </div>
+                <p>Este mod sigue en desarrollo pero ya podés ver algunos videos de cómo va quedando.</p>
+                <div class="warning-box">⚠️ Próximamente disponible. Todavía no hay descarga habilitada.</div>
+            </div>
+
+            <div id="postal2" class="section-content">
+                <h2 class="section-title">Postal 2 Demo Argentino</h2>
+                <span class="dev-badge demo">Versión Demo</span>
+                <div class="media-box">
+                    <img src="postal2arg.png" alt="Postal 2 Argentino">
+                    <img src="p2logo.png" alt="Logo Postal 2 Argentino" class="postal-logo">
+                </div>
+                <div class="vc" data-catalogo="postal2">
+                    <div class="vc-escenario">
+                        <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                        <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                        <div class="vc-pista"></div>
+                    </div>
+                    <div class="vc-cuenta"></div>
+                    <div class="vc-tira"></div>
+                </div>
+                <p>Fue cancelado pero resucitó así como si nada con nuevos diálogos. Hasta ahora los únicos diálogos que cambian son del Postal Dude y de Krotchy, próximamente habrá más contenido para el mod.</p>
+                <div class="download-container">
+                    <a href="https://gamebanana.com/sounds/87667" target="_blank" class="btn-download">Descarga por GameBanana</a>
+                    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3446931595" target="_blank" class="btn-download">Workshop de Steam</a>
+                </div>
+            </div>
+
+            <!-- SECCIÓN COUNTER-STRIKE 1.6 -->
+            <div id="cs16" class="section-content">
+                <h2 class="section-title">Counter-Strike 1.6 Argentino</h2>
+                <div class="media-box">
+                    <img src="cs1.6.jpg" alt="Counter-Strike 1.6 Argentino">
+                    <img src="cs.png" alt="Logo giratorio CS" class="rotating-logo">
+                </div>
+                <div class="vc" data-catalogo="cs16">
+                    <div class="vc-escenario">
+                        <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                        <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                        <div class="vc-pista"></div>
+                    </div>
+                    <div class="vc-cuenta"></div>
+                    <div class="vc-tira"></div>
+                </div>
+                <p>Este mod cambia los diálogos de los personajes por nuevos diálogos argentinos e incluye algunas canciones que puedes oír en ciertos mapas del juego en zonas específicas.</p>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/83014" target="_blank" class="btn-download">Descargar para 1.6</a></div>
+            </div>
+
+            <!-- SECCIÓN COUNTER-STRIKE: SOURCE -->
+            <div id="cssource" class="section-content">
+                <h2 class="section-title">Counter-Strike: Source Argentino</h2>
+                <div class="media-box">
+                    <img src="cssource.jpg" alt="Counter-Strike: Source Argentino">
+                    <img src="cs.png" alt="Logo giratorio CS" class="rotating-logo">
+                </div>
+                <div class="vc" data-catalogo="cssource">
+                    <div class="vc-escenario">
+                        <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                        <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                        <div class="vc-pista"></div>
+                    </div>
+                    <div class="vc-cuenta"></div>
+                    <div class="vc-tira"></div>
+                </div>
+                <p>Lo mismo que el Counter-Strike 1.6 pero adaptado a Source, e incluye también texturas mejoradas para los escenarios.</p>
+                <div class="download-container"><a href="https://gamebanana.com/mods/628158" target="_blank" class="btn-download">Descargar para Source</a></div>
+            </div>
+
+            <!-- SECCIÓN CONDITION ZERO / RESTO DE ENTREGAS -->
+            <div id="csother" class="section-content">
+                <h2 class="section-title">Condition Zero / Resto de entregas</h2>
+                <div class="media-box"><img src="counters.png" alt="Counter-Strikes Other"></div>
+                <div class="vc" data-catalogo="csother">
+                    <div class="vc-escenario">
+                        <button class="vc-flecha vc-prev" aria-label="Video anterior">&#10094;</button>
+                        <button class="vc-flecha vc-next" aria-label="Video siguiente">&#10095;</button>
+                        <div class="vc-pista"></div>
+                    </div>
+                    <div class="vc-cuenta"></div>
+                    <div class="vc-tira"></div>
+                </div>
+                <p>Casi lo mismo que el Counter-Strike 1.6 pero adaptado específicamente para Condition Zero.</p>
+                <div class="warning-box" style="background-color: #c0392b; color: white;">❌ Aviso: Solo <u>Counter-Strike: Condition Zero</u> cuenta con contenido disponible. No se encontró manera de hacer funcionar mods argentinos ni en CS:GO ni en CS2.</div>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/83274" target="_blank" class="btn-download">¡Descargar Condition Zero Mod!</a></div>
+            </div>
+
+            <!-- SECCIÓN OTROS: DAY OF DEFEAT SOURCE -->
+            <div id="dodsource" class="section-content">
+                <h2 class="section-title">Day of Defeat: Source Argentino</h2>
+                <div class="media-box"><img src="dods.png" alt="Day of Defeat Source Argentino"></div>
+                <p>No creo que mucha gente juegue a este mod ya que Day of Defeat: Source está en las últimas y está muy vacío, por lo cual este mod no ha recibido nada más que correcciones. Pero si te interesa darle una probada, acá lo tenés.</p>
+                <div class="download-container"><a href="https://gamebanana.com/mods/542279" target="_blank" class="btn-download">¡Descargar DoD: Source Mod!</a></div>
+            </div>
+
+            <!-- SECCIÓN OTROS: RICOCHET -->
+            <div id="ricochet" class="section-content">
+                <h2 class="section-title">Ricochet Argentino</h2>
+                <div class="media-box"><img src="ricochoto.png" alt="Ricochet Argentino"></div>
+                <p>¿Por qué instalarías esto?</p>
+                <div class="download-container"><a href="https://gamebanana.com/mods/675522" target="_blank" class="btn-download">¡Descargar Ricochet Mod!</a></div>
+            </div>
+
+            <!-- SECCIÓN OTROS: LEFT 4 DEAD 2 -->
+            <!-- SECCIÓN NUEVA: MODS PLANIFICADOS Y CANCELADOS -->
+            <div id="cancelados" class="section-content">
+                <h2 class="section-title">Mods Planificados y Cancelados</h2>
+                <p style="margin-bottom: 20px;">Un repaso por aquellos proyectos que quedaron en el camino, ideas que se estuvieron ideando o planes a futuro.</p>
+                
+                <div class="gta-carousel-container">
+                    <div id="gta-badge" class="gta-estado-badge cancelado">ESTADO: CANCELADO</div>
+                    <img id="gta-img" class="gta-bg-image" src="gta5fondo.png" alt="Proyecto Concepto">
+                    
+                    <div class="gta-arrow left" onclick="cambiarProyecto(-1)">‹</div>
+                    <div class="gta-arrow right" onclick="cambiarProyecto(1)">›</div>
+
+                    <div class="gta-info-content">
+                        <h3 id="gta-titulo">GTA V Argentino Mod</h3>
+                        <p id="gta-descripcion">
+                            En este mod se planeaba agregar lo siguiente:<br>
+                            - Dialogos en modo libre<br>
+                            - Dialogos en misiones de la historia tanto como las secundarias<br>
+                            - Dialogos en salidas con amigos [ejemplo jugar a los dardos]<br>
+                            - Dialogos en los peatones [la mayoria, no todos]<br><br>
+                            No se pudo ya que aparte de que gta 5 no es para nada facil de modificar, era muchisimo trabajo y aparte la gente no tenia mucho interes en este mod por lo cual decidi cancelarlo, aun pueden encontrar videos de lo que iba a ser el mod en mi canal de Youtube.
+                        </p>
+                        <a id="gta-video" class="btn-video" target="_blank" style="display:none; margin: 10px 0 0;">▶ Ver video: por qué lo cancelé</a>
+                        <div id="gta-links" class="download-container" style="display:none; justify-content:flex-start; margin:18px 0 0;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CONTROL DE MÚSICA -->
+    <div id="musica-ctrl" class="silencio">
+        <div id="musica-nombre"></div>
+        <button id="musica-btn" aria-label="Activar o silenciar la música" title="Música">&#9835;</button>
+        <input id="musica-vol" type="range" min="0" max="100" value="35" aria-label="Volumen de la música">
+    </div>
+
+    <!-- WIDGET DE SERJ TANKIAN -->
+    <div id="serj-widget" onclick="interactuarSerj(event)" title="¡Hacé clic!">
+        <div id="serj-bubble">BASTA GORDOOOO!</div>
+        <img id="serj-img" src="serj.png" alt="Serj Tankian">
+    </div>
+
+    <!-- AUDIOS -->
+    <audio id="re4-audio" src="re4_cursor.mp3" preload="auto"></audio>
+    <audio id="wakeup-audio" src="wakeup.mp3" preload="auto"></audio>
+    <audio id="grito-audio" src="grito.mp3" preload="auto"></audio>
+    <audio id="select-audio" src="select.mp3" preload="auto"></audio>
+    <audio id="click-audio" src="click.mp3" preload="auto"></audio>
+
+    <audio id="audio-dross" src="dross.mp3" preload="auto"></audio>
+    <audio id="audio-cabronazo" src="cabronazo.mp3" preload="auto"></audio>
+    <audio id="audio-risa" src="risaedm.mp3" preload="auto"></audio>
+
+    <!-- AUDIO BANEADO -->
+    <audio id="audio-baneado" src="baneado.wav" preload="auto"></audio>
+
+    <script>
+        let sitioEntrado = false;
+
+        function entrarAlSitio() {
+            reproducirClick();
+            const intro = document.getElementById('intro-screen');
+            const entrar = () => {
+                intro.style.transition = 'none';   // desaparece al instante, tapada por el barrido
+                intro.classList.add('oculto');
+                sitioEntrado = true;
+                if (window.Musica) Musica.alEntrar();
+            };
+            if (window.barridoBandera) barridoBandera(entrar); else entrar();
+        }
+
+        function reproducirRE4() {
+            const re4Audio = document.getElementById('re4-audio');
+            const clone = re4Audio.cloneNode();
+            clone.volume = 0.7;
+            clone.play().catch(err => console.log("Audio de RE4 bloqueado:", err));
+        }
+
+        function reproducirSelect() {
+            const selectAudio = document.getElementById('select-audio');
+            const clone = selectAudio.cloneNode();
+            clone.volume = 0.6;
+            clone.play().catch(err => console.log("Audio de select bloqueado:", err));
+        }
+
+        function reproducirClick() {
+            const clickAudio = document.getElementById('click-audio');
+            const cloneClick = clickAudio.cloneNode();
+            cloneClick.volume = 0.7;
+            cloneClick.play().catch(err => console.log("Audio de click bloqueado:", err));
+        }
+
+        function cambiarSeccion(idSeccion, event) {
+            reproducirClick();
+            if (typeof detenerVideos === "function") detenerVideos();
+
+            const secciones = document.querySelectorAll('.section-content');
+            secciones.forEach(sec => sec.classList.remove('active'));
+
+            const tabs = document.querySelectorAll('.nav-tabs .tab');
+            tabs.forEach(t => t.classList.remove('active'));
+
+            document.getElementById(idSeccion).classList.add('active');
+            if (window.Musica) Musica.alCambiarSeccion(idSeccion);
+            
+            if(['cs16', 'cssource', 'csother'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else if(['tf2', 'tf2classified'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else if(['hl1', 'hl1opposing'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else if(['dodsource', 'ricochet'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else {
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        /* --- DATOS PARA EL CARRUSEL DE PROYECTOS (CANCELADOS / PLANIFICADOS) --- */
+        const proyectosData = [
+            {
+                titulo: "GTA V Argentino Mod",
+                musica: "gtav",
+                video: "https://www.youtube.com/watch?v=Ts75AB3YCjM",
+                estado: "ESTADO: CANCELADO",
+                claseEstado: "cancelado",
+                imagen: "gta5fondo.png",
+                descripcion: "En este mod se planeaba agregar lo siguiente:<br>- Dialogos en modo libre<br>- Dialogos en misiones de la historia tanto como las secundarias<br>- Dialogos en salidas con amigos [ejemplo jugar a los dardos]<br>- Dialogos en los peatones [la mayoria, no todos]<br><br>No se pudo ya que aparte de que gta 5 no es para nada facil de modificar, era muchisimo trabajo y aparte la gente no tenia mucho interes en este mod por lo cual decidi cancelarlo, aun pueden encontrar videos de lo que iba a ser el mod en mi canal de Youtube."
+            },
+            {
+                titulo: "Portal Voces Argentinas",
+                musica: "portal",
+                estado: "ESTADO: PLANIFICADO",
+                claseEstado: "futuro",
+                imagen: "portal.png",
+                descripcion: "Este mod siempre se estuvo planeando, llego a haber una version en un desarrollo de muy poco tiempo la cual termine por descartar y eliminar, pero se planea hacer este mod proximamente"
+            },
+            {
+                titulo: "Left 4 Dead 1 Adaptación Total",
+                musica: "l4d1",
+                estado: "ESTADO: FUTUROS PLANES",
+                claseEstado: "futuro",
+                imagen: "l4d1.png",
+                descripcion: "Este mod llego a estar en desarrollo, tambien por muy poco tiempo, iba a tener un humor similar a los antiguos HL1 Argentina Edition y TF2 Edicion Argentina, pero fue descartado ya que en ese entonces no sabia manejar muy bien los mods en los L4D y aparte ya meses despues comenze con el L4D2 Argentino."
+            },
+            {
+                titulo: "Left 4 Dead 2 Argentino",
+                musica: "l4d2",
+                estado: "ESTADO: POSIBLE FINAL DEL DESARROLLO",
+                claseEstado: "pausado",
+                imagen: "l4d2_arg.png",
+                descripcion: "El desarrollo de este mod posiblemente llegue a su fin. Todavia se puede descargar, pero lo mas probable es que ya no reciba mas actualizaciones.",
+                links: [
+                    { texto: "Descarga por GameBanana", url: "https://gamebanana.com/mods/609612" },
+                    { texto: "Workshop de Steam", url: "https://steamcommunity.com/sharedfiles/filedetails/?id=3654749035" }
+                ]
+            }
+        ];
+
+        let proyectoActualIndex = 0;
+
+        function mostrarLinksProyecto(p) {
+            const c = document.getElementById('gta-links');
+            if (!c) return;
+            c.innerHTML = '';
+            (p.links || []).forEach(l => {
+                const a = document.createElement('a');
+                a.href = l.url; a.target = '_blank'; a.className = 'btn-download'; a.textContent = l.texto;
+                c.appendChild(a);
+            });
+            c.style.display = (p.links && p.links.length) ? 'flex' : 'none';
+        }
+        function mostrarVideoProyecto(p) {
+            const a = document.getElementById('gta-video');
+            if (!a) return;
+            a.style.display = p.video ? 'inline-block' : 'none';
+            if (p.video) a.href = p.video;
+        }
+        mostrarVideoProyecto(proyectosData[0]);
+        mostrarLinksProyecto(proyectosData[0]);
+
+        function cambiarProyecto(direccion) {
+            reproducirClick();
+            proyectoActualIndex += direccion;
+            
+            if (proyectoActualIndex < 0) {
+                proyectoActualIndex = proyectosData.length - 1;
+            } else if (proyectoActualIndex >= proyectosData.length) {
+                proyectoActualIndex = 0;
+            }
+
+            const p = proyectosData[proyectoActualIndex];
+            if (window.Musica) Musica.alCambiarProyecto();
+            document.getElementById('cancelados').dataset.proy = p.musica || '';
+            const imgEl = document.getElementById('gta-img');
+            const badgeEl = document.getElementById('gta-badge');
+            const tituloEl = document.getElementById('gta-titulo');
+            const descEl = document.getElementById('gta-descripcion');
+
+            imgEl.style.opacity = '0';
+            setTimeout(() => {
+                imgEl.src = p.imagen;
+                tituloEl.textContent = p.titulo;
+                
+                descEl.innerHTML = p.descripcion;
+                mostrarVideoProyecto(p);
+                mostrarLinksProyecto(p);
+                
+                badgeEl.textContent = p.estado;
+                badgeEl.className = 'gta-estado-badge ' + p.claseEstado;
+                imgEl.style.opacity = '0.55';
+            }, 200);
+        }
+
+        let clicksSerj = 0;
+        let estaAusente = false;
+        let serjCooldown = false;
+
+        function interactuarSerj(e) {
+            if (estaAusente || serjCooldown) return;
+
+            const widget = document.getElementById('serj-widget');
+            const serjImg = document.getElementById('serj-img');
+            const bubble = document.getElementById('serj-bubble');
+            clicksSerj++;
+
+            if (clicksSerj >= 5) {
+                estaAusente = true;
+                serjCooldown = true;
+                clicksSerj = 0;
+
+                bubble.style.display = 'none';
+                serjImg.classList.remove('serj-shaking');
+                serjImg.classList.remove('serj-walking');
+
+                serjImg.src = 'serj2.png';
+                serjImg.classList.add('serj-shaking');
+                bubble.style.display = 'block';
+
+                const grito = document.getElementById('grito-audio');
+                grito.currentTime = 0;
+                grito.play().catch(err => console.log("Audio bloqueado:", err));
+
+                setTimeout(() => {
+                    bubble.style.display = 'none';
+                    serjImg.classList.remove('serj-shaking');
+                    serjImg.classList.add('serj-walking');
+                }, 2500);
+
+                setTimeout(() => {
+                    serjImg.style.display = 'none';
+                    widget.style.display = 'none';
+                }, 3500);
+
+                setTimeout(() => {
+                    serjImg.src = 'serj.png';
+                    serjImg.classList.remove('serj-walking');
+                    serjImg.style.display = 'block';
+                    widget.style.display = 'block';
+                    widget.style.pointerEvents = 'auto';
+                    serjImg.style.opacity = '1';
+                    serjImg.style.transform = 'scale(1) rotate(0deg)';
+                    estaAusente = false;
+                    serjCooldown = false;
+                }, 48500);
+
+            } else {
+                if (serjImg.style.opacity === '0') return;
+
+                serjCooldown = true;
+                setTimeout(() => { serjCooldown = false; }, 300);
+
+                widget.style.pointerEvents = 'none';
+
+                const audio = document.getElementById('wakeup-audio');
+                audio.currentTime = 0;
+                audio.play().catch(err => console.log("Audio bloqueado:", err));
+
+                const cantidadPistachos = 12;
+                for (let i = 0; i < cantidadPistachos; i++) {
+                    const pistacho = document.createElement('img');
+                    pistacho.src = 'pistacho.png';
+                    pistacho.className = 'pistacho-efecto';
+
+                    const angulo = -Math.PI / 4 - Math.random() * (Math.PI / 2);
+                    const distancia = 150 + Math.random() * 250;
+                    const tx = Math.cos(angulo) * distancia;
+                    const ty = Math.sin(angulo) * distancia;
+                    const rotacion = (Math.random() - 0.5) * 720;
+
+                    pistacho.style.setProperty('--tx', `${tx}px`);
+                    pistacho.style.setProperty('--ty', `${ty}px`);
+                    pistacho.style.setProperty('--rot', `${rotacion}deg`);
+
+                    document.body.appendChild(pistacho);
+
+                    setTimeout(() => {
+                        pistacho.remove();
+                    }, 900);
+                }
+
+                serjImg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                serjImg.style.opacity = '0';
+                serjImg.style.transform = 'scale(0.2) rotate(180deg)';
+
+                setTimeout(() => {
+                    serjImg.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    serjImg.style.opacity = '1';
+                    serjImg.style.transform = 'scale(1) rotate(0deg)';
+                    
+                    widget.style.pointerEvents = 'auto';
+                }, 3000);
+            }
+        }
+
+        let typedBuffer = '';
+        const secretCode = 'edm';
+        let edmTriggered = false;
+
+        let typedBufferBaneado = '';
+        let baneadoTriggered = false;
+
+        window.addEventListener('keydown', (e) => {
+            if (!sitioEntrado) return;
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            const key = e.key.toLowerCase();
+
+            // --- EASTER EGG EDM (no funciona dentro de Mas Alla) ---
+            const enMasAlla = !!document.querySelector('#gz.abierto');
+            if (enMasAlla) typedBuffer = '';
+            if (!edmTriggered && !enMasAlla) {
+                typedBuffer += key;
+                if (typedBuffer.length > 10) {
+                    typedBuffer = typedBuffer.slice(-10);
+                }
+                if (typedBuffer.includes(secretCode)) {
+                    typedBuffer = '';
+                    triggerEDMEasterEgg();
+                    return;
+                }
+            }
+
+            // --- EASTER EGG BANEADO ("sixseven" o "67") ---
+            if (!baneadoTriggered) {
+                typedBufferBaneado += key;
+                if (typedBufferBaneado.length > 15) {
+                    typedBufferBaneado = typedBufferBaneado.slice(-15);
+                }
+                if (typedBufferBaneado.includes('sixseven') || typedBufferBaneado.includes('67')) {
+                    typedBufferBaneado = '';
+                    triggerBaneadoEasterEgg();
+                }
+            }
+        });
+
+        function triggerEDMEasterEgg() {
+            edmTriggered = true;
+            if (window.Musica) Musica.eventoIniciado();   // la música hace fade out
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            document.body.classList.add('bloqueado-total');
+
+            const staticOv = document.getElementById('static-overlay');
+            const jumpscare = document.getElementById('jumpscare-container');
+            const blackout = document.getElementById('blackout-screen');
+
+            const audioDross = document.getElementById('audio-dross');
+            const audioCabronazo = document.getElementById('audio-cabronazo');
+            const audioRisa = document.getElementById('audio-risa');
+
+            audioDross.currentTime = 0;
+            audioDross.play().catch(err => console.log("Audio Dross bloqueado:", err));
+            document.body.classList.add('modo-alerta');
+
+            setTimeout(() => {
+                staticOv.style.opacity = '0.4';
+                jumpscare.style.opacity = '1';
+                audioCabronazo.currentTime = 0;
+                audioCabronazo.play().catch(err => console.log("Audio Cabronazo bloqueado:", err));
+            }, 3000);
+
+            setTimeout(() => {
+                jumpscare.style.opacity = '0';
+                staticOv.style.opacity = '0';
+                blackout.style.opacity = '1';
+            }, 4600);
+
+            setTimeout(() => {
+                document.body.classList.remove('modo-alerta');
+                blackout.style.opacity = '0';
+                audioRisa.currentTime = 0;
+                audioRisa.play().catch(err => console.log("Audio risa bloqueado:", err));
+                
+                document.body.classList.remove('bloqueado-total');
+                edmTriggered = false;
+                if (window.Musica) Musica.eventoTerminado();   // la música vuelve con fade in mientras sigue la risa
+            }, 6500);
+        }
+
+        function triggerBaneadoEasterEgg() {
+            baneadoTriggered = true;
+            document.body.classList.add('bloqueado-total');
+
+            const audioBaneado = document.getElementById('audio-baneado');
+            audioBaneado.currentTime = 0;
+            audioBaneado.play().catch(err => console.log("Audio baneado bloqueado:", err));
+
+            setTimeout(() => {
+                window.close();
+                window.location.href = "about:blank";
+            }, 2000);
+        }
+    </script>
+
+
+    <script>
+    // ===== CATÁLOGO DE VIDEOS =====
+    // Para agregar un video: sumá una línea. "id" es lo que va después de v= (o de /shorts/ o youtu.be/).
+    // Opcionales: inicio (segundo donde arranca), tipo: "short", titulo.
+    const CATALOGOS = {
+        hl1opposing: [
+            { id: "OD0lRruXp98", tipo: "short" }
+        ],
+        hl2: [
+            { id: "kIpjPAYErA8" }, { id: "XZj2S-6XQXk" },
+            { id: "0_Ob1RbnaRU", tipo: "short" }
+        ],
+        postal2: [
+            { id: "vnxhy5Dr7tQ" },
+            { id: "9sX_F208WzY", tipo: "short" },
+            { id: "wLZp4J6B9xI" }
+        ],
+        cs16: [
+            { id: "_j3LlgUv5IU" }
+        ],
+        cssource: [
+            { id: "V23ZeydNvBU" }
+        ],
+        csother: [
+            { id: "o4nPhPupQq0" }
+        ],
+        hl1: [
+            { id: "Iq0dPWtoXEs" },
+            { id: "bFCBblbUKGg" },
+            { id: "sAQaSnwezu4" }
+        ],
+        tf2: [
+            { id: "xEVsycD6j1I" },
+            { id: "FUK4JkCkG6w" },
+            { id: "bnwp9TES97I", tipo: "short" }
+        ],
+        tf2classified: [
+            { id: "eG2M5Fzlv7Y" },
+            { id: "UNj2sC6a_iM", inicio: 176 },
+            { id: "tm-sxcrbfSA" }
+        ]
+    };
+
+    const _catalogos = [];
+    function detenerVideos() { _catalogos.forEach(c => c.reiniciar()); }
+
+    function montarCatalogo(raiz) {
+        const videos = CATALOGOS[raiz.dataset.catalogo] || [];
+        const pista = raiz.querySelector('.vc-pista');
+        const tira = raiz.querySelector('.vc-tira');
+        const cuenta = raiz.querySelector('.vc-cuenta');
+        let actual = 0;
+
+        const miniatura = v => `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`;
+        const urlYouTube = v => v.tipo === 'short' ? `https://www.youtube.com/shorts/${v.id}` : `https://www.youtube.com/watch?v=${v.id}` + (v.inicio ? `&t=${v.inicio}s` : '');
+        const urlEmbed = v => `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0` + (v.inicio ? `&start=${v.inicio}` : '');
+
+        function ponerPortada(slide, v) {
+            slide.innerHTML = `<img src="${miniatura(v)}" alt="${v.titulo || 'Video del mod'}" loading="lazy">` +
+                (v.tipo === 'short' ? '<span class="vc-badge">SHORT</span>' : '') +
+                '<div class="vc-play"></div>';
+            slide.onclick = () => { window.open(urlYouTube(v), '_blank', 'noopener'); };
+        }
+
+        videos.forEach((v, i) => {
+            const slide = document.createElement('div');
+            slide.className = 'vc-slide' + (v.tipo === 'short' ? ' short' : '');
+            ponerPortada(slide, v);
+            pista.appendChild(slide);
+
+            const mini = document.createElement('button');
+            mini.className = 'vc-mini' + (v.tipo === 'short' ? ' short' : '');
+            mini.setAttribute('aria-label', v.titulo || `Video ${i + 1}`);
+            mini.innerHTML = `<img src="${miniatura(v)}" alt="" loading="lazy">`;
+            mini.onclick = () => ir(i);
+            tira.appendChild(mini);
+        });
+
+        function reiniciar() {
+            [...pista.children].forEach((s, i) => { if (s.querySelector('iframe')) ponerPortada(s, videos[i]); });
+            if (window.Musica && !document.querySelector('.vc-slide iframe')) Musica.videoTerminado();
+        }
+
+        function ir(n) {
+            if (!videos.length) return;
+            const previo = actual;
+            actual = (n + videos.length) % videos.length;
+            if (previo !== actual) reiniciar();
+            pista.style.transform = `translateX(-${actual * 100}%)`;
+            [...tira.children].forEach((m, i) => m.classList.toggle('activa', i === actual));
+            const m = tira.children[actual];
+            tira.scrollTo({ left: m.offsetLeft - (tira.clientWidth - m.clientWidth) / 2, behavior: 'smooth' });
+            cuenta.textContent = `Video ${actual + 1} de ${videos.length}`;
+        }
+
+        raiz.querySelector('.vc-prev').onclick = () => ir(actual - 1);
+        raiz.querySelector('.vc-next').onclick = () => ir(actual + 1);
+
+        let x0 = null;
+        pista.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+        pista.addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) ir(actual + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+
+        // Si hay un solo video, ocultar flechas y tira
+        if (videos.length < 2) raiz.querySelectorAll('.vc-flecha, .vc-tira, .vc-cuenta').forEach(el => el.style.display = 'none');
+
+        _catalogos.push({ reiniciar });
+        ir(0);
+    }
+    document.querySelectorAll('.vc').forEach(montarCatalogo);
+    </script>
+
+    <script>
+    // Si una miniatura de img.youtube.com falla, reintenta una sola vez con el otro servidor de YouTube
+    document.addEventListener('error', e => {
+        const t = e.target;
+        if (t && t.tagName === 'IMG' && t.src.indexOf('img.youtube.com/vi/') > -1 && !t.dataset.reintento) {
+            t.dataset.reintento = '1';
+            t.src = t.src.replace('img.youtube.com', 'i.ytimg.com');
+        }
+    }, true);
+    </script>
+    <script>
+    // ===== INTRO RENOVADA =====
+    (function () {
+        // ---- Cosas que podés editar ----
+        const NOVEDADES = [
+            { texto: 'Postal 2 Argentino ya está en la Workshop de Steam', seccion: 'postal2' }
+        ];
+        const STATS = [
+            { etiqueta: 'Mods', auto: true },
+            { etiqueta: 'Videos', valor: 250, mas: true },
+            { etiqueta: 'Suscriptores', valor: 4900, mas: true }
+        ];
+        // --------------------------------
+
+        const intro = document.getElementById('intro-screen');
+        if (!intro) return;
+        const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Ir a una sección desde la intro (simula el click en la pestaña correspondiente)
+        function irASeccion(id) {
+            const ir = () => {
+                intro.style.transition = 'none';
+                intro.classList.add('oculto');
+                sitioEntrado = true;
+                const el = document.querySelector('[onclick*="cambiarSeccion(\'' + id + '\'"]');
+                if (el) el.click();
+            };
+            if (window.barridoBandera) barridoBandera(ir); else ir();
+        }
+
+        // Accesos directos + fondo que cambia según el mod
+        const bgHover = document.getElementById('intro-bg-hover');
+        document.querySelectorAll('.intro-juego').forEach(b => {
+            const img = b.style.backgroundImage;
+            const url = img.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            const pre = new Image(); pre.src = url;
+            const mostrar = () => {
+                bgHover.style.backgroundImage = img;
+                bgHover.classList.add('visible');
+                if (typeof reproducirSelect === 'function') reproducirSelect();
+            };
+            const ocultar = () => bgHover.classList.remove('visible');
+            b.addEventListener('mouseenter', mostrar);
+            b.addEventListener('focus', mostrar);
+            b.addEventListener('mouseleave', ocultar);
+            b.addEventListener('blur', ocultar);
+            b.addEventListener('click', () => irASeccion(b.dataset.seccion));
+        });
+
+        // Novedades
+        const contNov = document.getElementById('intro-novedades');
+        if (NOVEDADES.length) {
+            const n = NOVEDADES[0];
+            const a = document.createElement('div');
+            a.className = 'intro-novedad';
+            a.innerHTML = '<span class="nov-tag">NUEVO</span><span></span><span class="nov-flecha">›</span>';
+            a.children[1].textContent = n.texto;
+            a.onclick = () => irASeccion(n.seccion);
+            contNov.appendChild(a);
+        } else { contNov.style.display = 'none'; }
+
+        // Contadores animados
+        const contStats = document.getElementById('intro-stats');
+        const modsAuto = [...document.querySelectorAll('.section-content')].filter(x => x.id !== 'cancelados').length;
+        const elems = STATS.map(st => {
+            const d = document.createElement('div');
+            d.className = 'intro-stat';
+            d.innerHTML = '<b>0</b><small></small>';
+            d.querySelector('small').textContent = st.etiqueta;
+            contStats.appendChild(d);
+            return { b: d.querySelector('b'), meta: st.auto ? modsAuto : st.valor, mas: !!st.mas };
+        });
+        const fmt = (n, mas) => (mas ? '+' : '') + Math.round(n).toLocaleString('es-AR');
+        if (reducido) { elems.forEach(e => e.b.textContent = fmt(e.meta, e.mas)); }
+        else {
+            const t0 = performance.now() + 700, dur = 1800;
+            (function paso(t) {
+                const k = Math.min(Math.max((t - t0) / dur, 0), 1), e = 1 - Math.pow(1 - k, 3);
+                elems.forEach(x => x.b.textContent = fmt(x.meta * e, x.mas));
+                if (k < 1) requestAnimationFrame(paso);
+            })(performance.now());
+        }
+
+        // Parallax suave con el mouse
+        const capa = document.getElementById('intro-capa');
+        if (!reducido && window.matchMedia('(hover: hover)').matches) {
+            intro.addEventListener('mousemove', e => {
+                const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
+                capa.style.transform = 'translate(' + (-x * 26) + 'px,' + (-y * 18) + 'px)';
+            });
+        }
+
+        // Partículas doradas
+        const cv = document.getElementById('intro-particulas');
+        if (cv && !reducido) {
+            const ctx = cv.getContext('2d');
+            let w, h, ps = [];
+            const medir = () => { w = cv.width = intro.clientWidth; h = cv.height = intro.clientHeight; };
+            medir(); window.addEventListener('resize', medir);
+            const n = window.innerWidth < 700 ? 24 : 55;
+            for (let i = 0; i < n; i++) ps.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2 + 0.6, vy: Math.random() * 0.35 + 0.1, vx: (Math.random() - 0.5) * 0.15, f: Math.random() * 6.28, a: Math.random() * 0.5 + 0.2 });
+            (function dibujar() {
+                if (intro.classList.contains('oculto')) return;
+                ctx.clearRect(0, 0, w, h);
+                ps.forEach(p => {
+                    p.y -= p.vy; p.x += p.vx + Math.sin(p.f += 0.01) * 0.2;
+                    if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283);
+                    ctx.fillStyle = 'rgba(255,204,0,' + p.a + ')'; ctx.fill();
+                });
+                requestAnimationFrame(dibujar);
+            })();
+        }
+    })();
+    </script>
+    <script>
+    // ===== MÚSICA POR MOD (con fundidos y memoria de por dónde iba cada tema) =====
+    window.Musica = (function () {
+        // Poné los .mp3 en la misma carpeta que este index.html. Para sumar canciones: agregá una línea en "pistas".
+        // Para otro juego: agregá un grupo nuevo y enlazá sus secciones abajo, en SECCIONES.
+        const GRUPOS = {
+            tf2: { nombre: 'Team Fortress 2', pistas: [
+                { f: 'gamestartup3.mp3',  t: 'Rocket Jump Waltz' },
+                { f: 'gamestartup23.mp3', t: 'It Hates Me So Much' },
+                { f: 'gamestartup29.mp3', t: 'Mercenary Park' } ] },
+            hl1: { nombre: 'Half-Life 1', pistas: [
+                { f: 'hl1_song1.mp3' }, { f: 'hl1_song2.mp3' }, { f: 'hl1_song3.mp3' } ] },
+            hl2: { nombre: 'Half-Life 2', pistas: [
+                { f: 'hl2_song27_trainstation2.mp3' }, { f: 'hl2_song26_trainstation1.mp3' }, { f: 'hl2_song2.mp3' } ] },
+            postal2: { nombre: 'Postal 2', pistas: [
+                { f: '01_Christian_Salyer_-_Map_Muzak.mp3', t: 'Map Muzak' },
+                { f: '18_Christian_Salyer_-_Uncle_Dave__Heavy_Metal_.mp3', t: 'Uncle Dave (Heavy Metal)' },
+                { f: '25_Takumi_Sekiguchi_Sloan_-_The_Carnival.mp3', t: 'The Carnival' } ] },
+            cs16: { nombre: 'Counter-Strike 1.6', pistas: [ { f: 'cs_2.mp3' } ] },
+            cscz: { nombre: 'Condition Zero', pistas: [ { f: 'cs_1.mp3' } ] },
+            dod: { nombre: 'Day of Defeat: Source', pistas: [ { f: 'dod_theme.mp3' } ] },
+            gtav: { nombre: 'GTA V Argentino', pistas: [ { f: 'gtav_theme.mp3' } ] },
+            portal: { nombre: 'Portal Voces Argentinas', pistas: [ { f: 'portal_theme.mp3' } ] },
+            l4d1: { nombre: 'Left 4 Dead 1', pistas: [ { f: 'l4d1_theme.mp3' } ] },
+            l4d2: { nombre: 'Left 4 Dead 2', pistas: [ { f: 'l4d2_theme.mp3' } ] }
+        };
+        // Qué grupo suena en cada sección (las que no estén acá quedan en silencio)
+        const SECCIONES = {
+            tf2: 'tf2', tf2classified: 'tf2',
+            hl1: 'hl1', hl1opposing: 'hl1',
+            hl2: 'hl2',
+            postal2: 'postal2',
+            cs16: 'cs16', csother: 'cscz',
+            dodsource: 'dod'
+            // Planificados/Cancelados: la música sale de cada proyecto del carrusel (campo "musica" en proyectosData)
+        };
+        const grupoProyecto = () => { try { return proyectosData[proyectoActualIndex].musica || null; } catch (e) { return null; } };
+        const FADE_IN = 2000, FADE_OUT = 1500; // milisegundos
+        const EDM_FADE_OUT = 900, EDM_FADE_IN = 3000; // fundidos del secreto EDM
+        const INTRO_VOL = 0.5, INTRO_FADE = 1800, INTRO_ARCHIVO = 're4_save.mp3'; // canción del menú de inicio
+
+        let actual = null, volumen = 0.35, silenciado = true;
+        const pausas = { video: false, oculta: false, evento: false };
+        try {
+            const v = localStorage.getItem('musica_vol'), m = localStorage.getItem('musica_mute');
+            if (v !== null) volumen = Math.min(1, Math.max(0, parseFloat(v)));
+            silenciado = (m === '1'); // la primera vez arranca con música
+            if (m === null) silenciado = false;
+        } catch (e) { silenciado = false; }
+
+        const G = {};
+        Object.keys(GRUPOS).forEach(k => {
+            G[k] = { cfg: GRUPOS[k], idx: Math.floor(Math.random() * GRUPOS[k].pistas.length), audio: null, nivel: 0, objetivo: 0, anim: null };
+        });
+
+        const ctrl = document.getElementById('musica-ctrl');
+        const btn = document.getElementById('musica-btn');
+        const slider = document.getElementById('musica-vol');
+        const rotulo = document.getElementById('musica-nombre');
+        let rotuloTimer = null;
+
+        const efectivo = () => silenciado ? 0 : volumen;
+        const aplicarVolumen = g => { if (g.audio) g.audio.volume = Math.min(1, Math.max(0, g.nivel * efectivo())); };
+
+        function mostrarRotulo(g) {
+            if (silenciado) return;
+            const p = g.cfg.pistas[g.idx];
+            rotulo.textContent = '\u266B ' + g.cfg.nombre + (p.t ? ' \u00B7 ' + p.t : '');
+            rotulo.classList.add('visible');
+            clearTimeout(rotuloTimer);
+            rotuloTimer = setTimeout(() => rotulo.classList.remove('visible'), 3500);
+        }
+
+        function avisar(texto) {
+            rotulo.textContent = texto;
+            rotulo.classList.add('visible');
+            clearTimeout(rotuloTimer);
+            rotuloTimer = setTimeout(() => rotulo.classList.remove('visible'), 7000);
+        }
+
+        function crearAudio(g) {
+            const a = new Audio();
+            a.preload = 'auto';
+            a.src = g.cfg.pistas[g.idx].f;
+            a.volume = 0;
+            a.addEventListener('ended', () => {            // pasa al siguiente tema de la lista
+                g.idx = (g.idx + 1) % g.cfg.pistas.length;
+                a.src = g.cfg.pistas[g.idx].f;
+                if (g.objetivo > 0) { a.play().catch(() => {}); if (actual && G[actual] === g) mostrarRotulo(g); }
+            });
+            a.addEventListener('playing', () => { g.fallos = 0; });
+            a.addEventListener('error', () => {
+                const archivo = g.cfg.pistas[g.idx].f;
+                console.warn('[Musica] No se pudo cargar "' + archivo + '" (' + g.cfg.nombre + ')');
+                g.fallos = (g.fallos || 0) + 1;
+                if (g.fallos >= g.cfg.pistas.length) {
+                    avisar('\u26A0 No se pudo cargar la musica de ' + g.cfg.nombre + ' - revisa los .mp3');
+                    return;
+                }
+                avisar('\u26A0 No encuentro: ' + archivo);
+                g.idx = (g.idx + 1) % g.cfg.pistas.length;
+                a.src = g.cfg.pistas[g.idx].f;
+                if (g.objetivo > 0) a.play().catch(() => {});
+            });
+            g.audio = a;
+        }
+
+        function fade(g, objetivo, ms) {
+            if (g.objetivo === objetivo && (g.anim || objetivo === 0 || (g.audio && !g.audio.paused))) return;
+            g.objetivo = objetivo;
+            if (objetivo > 0) {
+                if (!g.audio) crearAudio(g);
+                if (g.audio.paused) {
+                    const pr = g.audio.play();
+                    if (pr && pr.catch) pr.catch(err => { if (err && err.name === 'NotAllowedError') g.objetivo = -1; else console.warn('[Musica]', err && err.name); }); // si el navegador lo bloqueó, se reintenta con el próximo click/tecla
+                }
+            }
+            cancelAnimationFrame(g.anim);
+            const n0 = g.nivel, t0 = performance.now();
+            (function paso(t) {
+                const k = Math.min((t - t0) / ms, 1);
+                g.nivel = n0 + (objetivo - n0) * k;
+                aplicarVolumen(g);
+                if (k < 1) { g.anim = requestAnimationFrame(paso); }
+                else { g.anim = null; if (objetivo === 0 && g.audio) g.audio.pause(); } // pausa: conserva el punto donde iba
+            })(t0);
+        }
+
+        function aplicar(msIn, msOut) {
+            Object.keys(G).forEach(k => {
+                const quiere = (k === actual) && !pausas.video && !pausas.oculta && !pausas.evento;
+                fade(G[k], quiere ? 1 : 0, quiere ? (msIn || FADE_IN) : (msOut || FADE_OUT));
+            });
+        }
+
+        function setActual(grupo) {
+            if (grupo === actual) return;
+            actual = grupo;
+            aplicar();
+            if (grupo) mostrarRotulo(G[grupo]);
+        }
+
+        function pintar() {
+            ctrl.classList.toggle('silencio', silenciado);
+            btn.innerHTML = silenciado ? '&#128263;' : '&#9835;';
+            slider.value = Math.round(volumen * 100);
+        }
+        function guardar() { try { localStorage.setItem('musica_vol', volumen); localStorage.setItem('musica_mute', silenciado ? '1' : '0'); } catch (e) {} }
+        function refrescarVolumenes() { Object.keys(G).forEach(k => aplicarVolumen(G[k])); }
+
+        btn.addEventListener('click', () => { silenciado = !silenciado; if (!silenciado && volumen === 0) volumen = 0.35; pintar(); guardar(); refrescarVolumenes(); aplicar(); });
+        slider.addEventListener('input', () => { volumen = slider.value / 100; if (volumen > 0) silenciado = false; pintar(); guardar(); refrescarVolumenes(); });
+
+        document.addEventListener('visibilitychange', () => {
+            pausas.oculta = document.hidden; aplicar();
+            if (intro.activa && intro.audio) { if (document.hidden) intro.audio.pause(); else intro.audio.play().catch(() => {}); }
+        });
+        // Si el navegador bloqueó el audio, reintenta en el próximo click
+        const reintentar = () => {
+            const g = actual && G[actual];
+            if (g && g.audio && g.audio.paused && !g.audio.error && !pausas.video && !pausas.oculta && !pausas.evento) { g.objetivo = -1; aplicar(); }
+        };
+        ['pointerdown', 'keydown', 'touchstart'].forEach(ev => document.addEventListener(ev, reintentar, { passive: true }));
+
+        // --- Canción del menú de inicio: solo suena ahí, con volumen fijo, y se apaga con fade al entrar ---
+        const intro = { audio: null, activa: true, esperando: false };
+        const hint = document.getElementById('intro-sonido-hint');
+        const ocultarHint = () => { if (hint) hint.classList.remove('visible'); };
+        function introArrancar(conFade) {
+            if (!intro.activa || silenciado) return;
+            if (!intro.audio) {
+                const a = new Audio(INTRO_ARCHIVO);
+                a.loop = true; a.preload = 'auto'; a.volume = INTRO_VOL;
+                a.addEventListener('error', () => { console.warn('[Musica] No se pudo cargar "' + INTRO_ARCHIVO + '"'); ocultarHint(); });
+                intro.audio = a;
+            }
+            if (conFade) intro.audio.volume = 0;
+            const pr = intro.audio.play();
+            if (pr && pr.then) {
+                pr.then(() => {
+                    ocultarHint();
+                    if (!conFade) return;
+                    const a = intro.audio, t0 = performance.now(), D = 2200;   // sube de a poco mientras se revela el logo
+                    (function subir(t) {
+                        if (!intro.activa) return;
+                        const k = Math.min(Math.max((t - t0) / D, 0), 1);
+                        a.volume = INTRO_VOL * k;
+                        if (k < 1) requestAnimationFrame(subir);
+                    })(t0);
+                }).catch(err => {
+                    if (err && err.name === 'NotAllowedError') introEsperar(); else console.warn('[Musica]', err && err.name);
+                });
+            }
+        }
+        // Si el navegador no deja sonar antes de interactuar, arranca con el primer toque o tecla (menos al salir del menú)
+        function introEsperar() {
+            if (intro.esperando || !intro.activa) return;
+            intro.esperando = true;
+            if (hint) hint.classList.add('visible');
+            const eventos = ['pointerdown', 'keydown', 'touchstart'];
+            const fn = e => {
+                if (!intro.activa) { eventos.forEach(ev => document.removeEventListener(ev, fn)); return; }
+                if (e.target && e.target.closest && e.target.closest('.btn-intro, .intro-juego, .intro-novedad, .intro-redes a')) return;
+                eventos.forEach(ev => document.removeEventListener(ev, fn));
+                intro.esperando = false;
+                introArrancar();
+            };
+            eventos.forEach(ev => document.addEventListener(ev, fn, { passive: true }));
+        }
+        function introDetener() {
+            if (!intro.activa) return;
+            intro.activa = false; ocultarHint();
+            const a = intro.audio; if (!a) return;
+            const v0 = a.volume, t0 = performance.now();
+            (function paso(t) {
+                const k = Math.min(Math.max((t - t0) / INTRO_FADE, 0), 1);
+                a.volume = Math.max(0, v0 * (1 - k));
+                if (k < 1) requestAnimationFrame(paso); else { a.pause(); a.removeAttribute('src'); a.load(); }
+            })(t0);
+        }
+        if (!window.SPLASH) introArrancar();   // con intro, la música arranca con el toque de entrada
+
+        pintar();
+
+        return {
+            introEmpezar() { introArrancar(true); },
+            alEntrar() {
+                introDetener();
+                const sec = document.querySelector('.section-content.active');
+                setActual(sec ? (sec.id === 'cancelados' ? grupoProyecto() : (SECCIONES[sec.id] || null)) : null);
+            },
+            alCambiarSeccion(id) { introDetener(); setActual(id === 'cancelados' ? grupoProyecto() : (SECCIONES[id] || null)); },
+            alCambiarProyecto() { setActual(grupoProyecto()); },
+            videoIniciado() { pausas.video = true; aplicar(); },
+            eventoIniciado() { pausas.evento = true; aplicar(EDM_FADE_IN, EDM_FADE_OUT); },
+            eventoTerminado() { if (pausas.evento) { pausas.evento = false; aplicar(EDM_FADE_IN, EDM_FADE_OUT); } },
+            videoTerminado() { if (pausas.video) { pausas.video = false; aplicar(); } },
+            _intro() { return intro.audio ? { pausado: intro.audio.paused, vol: +intro.audio.volume.toFixed(2), t: +intro.audio.currentTime.toFixed(1) } : null; },
+            _estado() { return Object.keys(G).map(k => ({ k, idx: G[k].idx, t: G[k].audio ? +G[k].audio.currentTime.toFixed(1) : 0, pausado: G[k].audio ? G[k].audio.paused : true, vol: G[k].audio ? +G[k].audio.volume.toFixed(2) : 0 })); }
+        };
+    })();
+    </script>
+    <script>
+    // ===== TRANSICIÓN: BARRIDO CON LA BANDERA =====
+    (function () {
+        const DUR = 420, ESCALON = 70, PAUSA = 220; // milisegundos: duración de cada franja, demora entre franjas, pausa con el sol
+        const ov = document.getElementById('barrido-bandera');
+        if (!ov) return;
+        const bandas = [...ov.querySelectorAll('.bb')], sol = ov.querySelector('.bb-sol');
+        const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let activo = false;
+        const ESTILO = (x) => 'translateX(' + x + ') skewX(-14deg)';
+        const esperar = ms => new Promise(r => setTimeout(r, ms));
+        const fin = anims => Promise.all(anims.map(a => a.finished));
+        const mover = (desde, hasta) => bandas.map((b, i) => b.animate(
+            [{ transform: ESTILO(desde) }, { transform: ESTILO(hasta) }],
+            { duration: DUR, delay: i * ESCALON, easing: 'cubic-bezier(.7,0,.2,1)', fill: 'forwards' }));
+
+        // alCubrir() se ejecuta cuando la pantalla está tapada: ahí se cambia lo que hay debajo
+        window.barridoBandera = async function (alCubrir) {
+            if (reducido || !ov.animate) { alCubrir(); return; }
+            if (activo) return;
+            activo = true;
+            ov.style.display = 'block';
+            await fin(mover('-110%', '0%'));                       // 1) las franjas tapan la pantalla
+            alCubrir();                                            // 2) cambio de pantalla, escondido
+            sol.animate([{ opacity: 0, transform: 'translate(-50%,-50%) scale(.2) rotate(-40deg)' },
+                         { opacity: 1, transform: 'translate(-50%,-50%) scale(1) rotate(0deg)' }],
+                        { duration: PAUSA + 120, easing: 'cubic-bezier(.2,.9,.3,1.2)', fill: 'forwards' });
+            await esperar(PAUSA);
+            sol.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 220, fill: 'forwards' });
+            await fin(mover('0%', '110%'));                        // 3) las franjas siguen de largo y muestran el sitio
+            ov.style.display = 'none';
+            [...bandas, sol].forEach(x => x.getAnimations().forEach(a => a.cancel()));
+            activo = false;
+        };
+    })();
+    </script>
+    <script>
+    // ===== INTRO DE ENTRADA: "Tocá para entrar" -> revelado del logo -> barrido con la bandera -> menú =====
+    // Se ve una vez por visita (para verla de nuevo: abrí la página con ?intro al final de la dirección).
+    (function () {
+        const sp = document.getElementById('splash-intro');
+        if (!sp || !window.SPLASH) return;
+        const root = document.documentElement, btn = document.getElementById('splash-btn');
+        const F = window.innerWidth < 700 ? 0.7 : 1;   // en celular va más rápida
+        sp.style.setProperty('--f', F);
+        let etapa = 'gate', t0 = 0, timers = [];
+        const T = (fn, ms) => timers.push(setTimeout(fn, ms * F));
+
+        // Título del menú: queda preparado para escribirse letra por letra cuando aparezca el menú
+        const h1 = document.querySelector('.intro-titulo'); const letras = [];
+        if (h1) {
+            const txt = h1.textContent; h1.textContent = ''; h1.setAttribute('aria-label', txt);
+            txt.split('').forEach(c => { const s = document.createElement('span'); s.textContent = c; s.style.opacity = '0'; h1.appendChild(s); letras.push(s); });
+        }
+        function mostrarMenu() {
+            root.classList.remove('con-splash');   // el menú empieza a animarse
+            letras.forEach((s, i) => setTimeout(() => { s.style.opacity = '1'; }, 250 + i * 75 * F));
+        }
+
+        // Partículas doradas
+        const cv = document.getElementById('splash-canvas'), ctx = cv.getContext('2d'); let w, h; const ps = [];
+        const medir = () => { w = cv.width = window.innerWidth; h = cv.height = window.innerHeight; };
+        medir(); window.addEventListener('resize', medir);
+        const ambiente = () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.2, vy: -(Math.random() * 0.4 + 0.1), r: Math.random() * 1.8 + 0.5, a: Math.random() * 0.5 + 0.2, v: 0 });
+        for (let i = 0; i < 35; i++) ps.push(ambiente());
+        function explosion() {
+            const cx = w / 2, cy = h / 2 - 30;
+            for (let i = 0; i < 90; i++) { const an = Math.random() * 6.283, v = Math.random() * 5 + 1.5; ps.push({ x: cx, y: cy, vx: Math.cos(an) * v, vy: Math.sin(an) * v, r: Math.random() * 2.4 + 0.6, a: 1, v: 70 + Math.random() * 50, vi: 0 }); }
+        }
+        (function dibujar() {
+            if (!root.classList.contains('con-splash')) return;
+            ctx.clearRect(0, 0, w, h);
+            for (let i = ps.length - 1; i >= 0; i--) {
+                const p = ps[i];
+                p.x += p.vx; p.y += p.vy;
+                if (p.v) { p.vx *= 0.965; p.vy *= 0.965; p.vi++; p.a = Math.max(0, 1 - p.vi / p.v); if (p.vi >= p.v) { ps.splice(i, 1); continue; } }
+                else if (p.y < -5) { p.y = h + 5; p.x = Math.random() * w; }
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fillStyle = 'rgba(255,204,0,' + p.a + ')'; ctx.fill();
+            }
+            requestAnimationFrame(dibujar);
+        })();
+
+        function empezar() {
+            if (etapa !== 'gate') return;
+            etapa = 'seq'; t0 = performance.now();
+            try { sessionStorage.setItem('intro_vista', '1'); } catch (e) {}
+            sp.classList.add('sp-run');
+            if (window.Musica) Musica.introEmpezar();       // este toque habilita todos los sonidos de la página
+            T(explosion, 500);
+            T(() => {
+                etapa = 'barrido';
+                const fin = () => { etapa = 'fin'; };
+                const r = window.barridoBandera ? barridoBandera(mostrarMenu) : (mostrarMenu(), null);
+                if (r && r.then) r.then(fin); else fin();
+            }, 3400);
+        }
+        function saltar() {
+            if (etapa !== 'seq' || performance.now() - t0 < 600) return;
+            etapa = 'fin'; timers.forEach(clearTimeout);
+            sp.classList.add('sp-salida');
+            setTimeout(mostrarMenu, 350);
+        }
+        sp.addEventListener('pointerdown', () => { if (etapa === 'gate') empezar(); else saltar(); });
+        document.addEventListener('keydown', e => {
+            if (!root.classList.contains('con-splash')) return;
+            if (etapa === 'gate') { empezar(); e.preventDefault(); }
+            else if (['Escape', 'Enter', ' '].includes(e.key)) { saltar(); e.preventDefault(); }
+        });
+        btn.focus();
+    })();
+    </script>
+
+<script>
+(function(){
+    var nav = document.querySelector('.nav-tabs'); if(!nav) return;
+    var barra = document.createElement('div'); barra.className = 'nav-barra'; nav.appendChild(barra);
+    document.querySelectorAll('.dropdown > .tab').forEach(function(t){
+        t.innerHTML = t.innerHTML.replace('\u25BE', '<span class="flecha">\u25BE</span>');
+    });
+    function celda(el){ while(el && el.parentElement !== nav) el = el.parentElement; return el; }
+    function mover(c){ if(!c){ barra.style.opacity = 0; return; } barra.style.opacity = 1; barra.style.left = c.offsetLeft + 'px'; barra.style.width = c.offsetWidth + 'px'; }
+    function activa(){ var t = nav.querySelector('.tab.active'); return t ? celda(t) : null; }
+    Array.prototype.forEach.call(nav.children, function(c){ if(c !== barra) c.addEventListener('mouseenter', function(){ mover(c); }); });
+    nav.addEventListener('mouseleave', function(){ mover(activa()); });
+    window.addEventListener('resize', function(){ mover(activa()); });
+    new MutationObserver(function(){ mover(activa()); }).observe(nav, { subtree:true, attributes:true, attributeFilter:['class'] });
+    mover(activa());
+
+    // Direccion del deslizamiento segun la pestaña elegida
+    var orig = window.cambiarSeccion;
+    if(typeof orig === 'function'){
+        window.cambiarSeccion = function(id, ev){
+            var antes = activa(), kids = Array.prototype.slice.call(nav.children);
+            var self = this, args = arguments;
+            var el = ev && ev.currentTarget;
+            var raiz = document.documentElement;
+            var yaActiva = document.getElementById(id) && document.getElementById(id).classList.contains('active');
+            function hacer(conVT){
+                orig.apply(self, el ? [id, { currentTarget: el }] : args);
+                document.querySelectorAll('.section-content.sin-anim').forEach(function(x){ x.classList.remove('sin-anim'); });
+                var sec = document.getElementById(id); if(sec && conVT) sec.classList.add('sin-anim');
+                var ahora = activa();
+                var d = (antes && ahora && antes !== ahora) ? (kids.indexOf(ahora) > kids.indexOf(antes) ? 1 : -1) : 0;
+                raiz.style.setProperty('--dir', d);
+                var s = document.getElementById(id); if(s) s.style.setProperty('--dir', d);
+            }
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if(document.startViewTransition && !reduce && el && !yaActiva){
+                document.startViewTransition(function(){ hacer(true); });
+            } else { hacer(false); }
+        };
+    }
+
+    // Aparicion al hacer scroll
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+        var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('rv-in'); io.unobserve(e.target); } }); }, { threshold:.12 });
+        document.querySelectorAll('.section-content .section-grid p, .section-content .download-container, .section-content .sidebar-old-mod').forEach(function(el){ el.classList.add('rv'); io.observe(el); });
+    }
+})();
+</script>
+
+    <!-- ZONA LIBRE: mods de GTA V -->
+    <div id="gz" aria-hidden="true">
+        <div class="gz-fondo" id="gz-fondo"><div class="gz-w"></div><div class="gz-w"></div><div class="gz-w"></div></div>
+        <div class="gz-vineta"></div>
+        <div class="gz-linea"></div>
+        <img class="gz-v" src="gta5.png" alt="">
+        <div class="gz-wipe"><i></i><i></i><i></i></div>
+        <div class="gz-titulo"><h1 id="gz-h1"></h1><p id="gz-sub"></p></div>
+        <div class="gz-top"><button class="gz-btn" id="gz-volver" type="button">&#8592; VOLVER</button><a class="gz-btn" id="gz-gb" href="https://www.gta5-mods.com/users/Hernancho674" target="_blank">GTA5-MODS</a></div>
+        <div class="gz-ui" id="gz-ui"><div class="gz-chips" id="gz-chips"></div><div class="gz-grid" id="gz-grid"></div></div>
+        <div class="gz-skip">Clic o Esc para saltar</div>
+    </div>
+
+<script>
+(function(){
+    // ===== CONFIG: cambiá nombres, juegos y mods acá =====
+    var GZ_NOMBRE = 'MÁS ALLÁ', GZ_SUB = 'MODS DE GTA V';
+    var GZ_JUEGOS = [
+        { id:'gtav', nombre:'GTA V', logo:'gta5.png', fondos:['GTA5_wallpaper1','GTA5_wallpaper2','GTA5_wallpaper3'], mods:[
+            { titulo:'Headshot Sounds Mod [H.S.M]', version:'', url:'https://www.gta5-mods.com/misc/headshot-sounds-mod-h-s-m' },
+            { titulo:'Peds Pain & Death Sounds Improvements', version:'2.0', url:'https://www.gta5-mods.com/misc/new-death-sounds-for-peds', destacado:true },
+            { titulo:'Mute Headshot Death Sounds', version:'1.0', url:'https://www.gta5-mods.com/misc/mute-headshot-death-sounds-m-h-d-s' }
+        ] }
+    ];
+    var EXTS = ['jpg','png','webp','jpeg'];
+    var gz = document.getElementById('gz'); if(!gz) return;
+    var fondoEls = gz.querySelectorAll('.gz-w'), h1 = document.getElementById('gz-h1'), sub = document.getElementById('gz-sub');
+    var timers = [], rot = null, fase = 'cerrado', t0 = 0, juego = GZ_JUEGOS[0], wi = 0;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // ===== SONIDOS DE LA INTRO (sintetizados, sin archivos) =====
+    var AC = null, NB = null, cur = null;
+    function acx(){
+        if(!AC){ var C = window.AudioContext || window.webkitAudioContext; if(!C) return null; AC = new C();
+            NB = AC.createBuffer(1, AC.sampleRate * 2, AC.sampleRate); var d = NB.getChannelData(0); for(var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+        if(AC.state === 'suspended') AC.resume(); return AC;
+    }
+    function silencio(){ try { return localStorage.getItem('musica_mute') === '1'; } catch(e){ return false; } }
+    function motor(){
+        var a = acx(); if(!a || silencio()) return null;
+        var m = a.createGain(); m.gain.value = 0.8; m.connect(a.destination);
+        var T = a.currentTime + 0.05;
+        return {
+            m: m,
+            ruido: function(t, dur, tipo, f1, f2, g, pico){
+                var s = a.createBufferSource(); s.buffer = NB; s.loop = true;
+                var f = a.createBiquadFilter(); f.type = tipo; f.frequency.setValueAtTime(f1, T + t); f.frequency.exponentialRampToValueAtTime(f2, T + t + dur);
+                var v = a.createGain(); v.gain.setValueAtTime(0.0001, T + t); v.gain.exponentialRampToValueAtTime(g, T + t + dur * (pico || .5)); v.gain.exponentialRampToValueAtTime(0.0001, T + t + dur);
+                s.connect(f); f.connect(v); v.connect(m); s.start(T + t); s.stop(T + t + dur + .05);
+            },
+            tono: function(t, dur, f1, f2, g, tipo){
+                var o = a.createOscillator(); o.type = tipo || 'sine'; o.frequency.setValueAtTime(f1, T + t); o.frequency.exponentialRampToValueAtTime(f2, T + t + dur);
+                var v = a.createGain(); v.gain.setValueAtTime(g, T + t); v.gain.exponentialRampToValueAtTime(0.0001, T + t + dur);
+                o.connect(v); v.connect(m); o.start(T + t); o.stop(T + t + dur + .05);
+            }
+        };
+    }
+    function sndStop(){
+        if(!cur) return; var c = cur; cur = null;
+        try { c.m.gain.cancelScheduledValues(AC.currentTime); c.m.gain.setValueAtTime(c.m.gain.value, AC.currentTime); c.m.gain.linearRampToValueAtTime(0, AC.currentTime + .15); setTimeout(function(){ try { c.m.disconnect(); } catch(e){} }, 300); } catch(e){}
+    }
+    function sndIntro(){
+        sndStop(); var x = motor(); if(!x) return; cur = x;
+        x.ruido(.10, .9, 'bandpass', 300, 3000, .25, .6);
+        x.ruido(.80, .55, 'lowpass', 200, 5000, .35, .9); x.tono(.8, .55, 60, 220, .18, 'sawtooth');
+        x.tono(1.32, 1.5, 90, 35, .9, 'sine'); x.ruido(1.32, .5, 'lowpass', 2500, 80, .6, .03); x.tono(1.32, .9, 220, 180, .1, 'square');
+        x.tono(1.45, 4.1, 55, 52, .1, 'sine');
+        x.ruido(2.5, 1.0, 'bandpass', 200, 4000, .4, .5);
+        [0, .08, .16].forEach(function(d){ x.ruido(2.5 + d, .3, 'bandpass', 900, 200, .18, .3); });
+        for(var k = 0; k < GZ_NOMBRE.length; k++){ if(GZ_NOMBRE.charAt(k) === ' ') continue; var t = 3.1 + .07 * k + .33;
+            x.tono(t, .22, 140, 50, .5, 'sine'); x.ruido(t, .06, 'highpass', 2500, 2500, .12, .2); }
+        x.tono(3.7, 1.6, 880, 880, .035, 'sine'); x.tono(3.7, 1.6, 1320, 1320, .02, 'sine');
+    }
+    function sndOutro(){
+        sndStop(); var x = motor(); if(!x) return; cur = x;
+        x.ruido(.05, .75, 'bandpass', 4000, 200, .4, .4);
+        [.1, .18, .26].forEach(function(d){ x.ruido(d, .3, 'bandpass', 200, 900, .16, .3); });
+        x.tono(.05, .8, 200, 40, .5, 'sine'); x.tono(.7, .7, 80, 32, .6, 'sine'); x.ruido(.7, .3, 'lowpass', 1800, 80, .35, .05);
+    }
+    function sndFinal(){
+        var x = cur || motor(); if(!x) return; if(!cur){ cur = x; }
+        x.tono(.02, 2.2, 110, 100, .22, 'sine'); x.ruido(.02, .9, 'bandpass', 400, 3500, .22, .4);
+        [220, 277, 330].forEach(function(f){ x.tono(.05, 2.5, f, f, .05, 'triangle'); });
+    }
+    sub.textContent = GZ_SUB;
+    h1.innerHTML = GZ_NOMBRE.split('').map(function(c,i){ return '<span style="--k:'+i+'">'+(c===' ' ? '&nbsp;' : c)+'</span>'; }).join('');
+
+    function cargarImg(base, cb, i){
+        i = i || 0; if(i >= EXTS.length){ cb(null); return; }
+        var im = new Image(); var url = base + '.' + EXTS[i];
+        im.onload = function(){ cb(url); }; im.onerror = function(){ cargarImg(base, cb, i+1); }; im.src = url;
+    }
+    function fondos(){
+        juego.fondos.forEach(function(b, k){ cargarImg(b, function(u){ if(u) fondoEls[k].style.backgroundImage = "url('"+u+"')"; }); });
+    }
+    function ciclo(){
+        var ok = Array.prototype.filter.call(fondoEls, function(e){ return e.style.backgroundImage; });
+        if(!ok.length) ok = [fondoEls[0]];
+        Array.prototype.forEach.call(fondoEls, function(e){ e.classList.remove('on'); });
+        ok[wi % ok.length].classList.add('on'); wi++;
+    }
+    function render(){
+        var chips = document.getElementById('gz-chips'), grid = document.getElementById('gz-grid');
+        chips.innerHTML = GZ_JUEGOS.map(function(j){ return '<button class="gz-chip'+(j===juego?' on':'')+'" data-id="'+j.id+'"><img src="'+j.logo+'" alt="">'+j.nombre+'</button>'; }).join('');
+        Array.prototype.forEach.call(chips.children, function(b){ b.onclick = function(){ juego = GZ_JUEGOS.filter(function(j){ return j.id === b.dataset.id; })[0]; render(); fondos(); }; });
+        grid.innerHTML = juego.mods.map(function(m, i){
+            return '<div class="gz-card'+(m.destacado?' gz-dest':'')+'" style="--c:'+i+'">'+(m.destacado?'<div class="gz-tag">DESTACADO</div>':'')+(m.version?'<div class="gz-ver">'+m.version+'</div>':'')+'<h3>'+m.titulo+'</h3>'+(m.desc?'<p>'+m.desc+'</p>':'')+(m.url?'<a class="gz-btn" href="'+m.url+'" target="_blank">VER MOD</a>':'')+'</div>';
+        }).join('');
+    }
+    function set(c){ gz.classList.add(c); }
+    function en(ms, fn){ timers.push(setTimeout(fn, ms)); }
+    function limpiar(){ timers.forEach(clearTimeout); timers = []; clearInterval(rot); rot = null; }
+    function ui(natural){
+        if(fase === 'ui') return; fase = 'ui'; limpiar(); if(!natural) sndStop(); sndFinal();
+        ['f-linea','f-v'].forEach(function(c){ gz.classList.remove(c); });
+        set('f-wall'); set('f-titulo'); set('f-ui'); ciclo();
+        rot = setInterval(ciclo, 7000);
+    }
+    function abrir(){
+        if(fase !== 'cerrado') return;
+        render(); fondos(); wi = 0;
+        gz.className = 'abierto'; gz.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden';
+        if(window.Musica && Musica.eventoIniciado) Musica.eventoIniciado();
+        t0 = Date.now(); fase = 'intro';
+        if(reduce){ fase = 'intro'; ui(); return; }
+        sndIntro();
+        en(150, function(){ set('f-linea'); });
+        en(800, function(){ set('f-v'); });
+        en(2500, function(){ set('f-wall'); ciclo(); });
+        en(3100, function(){ set('f-titulo'); });
+        en(4900, function(){ ciclo(); });
+        en(5600, function(){ ui(true); });
+        rot = setInterval(ciclo, 3200);
+    }
+    function cerrar(){
+        if(fase === 'cerrado' || fase === 'outro') return;
+        limpiar();
+        function fin(musica){
+            fase = 'cerrado'; gz.className = ''; gz.setAttribute('aria-hidden','true'); document.body.style.overflow = '';
+            if(musica && window.Musica && Musica.eventoTerminado) Musica.eventoTerminado();
+        }
+        if(reduce){ sndStop(); fin(true); return; }
+        fase = 'outro'; sndOutro(); gz.classList.add('f-out');
+        en(450, function(){ if(window.Musica && Musica.eventoTerminado) Musica.eventoTerminado(); });
+        en(950, function(){ fin(); });
+    }
+    gz.addEventListener('click', function(e){ if(fase === 'intro' && Date.now() - t0 > 500) ui(); });
+    document.addEventListener('keydown', function(e){
+        if(fase === 'cerrado') return;
+        if(e.key === 'Escape'){ if(fase === 'intro') ui(); else cerrar(); }
+        else if(fase === 'intro' && (e.key === 'Enter' || e.key === ' ') && Date.now() - t0 > 500){ e.preventDefault(); ui(); }
+    });
+    var ult = null;
+    gz.addEventListener('mouseover', function(e){ var c = e.target.closest && e.target.closest('.gz-card,.gz-chip,.gz-btn'); if(c && c !== ult && fase === 'ui'){ ult = c; if(typeof reproducirSelect === 'function') reproducirSelect(); } else if(!c){ ult = null; } });
+    gz.addEventListener('click', function(e){ if(fase === 'ui' && e.target.closest && e.target.closest('.gz-btn,.gz-chip') && typeof reproducirClick === 'function') reproducirClick(); });
+    document.getElementById('gz-volver').addEventListener('click', cerrar);
+    var b = document.querySelector('.oculto-gta'); if(b) b.addEventListener('click', function(e){ e.preventDefault(); if(typeof edmTriggered !== 'undefined' && edmTriggered) return; abrir(); });
+})();
+</script>
+<script>
+(function(){
+    var pant = document.getElementById('intro-screen'), cont = document.querySelector('.intro-contenido');
+    if(!pant || !cont) return;
+    function ajustar(){
+        if(pant.classList.contains('oculto')) return;
+        cont.style.zoom = 1;
+        var libre = pant.clientHeight - 40, alto = cont.scrollHeight;
+        if(alto > libre && libre > 0) cont.style.zoom = Math.max(.35, libre / alto);
+    }
+    window.addEventListener('resize', ajustar);
+    window.addEventListener('load', ajustar);
+    [100, 400, 1000, 2500].forEach(function(t){ setTimeout(ajustar, t); });
+    pant.addEventListener('wheel', function(e){ e.preventDefault(); }, { passive:false });
+    pant.addEventListener('touchmove', function(e){ e.preventDefault(); }, { passive:false });
+})();
+</script>
+</body>
+</html>

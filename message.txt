@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hernancho674 - Proyectos & Mods</title>
+    <style>
+        /* --- DECLARACIÓN DE FUENTES PERSONALIZADAS --- */
+        @font-face {
+            font-family: 'Smash';
+            src: url('smash.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'TF2Build';
+            src: url('tf2build.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'CSRegular';
+            src: url('cs_regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'DemonPanic';
+            src: url('Demon Panic.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'MK4';
+            src: url('MK4.TTF') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'VCRMono';
+            src: url('VCR_OSD_MONO_1.001.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Base02';
+            src: url('Base 02.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'TrebucBD';
+            src: url('trebucbd.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Mk1';
+            src: url('mk1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gmodPan {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 3s ease;
+            opacity: 0;
+            animation: fadeInPage 1.2s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
+
+        body.modo-alerta {
+            background-color: #000000 !important;
+        }
+
+        body.bloqueado-total {
+            overflow: hidden !important;
+            pointer-events: none !important;
+            user-select: none;
+        }
+
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75)), url('Menu.png') no-repeat center center;
+            background-size: 115% 115%;
+            animation: gmodPan 25s ease infinite;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+        }
+
+        #intro-screen.oculto {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .intro-content-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #intro-screen h1 {
+            color: #ffcc00;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 15px 0;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 204, 0, 0.4);
+            text-align: center;
+            width: 100%;
+        }
+
+        #intro-screen p {
+            color: #dddddd;
+            font-size: 1.15rem;
+            margin: 0 0 35px 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-intro {
+            position: relative;
+            background: linear-gradient(to bottom, #ffee55 0%, #ffcc00 50%, #e6a800 50%, #ffbb00 100%);
+            color: #000000;
+            padding: 16px 45px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 35px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.8), 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 35px 35px 0 0;
+            pointer-events: none;
+        }
+
+        .btn-intro:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 25px rgba(255, 221, 0, 1), 0 8px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255, 255, 255, 1);
+            background: linear-gradient(to bottom, #fff275 0%, #ffdb1a 50%, #f5b800 50%, #ffcc1a 100%);
+        }
+
+        .site-banner {
+            background: linear-gradient(to bottom, #1a1a1a, #0b0b0b);
+            border-bottom: 2px solid #ffcc00;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+            transition: border-color 3s ease, background 3s ease;
+        }
+
+        body.modo-alerta .site-banner {
+            border-color: #ff0000;
+            background: linear-gradient(to bottom, #0d0000, #000000);
+        }
+
+        .site-banner-link {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .site-banner-link img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #ffcc00;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        body.modo-alerta .site-banner-link img {
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+
+        .site-title-container h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #ffcc00;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            transition: color 0.2s ease, text-shadow 0.2s ease;
+        }
+
+        body.modo-alerta .site-title-container h1 {
+            color: #ff0000;
+        }
+
+        .site-title-container span {
+            font-size: 13px;
+            color: #aaaaaa;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        .site-banner-link:hover img {
+            border-color: #ffff55;
+            box-shadow: 0 0 22px rgba(255, 204, 0, 1), 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        body.modo-alerta .site-banner-link:hover img {
+            border-color: #ff5555;
+            box-shadow: 0 0 22px rgba(255, 0, 0, 1), 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .site-banner-link:hover .site-title-container h1 {
+            color: #ffff55;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 1), 0 0 5px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        body.modo-alerta .site-banner-link:hover .site-title-container h1 {
+            color: #ff5555;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 1), 0 0 5px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .site-banner-link:hover .site-title-container span {
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .banner-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .custom-tooltip-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .banner-top-actions a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #161616;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .banner-top-actions a:hover {
+            border-color: #ffcc00;
+            background-color: #222;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+        }
+
+        body.modo-alerta .banner-top-actions a:hover {
+            border-color: #ff0000;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .banner-top-actions img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .custom-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            top: 125%;
+            right: 0;
+            background-color: #0b0b0b;
+            color: #ffcc00;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 2px solid #ffcc00;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            transition: opacity 0.2s ease, transform 0.2s ease, border-color 3s ease, color 3s ease;
+            transform: translateY(-5px);
+            pointer-events: none;
+        }
+
+        body.modo-alerta .custom-tooltip {
+            border-color: #ff0000;
+            color: #ff5555;
+        }
+
+        .custom-tooltip-wrapper:hover .custom-tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-header {
+            background-color: #0b0b0b;
+            border-bottom: 3px solid #ffcc00;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2);
+            transition: border-color 3s ease;
+        }
+
+        body.modo-alerta .nav-header {
+            border-color: #ff0000;
+        }
+
+        .nav-tabs {
+            display: flex;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .tab {
+            padding: 14px 20px;
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-right: 1px solid #222;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .tab:hover {
+            background-color: #1f1f1f;
+            color: #ffcc00;
+        }
+
+        body.modo-alerta .tab:hover {
+            color: #ff0000;
+        }
+
+        .tab.active {
+            background: linear-gradient(to bottom, #ffcc00, #e6b800);
+            color: #000000;
+            transition: background 3s ease, color 3s ease;
+        }
+
+        body.modo-alerta .tab.active {
+            background: linear-gradient(to bottom, #ff0000, #b30000);
+            color: #ffffff;
+        }
+
+        .dropdown {
+            position: relative;
+            display: flex;
+            flex: 1;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0b0b0b;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+            border: 2px solid #ffcc00;
+            border-top: none;
+            z-index: 10;
+            text-align: left;
+            transition: border-color 3s ease;
+        }
+
+        body.modo-alerta .dropdown-content {
+            border-color: #ff0000;
+        }
+
+        .dropdown-content a {
+            color: #b3b3b3;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            font-weight: bold;
+            border-bottom: 1px solid #1a1a1a;
+            transition: background 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #1f1f1f;
+            color: #ffcc00;
+        }
+
+        body.modo-alerta .dropdown-content a:hover {
+            color: #ff0000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px 80px 20px;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .content-body {
+            position: relative;
+            background-color: #1a1a1a;
+            border: 4px solid #ffcc00;
+            border-radius: 8px;
+            padding: 40px;
+            color: #f1f1f1;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            transition: border-color 3s ease, background-color 3s ease;
+        }
+
+        body.modo-alerta .content-body {
+            border-color: #ff0000;
+            background-color: #000000;
+        }
+
+        .content-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: linear-gradient(to bottom, rgba(255, 204, 0, 0.4), rgba(255, 204, 0, 0));
+            border-radius: 6px 6px 0 0;
+            pointer-events: none;
+            transition: background 3s ease;
+        }
+
+        body.modo-alerta .content-body::before {
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.4), rgba(255, 0, 0, 0));
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sidebar-old-mod {
+            background-color: #111;
+            border: 3px solid #b38600;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+            transition: border-color 3s ease, background-color 3s ease;
+        }
+
+        body.modo-alerta .sidebar-old-mod {
+            border-color: #b30000;
+            background-color: #050505;
+        }
+
+        .sidebar-old-mod h3 {
+            font-size: 15px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #b38600;
+            padding-bottom: 6px;
+            margin-top: 0;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: color 3s ease, border-color 3s ease;
+        }
+
+        body.modo-alerta .sidebar-old-mod h3 {
+            color: #ff0000;
+            border-color: #b30000;
+        }
+
+        .sidebar-old-mod p {
+            font-size: 13px;
+            color: #aaa;
+            margin: 10px 0 15px 0;
+            line-height: 1.4;
+        }
+
+        .btn-old {
+            display: block;
+            text-align: center;
+            background-color: #222;
+            color: #ffcc00;
+            padding: 8px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #444;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-old:hover {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        body.modo-alerta .btn-old:hover {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        h2.section-title {
+            font-size: 24px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #ffcc00;
+            padding-bottom: 8px;
+            margin-top: 0;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            transition: color 3s ease, border-color 3s ease;
+        }
+
+        body.modo-alerta h2.section-title {
+            color: #ff0000;
+            border-color: #ff0000;
+        }
+
+        /* --- ESTILOS PARA EL VISOR DE CANCELADOS / PLANIFICADOS (ESTILO GTA V) --- */
+        .gta-carousel-container {
+            position: relative;
+            width: 100%;
+            min-height: 480px;
+            background-color: #000;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .gta-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1;
+        }
+
+        .gta-estado-badge {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffcc00;
+            border: 2px solid #ffcc00;
+            padding: 6px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            z-index: 5;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .gta-estado-badge.cancelado {
+            color: #ff4444;
+            border-color: #ff4444;
+        }
+
+        .gta-estado-badge.futuro {
+            color: #44ccff;
+            border-color: #44ccff;
+        }
+
+        .gta-info-content {
+            position: relative;
+            z-index: 5;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.75) 80%, transparent 100%);
+            margin: -30px;
+            padding: 50px 60px 30px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .gta-info-content h3 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+            letter-spacing: 1px;
+        }
+
+        .gta-info-content p {
+            font-size: 1.05rem;
+            color: #dddddd;
+            max-width: 850px;
+            margin: 0;
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            text-align: left;
+        }
+
+        .gta-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            font-size: 35px;
+            width: 55px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            user-select: none;
+            border-radius: 4px;
+        }
+
+        .gta-arrow:hover {
+            background: rgba(255, 204, 0, 0.8);
+            color: #000;
+            border-color: #ffcc00;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .gta-arrow.left { left: 20px; }
+        .gta-arrow.right { right: 20px; }
+
+        /* --- APLICACIÓN DE FUENTES PERSONALIZADAS A TÍTULOS ESPECÍFICOS --- */
+        #tf2 h2.section-title,
+        #tf2classified h2.section-title {
+            font-family: 'TF2Build', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #hl1 h2.section-title,
+        #hl1opposing h2.section-title {
+            font-family: 'VCRMono', monospace;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        #hl2 h2.section-title {
+            font-family: 'TrebucBD', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #postal2 h2.section-title {
+            font-family: 'Smash', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #dodsource h2.section-title {
+            font-family: 'Base02', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #ricochet h2.section-title {
+            font-family: 'Mk1', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        #l4d2 h2.section-title {
+            font-family: 'MK4', sans-serif;
+            font-size: 2.4rem;
+            letter-spacing: 2px;
+        }
+
+        #cs16 h2.section-title,
+        #cssource h2.section-title,
+        #csother h2.section-title {
+            font-family: 'CSRegular', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+
+        .media-box {
+            position: relative;
+            background-color: #0b0b0b;
+            border: 4px solid #ffcc00;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+            transition: border-color 3s ease, background-color 3s ease;
+        }
+
+        body.modo-alerta .media-box {
+            border-color: #ff0000;
+            background-color: #000000;
+        }
+
+        .media-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .media-box > img {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .media-box:hover > img {
+            transform: scale(1.02);
+        }
+
+        .media-box img.rotating-logo,
+        .media-box img.static-logo,
+        .media-box img.classified-logo,
+        .media-box img.postal-logo {
+            position: absolute !important;
+            bottom: 12px !important;
+            left: 12px !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            object-fit: contain !important;
+            box-shadow: none !important;
+            z-index: 5;
+            pointer-events: none;
+            display: block !important;
+        }
+        .media-box img.rotating-logo { width: 85px !important; height: 85px !important; animation: spin 6s linear infinite; }
+        .media-box img.static-logo { width: 150px !important; height: auto !important; }
+        .media-box img.classified-logo { width: 140px !important; height: auto !important; left: 12px !important; bottom: 12px !important; }
+        .media-box img.postal-logo { width: 130px !important; height: auto !important; }
+
+        p {
+            line-height: 1.7;
+            font-size: 16px;
+            color: #cccccc;
+            font-weight: 500;
+        }
+
+        .dev-badge {
+            background-color: #d35400;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .warning-box {
+            background-color: #b7950b;
+            color: #000;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 2px dashed #f1c40f;
+            transition: background-color 3s ease, border-color 3s ease, color 3s ease;
+        }
+
+        body.modo-alerta .warning-box {
+            background-color: #990000;
+            color: #fff;
+            border-color: #ff3333;
+        }
+
+        .download-container {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-video {
+            display: inline-block;
+            background-color: #cc0000;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 4px 10px rgba(204, 0, 0, 0.4);
+            margin-bottom: 20px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-video:hover {
+            background-color: #e60000;
+            transform: translateY(-2px);
+        }
+
+        .btn-download {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffee55 0%, #ffcc00 50%, #e6a800 50%, #ffbb00 100%);
+            color: #000000;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 35px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 18px rgba(255, 204, 0, 0.8), 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: background 3s ease, box-shadow 3s ease, color 3s ease, transform 0.2s ease;
+        }
+
+        body.modo-alerta .btn-download {
+            background: linear-gradient(to bottom, #ff5555 0%, #cc0000 50%, #880000 50%, #aa0000 100%);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 0 6px 20px rgba(0,0,0,0.6), inset 0 2px 3px rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border-radius: 35px 35px 0 0;
+            pointer-events: none;
+        }
+
+        .btn-download:hover {
+            background: linear-gradient(to bottom, #fff275 0%, #ffdb1a 50%, #f5b800 50%, #ffcc1a 100%);
+            box-shadow: 0 0 25px rgba(255, 221, 0, 1), 0 8px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+        }
+
+        body.modo-alerta .btn-download:hover {
+            background: linear-gradient(to bottom, #ff7777 0%, #e60000 50%, #a30000 50%, #cc0000 100%);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 8px 25px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255, 255, 255, 0.9);
+        }
+
+        .section-content { display: none; }
+        .section-content.active { display: block; animation: fadeInUp 0.4s ease-out; }
+
+        #serj-widget {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        #serj-img {
+            width: 90px;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.9));
+        }
+
+        #serj-widget:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        @keyframes shake {
+            0% { transform: translate(2px, 2px) rotate(0deg); }
+            20% { transform: translate(-4px, 1px) rotate(-1deg); }
+            40% { transform: translate(2px, -3px) rotate(1deg); }
+            60% { transform: translate(-2px, 3px) rotate(0deg); }
+            80% { transform: translate(4px, 2px) rotate(1deg); }
+            100% { transform: translate(2px, 2px) rotate(0deg); }
+        }
+
+        @keyframes caminarSeccion {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
+            25% { transform: translateX(30px) translateY(-5px) rotate(5deg); }
+            50% { transform: translateX(60px) translateY(0px) rotate(-5deg); }
+            75% { transform: translateX(100px) translateY(-5px) rotate(5deg); }
+            100% { transform: translateX(250px) translateY(20px) rotate(15deg); opacity: 0; }
+        }
+
+        .serj-shaking { animation: shake 0.15s infinite !important; }
+        .serj-walking { animation: caminarSeccion 1s ease-in forwards !important; pointer-events: none; }
+
+        #serj-bubble {
+            position: absolute;
+            bottom: 110px;
+            left: 10px;
+            background: #fff;
+            color: #000;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 14px;
+            border: 2px solid #000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            z-index: 10000;
+            animation: shake 0.1s infinite;
+            display: none;
+        }
+
+        #serj-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #fff transparent;
+            display: block;
+            width: 0;
+        }
+
+        @keyframes volarPistacho {
+            0% { transform: translate(0, 0) rotate(0deg) scale(0.5); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(1.2); opacity: 0; }
+        }
+
+        .pistacho-efecto {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 10000;
+            animation: volarPistacho 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        #static-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('static.gif') repeat;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10003;
+            transition: opacity 0.1s ease;
+        }
+
+        #jumpscare-container {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10005;
+            transition: opacity 0.05s ease;
+        }
+
+        #jumpscare-container img {
+            width: 85vw;
+            max-height: 75vh;
+            object-fit: contain;
+            animation: shake 0.06s infinite;
+            filter: drop-shadow(0 0 40px rgba(255, 0, 0, 0.9));
+        }
+
+        #jumpscare-container h1 {
+            color: #ff0000;
+            font-size: 4.5rem;
+            margin-top: 25px;
+            text-shadow: 4px 4px 0px #000, 0 0 25px #ff0000;
+            letter-spacing: 5px;
+            animation: shake 0.06s infinite;
+        }
+
+        #blackout-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PANTALLA DE PRESENTACIÓN / INTRO -->
+    <div id="intro-screen">
+        <div class="intro-content-box">
+            <h1>Bienvenido a los mods de Hernancho674</h1>
+            <p>Explora contenido, ediciones y adaptaciones argentinas.</p>
+            <button class="btn-intro" onclick="entrarAlSitio()" onmouseenter="reproducirRE4()">Encontrar mods</button>
+        </div>
+    </div>
+
+    <div id="static-overlay"></div>
+    <div id="jumpscare-container">
+        <img src="edm.png" alt="EDM Jumpscare">
+        <h1>¡CABRONAZOOO!</h1>
+    </div>
+    <div id="blackout-screen"></div>
+
+    <div class="site-banner">
+        <a href="https://www.youtube.com/@Hernancho674" target="_blank" class="site-banner-link" onmouseenter="reproducirRE4()">
+            <img src="logo.jpg" alt="Logo Hernancho674">
+            <div class="site-title-container">
+                <h1>Mods Argentinos</h1>
+                <span>Hernancho674</span>
+            </div>
+        </a>
+
+        <!-- ACCESOS DIRECTOS SUPERIORES -->
+        <div class="banner-top-actions">
+            <!-- GameBanana -->
+            <div class="custom-tooltip-wrapper">
+                <a href="https://gamebanana.com/members/1754561" target="_blank" onmouseenter="reproducirRE4()">
+                    <img src="gamebanana.png" alt="GameBanana">
+                </a>
+                <div class="custom-tooltip">Perfil de GameBanana</div>
+            </div>
+
+            <!-- Steam -->
+            <div class="custom-tooltip-wrapper">
+                <a href="https://steamcommunity.com/id/Hernancho674Oficial/" target="_blank" onmouseenter="reproducirRE4()">
+                    <img src="steam.png" alt="Steam">
+                </a>
+                <div class="custom-tooltip">Perfil de Steam [No acepto solicitudes]</div>
+            </div>
+
+            <!-- Cafecito -->
+            <div class="custom-tooltip-wrapper">
+                <a href="https://cafecito.app/hernancho674" target="_blank" onmouseenter="reproducirRE4()">
+                    <img src="cafe.png" alt="Cafecito">
+                </a>
+                <div class="custom-tooltip">Donación</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-header">
+        <div class="nav-tabs">
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Team Fortress 2 ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('tf2', event)">TF2 Argentino</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('tf2classified', event)">TF2 Classified</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Half-Life 1 ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1', event)">Half-Life 1 Argentino</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1opposing', event)">Opposing Force [DEMO]</a>
+                </div>
+            </div>
+
+            <a class="tab" onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl2', event)">Half-Life 2</a>
+            <a class="tab" onmouseenter="reproducirSelect()" onclick="cambiarSeccion('postal2', event)">Postal 2 Demo</a>
+            
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Counter-Strikes ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('cs16', event)">Counter-Strike 1.6</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('cssource', event)">Counter-Strike: Source</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('csother', event)">Condition Zero / Resto</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="tab" onmouseenter="reproducirSelect()">Otros ▾</div>
+                <div class="dropdown-content">
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('dodsource', event)">Day of Defeat: Source</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('ricochet', event)">Ricochet Argentino</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('l4d2', event)">Left 4 Dead 2 Argentino</a>
+                </div>
+            </div>
+
+            <!-- PESTAÑA DE PLANIFICADOS / CANCELADOS -->
+            <a class="tab" onmouseenter="reproducirSelect()" onclick="cambiarSeccion('cancelados', event)">Planificados / Cancelados</a>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="content-body">
+
+            <!-- SECCIÓN TF2 ARGENTINO -->
+            <div id="tf2" class="section-content">
+                <h2 class="section-title">Team Fortress Argentino</h2>
+                <div class="section-grid">
+                    <div>
+                        <div class="media-box">
+                            <img src="tf2.jpg" alt="TF2 Argentino">
+                            <img src="tf2-logo.png" alt="Logo giratorio" class="rotating-logo">
+                        </div>
+                        <a href="https://youtu.be/xEVsycD6j1I" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                        <p>Transformá tus partidas de Team Fortress 2 con un doblaje completo al español argentino para todos los personajes. Funciona perfectamente en servidores oficiales y modo casual, y no requiere ningún preloader.</p>
+                        <div class="download-container"><a href="https://gamebanana.com/mods/602984" target="_blank" class="btn-download">¡Descargar Mod!</a></div>
+                    </div>
+                    <div class="sidebar-old-mod">
+                        <h3>📜 Mod Antiguo</h3>
+                        <p><strong>TF2 Edicion Argentina:</strong> La versión clásica inicial que sentó las bases.</p>
+                        <a href="https://gamebanana.com/mods/529033" target="_blank" class="btn-old">Ver Versión Vieja</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN TF2 CLASSIFIED -->
+            <div id="tf2classified" class="section-content">
+                <h2 class="section-title">Team Fortress 2 Classified</h2>
+                <div class="section-grid">
+                    <div>
+                        <div class="media-box">
+                            <img src="tf2c.png" alt="TF2 Classified">
+                            <img src="tf2clogo.png" alt="Logo Classified" class="classified-logo">
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=eG2M5Fzlv7Y" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                        <p>La evolución definitiva de la experiencia argenta en la plataforma TF2 Classified (antiguamente TF2 Classic). Mucho más extenso, incluye diálogos y skins. Podés instalar las skins y los diálogos por separado si solo te interesa tener las voces.</p>
+                        <div class="download-container">
+                            <a href="https://gamebanana.com" target="_blank" class="btn-download">¡Descargar Classified!</a>
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN HALF-LIFE 1 ARGENTINO -->
+            <div id="hl1" class="section-content active">
+                <h2 class="section-title">Half-Life 1 Argentino</h2>
+                <div class="section-grid">
+                    <div>
+                        <div class="media-box">
+                            <img src="hl1arg.png" alt="Half-Life 1 Argentino">
+                            <img src="hl1logo.png" alt="Logo estático HL1" class="static-logo">
+                        </div>
+                        <a href="https://youtu.be/Iq0dPWtoXEs" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                        <p>Jugate toda la campaña de HL1 con nuevos diálogos argentinos y texturas nuevas incluidas.</p>
+                        <div class="warning-box">⚠️ Antes de iniciar una partida: Para tener las texturas activadas en el juego debes poner en la consola <u>r_wadtextures 1</u> de lo contrario las texturas seguirán siendo las normales del HL1.</div>
+                        <div class="download-container"><a href="https://gamebanana.com/sounds/83779" target="_blank" class="btn-download">¡Descargar Mod!</a></div>
+                    </div>
+                    <div class="sidebar-old-mod">
+                        <h3>📜 Mod Antiguo</h3>
+                        <p><strong>Half-Life 1 Argentina Edition:</strong> El primer experimento con las voces en criollo.</p>
+                        <a href="https://gamebanana.com/mods/548061" target="_blank" class="btn-old">Ver Versión Vieja</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN OPPOSING FORCE [DEMO] -->
+            <div id="hl1opposing" class="section-content">
+                <h2 class="section-title">Opposing Force Argentino [DEMO]</h2>
+                <span class="dev-badge" style="background-color: #2980b9;">Versión Demo</span>
+                <div class="media-box">
+                    <img src="hl1of.png" alt="Opposing Force Argentino">
+                </div>
+                <a href="https://www.youtube.com/shorts/OD0lRruXp98" target="_blank" class="btn-video">▶ Ver Short en YouTube</a>
+                <p>Una versión de las voces argentinas para HL1 hechas para la campaña de Opposing Force, actualmente incompleta.</p>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/85013" target="_blank" class="btn-download">¡Descargar Demo!</a></div>
+            </div>
+
+            <div id="hl2" class="section-content">
+                <h2 class="section-title">Half-Life 2 Argentino</h2>
+                <span class="dev-badge">🚧 En Desarrollo 🚧</span>
+                <div class="media-box"><img src="hl2arg.png" alt="Half-Life 2 Argentino"></div>
+                <a href="https://youtu.be/kIpjPAYErA8" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                <a href="https://www.youtube.com/shorts/0_Ob1RbnaRU" target="_blank" class="btn-video">▶ Ver Short en YouTube</a>
+                <p>Este mod sigue en desarrollo pero ya podés ver algunos videos de cómo va quedando.</p>
+                <div class="warning-box">⚠️ Próximamente disponible. Todavía no hay descarga habilitada.</div>
+            </div>
+
+            <div id="postal2" class="section-content">
+                <h2 class="section-title">Postal 2 Demo Argentino</h2>
+                <span class="dev-badge" style="background-color: #2980b9;">Versión Demo</span>
+                <div class="media-box">
+                    <img src="postal2arg.png" alt="Postal 2 Argentino">
+                    <img src="p2logo.png" alt="Logo Postal 2 Argentino" class="postal-logo">
+                </div>
+                <a href="https://youtu.be/vnxhy5Dr7tQ" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                <a href="https://www.youtube.com/shorts/9sX_F208WzY" target="_blank" class="btn-video">▶ Ver Short en YouTube</a>
+                <p>Fue cancelado pero resucitó así como si nada con nuevos diálogos. Hasta ahora los únicos diálogos que cambian son del Postal Dude y de Krotchy, próximamente habrá más contenido para el mod.</p>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/87667" target="_blank" class="btn-download">¡Descargar Demo!</a></div>
+            </div>
+
+            <!-- SECCIÓN COUNTER-STRIKE 1.6 -->
+            <div id="cs16" class="section-content">
+                <h2 class="section-title">Counter-Strike 1.6 Argentino</h2>
+                <div class="media-box">
+                    <img src="cs1.6.jpg" alt="Counter-Strike 1.6 Argentino">
+                    <img src="cs.png" alt="Logo giratorio CS" class="rotating-logo">
+                </div>
+                <a href="https://youtu.be/_j3LlgUv5IU" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                <p>Este mod cambia los diálogos de los personajes por nuevos diálogos argentinos e incluye algunas canciones que puedes oír en ciertos mapas del juego en zonas específicas.</p>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/83014" target="_blank" class="btn-download">Descargar para 1.6</a></div>
+            </div>
+
+            <!-- SECCIÓN COUNTER-STRIKE: SOURCE -->
+            <div id="cssource" class="section-content">
+                <h2 class="section-title">Counter-Strike: Source Argentino</h2>
+                <div class="media-box">
+                    <img src="cssource.jpg" alt="Counter-Strike: Source Argentino">
+                    <img src="cs.png" alt="Logo giratorio CS" class="rotating-logo">
+                </div>
+                <a href="https://www.youtube.com/watch?v=V23ZeydNvBU" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                <p>Lo mismo que el Counter-Strike 1.6 pero adaptado a Source, e incluye también texturas mejoradas para los escenarios.</p>
+                <div class="download-container"><a href="https://gamebanana.com/mods/628158" target="_blank" class="btn-download">Descargar para Source</a></div>
+            </div>
+
+            <!-- SECCIÓN CONDITION ZERO / RESTO DE ENTREGAS -->
+            <div id="csother" class="section-content">
+                <h2 class="section-title">Condition Zero / Resto de entregas</h2>
+                <div class="media-box"><img src="counters.png" alt="Counter-Strikes Other"></div>
+                <a href="https://youtu.be/o4nPhPupQq0" target="_blank" class="btn-video">▶ Ver Video en YouTube</a>
+                <p>Casi lo mismo que el Counter-Strike 1.6 pero adaptado específicamente para Condition Zero.</p>
+                <div class="warning-box" style="background-color: #c0392b; color: white;">❌ Aviso: Solo <u>Counter-Strike: Condition Zero</u> cuenta con contenido disponible. No se encontró manera de hacer funcionar mods argentinos ni en CS:GO ni en CS2.</div>
+                <div class="download-container"><a href="https://gamebanana.com/sounds/83274" target="_blank" class="btn-download">¡Descargar Condition Zero Mod!</a></div>
+            </div>
+
+            <!-- SECCIÓN OTROS: DAY OF DEFEAT SOURCE -->
+            <div id="dodsource" class="section-content">
+                <h2 class="section-title">Day of Defeat: Source Argentino</h2>
+                <div class="media-box"><img src="dods.png" alt="Day of Defeat Source Argentino"></div>
+                <p>No creo que mucha gente juegue a este mod ya que Day of Defeat: Source está en las últimas y está muy vacío, por lo cual este mod no ha recibido nada más que correcciones. Pero si te interesa darle una probada, acá lo tenés.</p>
+                <div class="download-container"><a href="https://gamebanana.com/mods/542279" target="_blank" class="btn-download">¡Descargar DoD: Source Mod!</a></div>
+            </div>
+
+            <!-- SECCIÓN OTROS: RICOCHET -->
+            <div id="ricochet" class="section-content">
+                <h2 class="section-title">Ricochet Argentino</h2>
+                <div class="media-box"><img src="ricochoto.png" alt="Ricochet Argentino"></div>
+                <p>¿Por qué instalarías esto?</p>
+                <div class="download-container"><a href="https://gamebanana.com/mods/675522" target="_blank" class="btn-download">¡Descargar Ricochet Mod!</a></div>
+            </div>
+
+            <!-- SECCIÓN OTROS: LEFT 4 DEAD 2 -->
+            <div id="l4d2" class="section-content">
+                <h2 class="section-title">Left 4 Dead 2 Argentino</h2>
+                <div class="media-box"><img src="marolio.jpg" alt="Left 4 Dead 2 Argentino"></div>
+                <p>Actualmente en beta. Podés salir a repartir plomo peleando contra los zombies; aun incompleto, tiene diálogos suficientes para cagarte de risa con tus amigos o en solitario.</p>
+                <div class="download-container">
+                    <a href="https://gamebanana.com/mods/609612" target="_blank" class="btn-download">Descarga por GameBanana</a>
+                    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3654749035" target="_blank" class="btn-download">Workshop de Steam</a>
+                </div>
+            </div>
+
+            <!-- SECCIÓN NUEVA: MODS PLANIFICADOS Y CANCELADOS -->
+            <div id="cancelados" class="section-content">
+                <h2 class="section-title">Mods Planificados y Cancelados</h2>
+                <p style="margin-bottom: 20px;">Un repaso por aquellos proyectos que quedaron en el camino, ideas que se estuvieron ideando o planes a futuro.</p>
+                
+                <div class="gta-carousel-container">
+                    <div id="gta-badge" class="gta-estado-badge cancelado">ESTADO: CANCELADO</div>
+                    <img id="gta-img" class="gta-bg-image" src="gta5fondo.png" alt="Proyecto Concepto">
+                    
+                    <div class="gta-arrow left" onclick="cambiarProyecto(-1)">‹</div>
+                    <div class="gta-arrow right" onclick="cambiarProyecto(1)">›</div>
+
+                    <div class="gta-info-content">
+                        <h3 id="gta-titulo">GTA V Argentino Mod</h3>
+                        <p id="gta-descripcion">
+                            En este mod se planeaba agregar lo siguiente:<br>
+                            - Dialogos en modo libre<br>
+                            - Dialogos en misiones de la historia tanto como las secundarias<br>
+                            - Dialogos en salidas con amigos [ejemplo jugar a los dardos]<br>
+                            - Dialogos en los peatones [la mayoria, no todos]<br><br>
+                            No se pudo ya que aparte de que gta 5 no es para nada facil de modificar, era muchisimo trabajo y aparte la gente no tenia mucho interes en este mod por lo cual decidi cancelarlo, aun pueden encontrar videos de lo que iba a ser el mod en mi canal de Youtube.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- WIDGET DE SERJ TANKIAN -->
+    <div id="serj-widget" onclick="interactuarSerj(event)" title="¡Hacé clic!">
+        <div id="serj-bubble">BASTA GORDOOOO!</div>
+        <img id="serj-img" src="serj.png" alt="Serj Tankian">
+    </div>
+
+    <!-- AUDIOS -->
+    <audio id="re4-audio" src="re4_cursor.mp3" preload="auto"></audio>
+    <audio id="wakeup-audio" src="wakeup.mp3" preload="auto"></audio>
+    <audio id="grito-audio" src="grito.mp3" preload="auto"></audio>
+    <audio id="select-audio" src="select.mp3" preload="auto"></audio>
+    <audio id="click-audio" src="click.mp3" preload="auto"></audio>
+
+    <audio id="audio-dross" src="dross.mp3" preload="auto"></audio>
+    <audio id="audio-cabronazo" src="cabronazo.mp3" preload="auto"></audio>
+    <audio id="audio-risa" src="risaedm.mp3" preload="auto"></audio>
+
+    <!-- AUDIO BANEADO -->
+    <audio id="audio-baneado" src="baneado.wav" preload="auto"></audio>
+
+    <script>
+        let sitioEntrado = false;
+
+        function entrarAlSitio() {
+            reproducirClick();
+            const intro = document.getElementById('intro-screen');
+            intro.classList.add('oculto');
+            sitioEntrado = true;
+        }
+
+        function reproducirRE4() {
+            const re4Audio = document.getElementById('re4-audio');
+            const clone = re4Audio.cloneNode();
+            clone.volume = 0.7;
+            clone.play().catch(err => console.log("Audio de RE4 bloqueado:", err));
+        }
+
+        function reproducirSelect() {
+            const selectAudio = document.getElementById('select-audio');
+            const clone = selectAudio.cloneNode();
+            clone.volume = 0.6;
+            clone.play().catch(err => console.log("Audio de select bloqueado:", err));
+        }
+
+        function reproducirClick() {
+            const clickAudio = document.getElementById('click-audio');
+            const cloneClick = clickAudio.cloneNode();
+            cloneClick.volume = 0.7;
+            cloneClick.play().catch(err => console.log("Audio de click bloqueado:", err));
+        }
+
+        function cambiarSeccion(idSeccion, event) {
+            reproducirClick();
+
+            const secciones = document.querySelectorAll('.section-content');
+            secciones.forEach(sec => sec.classList.remove('active'));
+
+            const tabs = document.querySelectorAll('.nav-tabs .tab');
+            tabs.forEach(t => t.classList.remove('active'));
+
+            document.getElementById(idSeccion).classList.add('active');
+            
+            if(['cs16', 'cssource', 'csother'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else if(['tf2', 'tf2classified'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else if(['hl1', 'hl1opposing'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else if(['dodsource', 'ricochet', 'l4d2'].includes(idSeccion)) {
+                event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
+            } else {
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        /* --- DATOS PARA EL CARRUSEL DE PROYECTOS (CANCELADOS / PLANIFICADOS) --- */
+        const proyectosData = [
+            {
+                titulo: "GTA V Argentino Mod",
+                estado: "ESTADO: CANCELADO",
+                claseEstado: "cancelado",
+                imagen: "gta5fondo.png",
+                descripcion: "En este mod se planeaba agregar lo siguiente:\n- Dialogos en modo libre\n- Dialogos en misiones de la historia tanto como las secundarias\n- Dialogos en salidas con amigos [ejemplo jugar a los dardos]\n- Dialogos en los peatones [la mayoria, no todos]\n\nNo se pudo ya que aparte de que gta 5 no es para nada facil de modificar, era muchisimo trabajo y aparte la gente no tenia mucho interes en este mod por lo cual decidi cancelarlo, aun pueden encontrar videos de lo que iba a ser el mod en mi canal de Youtube."
+            },
+            {
+                titulo: "Portal 2 Voces Argentinas",
+                estado: "ESTADO: PLANIFICADO",
+                claseEstado: "futuro",
+                imagen: "portal2arg.png",
+                descripcion: "Idea sobre la mesa para doblar a GLaDOS y Wheatley con tonada argenta pura. Quedó en pausa por falta de tiempo."
+            },
+            {
+                titulo: "Left 4 Dead 1 Adaptación Total",
+                estado: "ESTADO: FUTUROS PLANES",
+                claseEstado: "futuro",
+                imagen: "marolio.jpg",
+                descripcion: "Llevar la experiencia que hicimos en L4D2 al primer juego de la saga, adaptando los audios de los supervivientes originales."
+            }
+        ];
+
+        let proyectoActualIndex = 0;
+
+        function cambiarProyecto(direccion) {
+            reproducirClick();
+            proyectoActualIndex += direccion;
+            
+            if (proyectoActualIndex < 0) {
+                proyectoActualIndex = proyectosData.length - 1;
+            } else if (proyectoActualIndex >= proyectosData.length) {
+                proyectoActualIndex = 0;
+            }
+
+            const p = proyectosData[proyectoActualIndex];
+            const imgEl = document.getElementById('gta-img');
+            const badgeEl = document.getElementById('gta-badge');
+            const tituloEl = document.getElementById('gta-titulo');
+            const descEl = document.getElementById('gta-descripcion');
+
+            imgEl.style.opacity = '0';
+            setTimeout(() => {
+                imgEl.src = p.imagen;
+                tituloEl.textContent = p.titulo;
+                
+                // Mantenemos los saltos de línea con <br> para que quede prolijo en HTML
+                descEl.innerHTML = p.descripcion.replace(/\n/g, '<br>');
+                
+                badgeEl.textContent = p.estado;
+                badgeEl.className = 'gta-estado-badge ' + p.claseEstado;
+                imgEl.style.opacity = '0.55';
+            }, 200);
+        }
+
+        let clicksSerj = 0;
+        let estaAusente = false;
+        let serjCooldown = false;
+
+        function interactuarSerj(e) {
+            if (estaAusente || serjCooldown) return;
+
+            const widget = document.getElementById('serj-widget');
+            const serjImg = document.getElementById('serj-img');
+            const bubble = document.getElementById('serj-bubble');
+            clicksSerj++;
+
+            if (clicksSerj >= 5) {
+                estaAusente = true;
+                serjCooldown = true;
+                clicksSerj = 0;
+
+                bubble.style.display = 'none';
+                serjImg.classList.remove('serj-shaking');
+                serjImg.classList.remove('serj-walking');
+
+                serjImg.src = 'serj2.png';
+                serjImg.classList.add('serj-shaking');
+                bubble.style.display = 'block';
+
+                const grito = document.getElementById('grito-audio');
+                grito.currentTime = 0;
+                grito.play().catch(err => console.log("Audio bloqueado:", err));
+
+                setTimeout(() => {
+                    bubble.style.display = 'none';
+                    serjImg.classList.remove('serj-shaking');
+                    serjImg.classList.add('serj-walking');
+                }, 2500);
+
+                setTimeout(() => {
+                    serjImg.style.display = 'none';
+                    widget.style.display = 'none';
+                }, 3500);
+
+                setTimeout(() => {
+                    serjImg.src = 'serj.png';
+                    serjImg.classList.remove('serj-walking');
+                    serjImg.style.display = 'block';
+                    widget.style.display = 'block';
+                    widget.style.pointerEvents = 'auto';
+                    serjImg.style.opacity = '1';
+                    serjImg.style.transform = 'scale(1) rotate(0deg)';
+                    estaAusente = false;
+                    serjCooldown = false;
+                }, 48500);
+
+            } else {
+                if (serjImg.style.opacity === '0') return;
+
+                serjCooldown = true;
+                setTimeout(() => { serjCooldown = false; }, 300);
+
+                widget.style.pointerEvents = 'none';
+
+                const audio = document.getElementById('wakeup-audio');
+                audio.currentTime = 0;
+                audio.play().catch(err => console.log("Audio bloqueado:", err));
+
+                const cantidadPistachos = 12;
+                for (let i = 0; i < cantidadPistachos; i++) {
+                    const pistacho = document.createElement('img');
+                    pistacho.src = 'pistacho.png';
+                    pistacho.className = 'pistacho-efecto';
+
+                    const angulo = -Math.PI / 4 - Math.random() * (Math.PI / 2);
+                    const distancia = 150 + Math.random() * 250;
+                    const tx = Math.cos(angulo) * distancia;
+                    const ty = Math.sin(angulo) * distancia;
+                    const rotacion = (Math.random() - 0.5) * 720;
+
+                    pistacho.style.setProperty('--tx', `${tx}px`);
+                    pistacho.style.setProperty('--ty', `${ty}px`);
+                    pistacho.style.setProperty('--rot', `${rotacion}deg`);
+
+                    document.body.appendChild(pistacho);
+
+                    setTimeout(() => {
+                        pistacho.remove();
+                    }, 900);
+                }
+
+                serjImg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                serjImg.style.opacity = '0';
+                serjImg.style.transform = 'scale(0.2) rotate(180deg)';
+
+                setTimeout(() => {
+                    serjImg.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    serjImg.style.opacity = '1';
+                    serjImg.style.transform = 'scale(1) rotate(0deg)';
+                    
+                    widget.style.pointerEvents = 'auto';
+                }, 3000);
+            }
+        }
+
+        let typedBuffer = '';
+        const secretCode = 'edm';
+        let edmTriggered = false;
+
+        let typedBufferBaneado = '';
+        let baneadoTriggered = false;
+
+        window.addEventListener('keydown', (e) => {
+            if (!sitioEntrado) return;
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            const key = e.key.toLowerCase();
+
+            // --- EASTER EGG EDM ---
+            if (!edmTriggered) {
+                typedBuffer += key;
+                if (typedBuffer.length > 10) {
+                    typedBuffer = typedBuffer.slice(-10);
+                }
+                if (typedBuffer.includes(secretCode)) {
+                    typedBuffer = '';
+                    triggerEDMEasterEgg();
+                    return;
+                }
+            }
+
+            // --- EASTER EGG BANEADO ("sixseven" o "67") ---
+            if (!baneadoTriggered) {
+                typedBufferBaneado += key;
+                if (typedBufferBaneado.length > 15) {
+                    typedBufferBaneado = typedBufferBaneado.slice(-15);
+                }
+                if (typedBufferBaneado.includes('sixseven') || typedBufferBaneado.includes('67')) {
+                    typedBufferBaneado = '';
+                    triggerBaneadoEasterEgg();
+                }
+            }
+        });
+
+        function triggerEDMEasterEgg() {
+            edmTriggered = true;
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            document.body.classList.add('bloqueado-total');
+
+            const staticOv = document.getElementById('static-overlay');
+            const jumpscare = document.getElementById('jumpscare-container');
+            const blackout = document.getElementById('blackout-screen');
+
+            const audioDross = document.getElementById('audio-dross');
+            const audioCabronazo = document.getElementById('audio-cabronazo');
+            const audioRisa = document.getElementById('audio-risa');
+
+            audioDross.currentTime = 0;
+            audioDross.play().catch(err => console.log("Audio Dross bloqueado:", err));
+            document.body.classList.add('modo-alerta');
+
+            setTimeout(() => {
+                staticOv.style.opacity = '0.4';
+                jumpscare.style.opacity = '1';
+                audioCabronazo.currentTime = 0;
+                audioCabronazo.play().catch(err => console.log("Audio Cabronazo bloqueado:", err));
+            }, 3000);
+
+            setTimeout(() => {
+                jumpscare.style.opacity = '0';
+                staticOv.style.opacity = '0';
+                blackout.style.opacity = '1';
+            }, 4600);
+
+            setTimeout(() => {
+                document.body.classList.remove('modo-alerta');
+                blackout.style.opacity = '0';
+                audioRisa.currentTime = 0;
+                audioRisa.play().catch(err => console.log("Audio risa bloqueado:", err));
+                
+                document.body.classList.remove('bloqueado-total');
+                edmTriggered = false;
+            }, 6500);
+        }
+
+        function triggerBaneadoEasterEgg() {
+            baneadoTriggered = true;
+            document.body.classList.add('bloqueado-total');
+
+            const audioBaneado = document.getElementById('audio-baneado');
+            audioBaneado.currentTime = 0;
+            audioBaneado.play().catch(err => console.log("Audio baneado bloqueado:", err));
+
+            setTimeout(() => {
+                window.close();
+                window.location.href = "about:blank";
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
