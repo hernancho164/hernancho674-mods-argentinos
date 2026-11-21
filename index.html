@@ -3448,6 +3448,11 @@
         dodsource: ['dods.png'], ricochet: ['ricochoto.png'],
         cancelados: ['gta5fondo.png','portal.png','l4d1.png','l4d2_arg.png']
     };
+    // Precarga: los logos se bajan de a poco apenas carga la página, así el menú los muestra al instante
+    window.addEventListener('load', function(){
+        var todos = []; Object.keys(LOGOS).forEach(function(k){ LOGOS[k].forEach(function(f){ if(todos.indexOf(f) < 0) todos.push(f); }); });
+        todos.forEach(function(f, i){ setTimeout(function(){ var im = new Image(); im.decoding = 'async'; im.src = f; }, 1200 + i * 250); });
+    });
     var PRESETS = {
         1: [[50,50,74,-3,14]],
         2: [[42,31,60,-4,12],[60,69,54,3,22]],
@@ -3519,7 +3524,7 @@
                 var sw = stage.getBoundingClientRect().width * P[2] / 100, mh = window.innerHeight * .27;
                 im.style.width = (nw * Math.min(sw / nw, mh / nh)) + 'px';
                 w.classList.add('listo');   // recién ahora se muestra: nunca se ve a tamaño original
-                if(!L.sp){ try { L.sp = SPC[src] || (SPC[src] = construirSprites(im)); } catch(e){} }
+                if(!L.sp){ if(SPC[src]) L.sp = SPC[src]; else setTimeout(function(){ if(L.sp || !im.naturalWidth) return; try { L.sp = SPC[src] || (SPC[src] = construirSprites(im)); } catch(e){} }, 120); }
             }
             im.onload = ajustar;
             im.src = src;
