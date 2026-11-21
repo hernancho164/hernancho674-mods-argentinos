@@ -1553,58 +1553,6 @@
         #gm.f-ui .gm-skip { display:none; }
         @media (prefers-reduced-motion: reduce) { .gm-w.on { animation:none; } .gm-grid3d { animation:none; } }
 
-        /* ===== MENÚ DE SECCIONES (estilo Persona 5, con tema según el juego) ===== */
-
-        #p5 { position:fixed; inset:0; z-index:9500; visibility:hidden; opacity:0; overflow:hidden;
-              --bg:#1c1c1c; --acc:#ffcc00; --item:#000; --itxt:#fff; --stxt:#000; --dim:rgba(0,0,0,.82); --font:'Pricedown','Impact',sans-serif; --mark:'674';
-              font-family:var(--font); transition: opacity .3s ease, visibility 0s linear .3s; }
-        #p5.abierto { visibility:visible; opacity:1; transition: opacity .25s ease; }
-        #p5.inicio { z-index:20008; }
-        #p5[data-skin="tf2"] { --bg:#2b2420; --acc:#b8383b; --item:#ecdfc0; --itxt:#3b2f27; --stxt:#f5ead2; --dim:rgba(30,22,18,.88); --font:'TF2Build','Impact',sans-serif; --mark:'TF2'; }
-        #p5[data-skin="hl"] { --bg:#0d110c; --acc:#ff9d00; --item:#161b14; --itxt:#ffb52e; --stxt:#000; --dim:rgba(6,10,6,.9); --font:'VCRMono','Courier New',monospace; --mark:'\03BB'; }
-        #p5[data-skin="cs"] { --bg:#242b1f; --acc:#d9c44a; --item:#4a5942; --itxt:#ece8cf; --stxt:#1b2014; --dim:rgba(14,18,10,.9); --font:'CSRegular','Impact',sans-serif; --mark:'CS'; }
-        #p5[data-skin="p2"] { --bg:#1c0b0b; --acc:#d3201b; --item:#0b0b0b; --itxt:#f1e4c4; --stxt:#fff; --dim:rgba(20,4,4,.9); --font:'Smash','Impact',sans-serif; --mark:'P2'; }
-        #p5[data-skin="dods"] { --font:'Base02','Impact',sans-serif; --mark:'DOD'; }
-        #p5[data-skin="ric"] { --font:'Mk1','Impact',sans-serif; --mark:'RIC'; }
-        /* Postal 2: brillo rojo del tema (no el de los colores del logo) */
-        #p5[data-skin="p2"] .p5-lg-in img.p5-glow { display:none; }
-        #p5[data-skin="p2"] .p5-lg-in::before { content:''; position:absolute; inset:-22%; z-index:-1; border-radius:50%; background:radial-gradient(closest-side, var(--acc), transparent 75%); filter:blur(16px); opacity:calc(.12 + var(--g,.4) * .34); pointer-events:none; }
-        #p5[data-skin="p2"] .p5-lg-in img:not(.p5-glow) { filter: drop-shadow(0 0 calc(6px + 16px * var(--g,.4)) var(--acc)) drop-shadow(0 0 calc(16px + 34px * var(--g,.4)) var(--acc)); }
-        .p5-fondo { position:absolute; inset:0; background:var(--dim); backdrop-filter:blur(6px); transition: background .4s ease; }
-        .p5-slab { position:absolute; top:-10%; bottom:-10%; left:-12%; width:56%; background:var(--bg); transform:skewX(-14deg); border-right:12px solid var(--acc); box-shadow:12px 0 0 rgba(0,0,0,.35); transition: background .4s ease, border-color .4s ease; }
-        .p5-slab::after { content:var(--mark); position:absolute; left:14%; bottom:-6%; font-size:min(42vw,460px); line-height:1; color:var(--acc); opacity:.09; transform:skewX(14deg); pointer-events:none; transition: color .4s ease; }
-        #p5.abierto .p5-slab { animation: p5Slab .55s cubic-bezier(.16,1,.3,1) both; }
-        @keyframes p5Slab { from { transform:skewX(-14deg) translateX(-110%); } to { transform:skewX(-14deg) translateX(0); } }
-        .p5-tag { position:absolute; left:5vw; top:6vh; font-size:clamp(22px,4.4vh,40px); letter-spacing:3px; color:var(--stxt); background:var(--acc); padding:6px 30px 6px 22px; clip-path:polygon(0 8%,100% 0,95% 92%,2% 100%); transform:rotate(-4deg); transition: background .3s, color .3s; }
-        .p5-lista { --ih:clamp(40px,6.2vh,56px); position:absolute; left:6vw; top:17vh; bottom:15vh; width:min(560px,88vw); display:flex; flex-direction:column; gap:6px; overflow-y:auto; padding:8px 44px 8px 8px; scrollbar-width:none; }
-        .p5-lista::-webkit-scrollbar { display:none; }
-        .p5-it { flex:none; font-family:inherit; font-size:clamp(18px,3.3vh,30px); letter-spacing:1px; text-align:left; color:var(--itxt); background:var(--item); border:0; box-sizing:border-box; display:block; height:var(--ih); line-height:var(--ih); padding:0 40px 0 26px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer; clip-path:polygon(0 10%,100% 0,95% 90%,3% 100%); margin-left:0; opacity:0; transition: background .25s, color .25s, margin-left .2s ease; }
-        .p5-it:nth-child(odd) { --r:-1.2deg; } .p5-it:nth-child(even) { --r:1deg; }
-        #p5.abierto .p5-it { animation: p5In .45s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--n) * 45ms + .15s); }
-        @keyframes p5In { from { opacity:0; transform:rotate(var(--r)) translateX(-120%); } to { opacity:1; transform:rotate(var(--r)) translateX(0); } }
-        .p5-it.sel { background:var(--acc); color:var(--stxt); margin-left:34px; }
-        .p5-prev { position:absolute; right:6vw; bottom:5vh; white-space:nowrap; text-align:right; font-size:clamp(20px,3.2vw,46px); line-height:1.05; color:#fff; text-shadow:4px 4px 0 var(--acc); transition: text-shadow .3s; }
-        .p5-logos { position:absolute; right:5vw; top:6vh; width:46vw; height:74vh; pointer-events:none; }
-        .p5-lg { position:absolute; width:max-content; left:var(--x); top:var(--y); text-align:center; transform:translate(-50%,-50%) rotate(var(--r)); translate: calc(var(--mx,0) * var(--d) * 1px) calc(var(--my,0) * var(--d) * 1px); transition: translate .35s ease-out; perspective:800px; }
-        .p5-lg-t { will-change:transform; }
-        .p5-part { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
-        .p5-lg-in { display:inline-block; position:relative; opacity:0; }
-        .p5-lg.listo .p5-lg-in { animation: p5LgIn .8s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(.12s + var(--i) * 90ms); }
-        .p5-lg-in img.p5-glow { position:absolute; left:0; top:0; width:100%; height:100%; z-index:-1; object-fit:fill; filter:blur(18px) saturate(1.8) brightness(1.2); opacity:calc(.38 + var(--g,.4) * .5); transform:scale(1.12); pointer-events:none; }
-        .p5-lg-in img:not(.p5-glow) { max-width:min(34vw,560px); max-height:30vh; object-fit:contain; }
-        .p5-lg-in img { display:block; height:auto; border-radius:8px; animation: p5Float 5.5s ease-in-out infinite; animation-delay: calc(var(--i) * -1.3s); }
-        .p5-lg.out .p5-lg-in { animation: p5LgOut .26s ease-in both; }
-        .p5-lg.out:not(.listo) .p5-lg-in { animation: none; opacity: 0; }
-        @keyframes p5LgIn { from { opacity:0; transform: translate(140px,50px) rotate(14deg) scale(.6); } 60% { opacity:1; } to { opacity:1; transform:none; } }
-        @keyframes p5LgOut { from { opacity:1; transform:none; } to { opacity:0; transform: translate(-90px,-34px) rotate(-10deg) scale(.8); } }
-        @keyframes p5Float { 0%,100% { translate:0 0; } 50% { translate:0 -9px; } }
-        .p5-info { position:absolute; left:7vw; bottom:5vh; max-width:44vw; color:var(--itxt); font-size:15px; }
-        .p5-info b { display:block; font-weight:normal; color:var(--acc); font-size:clamp(16px,2.4vh,22px); letter-spacing:1px; margin-bottom:4px; transition: color .3s; }
-        .p5-info small { font-family:Verdana,sans-serif; font-size:11px; color:#aaa; }
-        #p5[data-skin="tf2"] .p5-info small, #p5[data-skin="tf2"] .p5-info b { color:#f5ead2; }
-        @media (max-width:700px) { .p5-prev, .p5-logos { display:none; } .p5-slab { width:110%; } }
-        @media (prefers-reduced-motion: reduce) { #p5.abierto .p5-slab, #p5.abierto .p5-it, .p5-lg-in, .p5-lg-in img { animation:none; opacity:1; transform:none; } .p5-it { opacity:1; } }
-
         /* ===== Sin selección ni arrastre en toda la página ===== */
         html, body { -webkit-user-select:none; -moz-user-select:none; user-select:none; -webkit-touch-callout:none; }
         img, a, svg, canvas, video, iframe { -webkit-user-drag:none; user-drag:none; }
@@ -1643,7 +1591,7 @@
             </div>
 
             <div class="intro-a" style="--i:1">
-                <button class="btn-intro pulso" onclick="abrirMenuInicio()" onmouseenter="reproducirRE4()">Encontrar mods</button>
+                <button class="btn-intro pulso" onclick="entrarAlSitio()" onmouseenter="reproducirRE4()">Encontrar mods</button>
             </div>
 
             <div class="intro-a intro-etiqueta" style="--i:2">o andá directo a…</div>
@@ -2081,7 +2029,7 @@
     <script>
         let sitioEntrado = false;
 
-        function entrarAlSitio(despues) {
+        function entrarAlSitio() {
             reproducirClick();
             const intro = document.getElementById('intro-screen');
             const entrar = () => {
@@ -2089,7 +2037,6 @@
                 intro.classList.add('oculto');
                 sitioEntrado = true;
                 if (window.Musica) Musica.alEntrar();
-                if (typeof despues === 'function') despues();
             };
             if (window.barridoBandera) barridoBandera(entrar); else entrar();
         }
@@ -3113,17 +3060,6 @@
         <div class="gm-skip">Clic o Esc para saltar</div>
     </div>
 
-    <!-- MENÚ DE SECCIONES (estilo Persona 5) -->
-    <div id="p5" data-skin="classic" aria-hidden="true">
-        <div class="p5-fondo" id="p5-fondo"></div>
-        <div class="p5-slab"></div>
-        <div class="p5-tag">SECCIONES</div>
-        <div class="p5-lista" id="p5-lista"></div>
-        <div class="p5-logos" id="p5-stage"></div>
-        <canvas class="p5-part" id="p5-part"></canvas>
-        <div class="p5-prev" id="p5-prev"></div>
-        <div class="p5-info"><b id="p5-titulo"></b><small>Esc Cerrar &nbsp;&middot;&nbsp; &uarr;&darr; Moverse &nbsp;&middot;&nbsp; Enter Elegir</small></div>
-    </div>
 
 <script>
 (function(){
@@ -3425,259 +3361,6 @@
     gm.addEventListener('click', function(e){ if(fase === 'ui' && e.target.closest && e.target.closest('.gm-btn,.gm-chip') && typeof reproducirClick === 'function') reproducirClick(); });
     document.getElementById('gm-volver').addEventListener('click', cerrar);
     var b = document.querySelector('.oculto-gmod'); if(b) b.addEventListener('click', function(e){ e.preventDefault(); if(typeof edmTriggered !== 'undefined' && edmTriggered) return; abrir(); });
-})();
-</script>
-<script>
-(function(){
-    // ===== MENÚ DE SECCIONES: [id de la sección, texto]. El tema se elige según el id =====
-    var SEC = [
-        ['tf2','TF2 Argentino'], ['tf2classified','TF2 Classified'],
-        ['hl1','Half-Life 1 Argentino'], ['hl1opposing','Opposing Force [DEMO]'], ['hl2','Half-Life 2'],
-        ['postal2','Postal 2 Demo'], ['cs16','Counter-Strike 1.6'], ['cssource','Counter-Strike: Source'], ['csother','Condition Zero / Resto'],
-        ['dodsource','Day of Defeat: Source'], ['ricochet','Ricochet Argentino'], ['cancelados','Planificados / Cancelados']
-    ];
-    function tema(id){ if(/^tf2/.test(id)) return 'tf2'; if(/^hl/.test(id)) return 'hl'; if(/^cs/.test(id)) return 'cs'; if(id === 'postal2') return 'p2'; if(id === 'dodsource') return 'dods'; if(id === 'ricochet') return 'ric'; return 'classic'; }
-    var m = document.getElementById('p5'), lista = document.getElementById('p5-lista'), prev = document.getElementById('p5-prev'), tit = document.getElementById('p5-titulo');
-    if(!m) return;
-    var sel = 0, abierto = false, modoInicio = false, entrando = false, tag = m.querySelector('.p5-tag');
-    // ===== LOGOS que se muestran a la derecha según la sección (archivos que ya usa tu página) =====
-    var LOGOS = {
-        tf2: ['tf2.jpg','tf2-logo.png','tf2EA.png'], tf2classified: ['tf2c.png','tf2clogo.png'],
-        hl1: ['hl1arg.png','hl1logo.png','hl1AE.png'], hl1opposing: ['hl1of.png'], hl2: ['hl2arg.png'],
-        postal2: ['postal2arg.png','p2logo.png'], cs16: ['cs1.6.jpg','cs.png'], cssource: ['cssource.jpg','cs.png'], csother: ['counters.png'],
-        dodsource: ['dods.png'], ricochet: ['ricochoto.png'],
-        cancelados: ['gta5fondo.png','portal.png','l4d1.png','l4d2_arg.png']
-    };
-    // Precarga: los logos se bajan de a poco apenas carga la página, así el menú los muestra al instante
-    window.addEventListener('load', function(){
-        var todos = []; Object.keys(LOGOS).forEach(function(k){ LOGOS[k].forEach(function(f){ if(todos.indexOf(f) < 0) todos.push(f); }); });
-        todos.forEach(function(f, i){ setTimeout(function(){ var im = new Image(); im.decoding = 'async'; im.src = f; }, 1200 + i * 250); });
-    });
-    var PRESETS = {
-        1: [[50,50,74,-3,14]],
-        2: [[42,31,60,-4,12],[60,69,54,3,22]],
-        3: [[36,24,52,-4,10],[64,50,48,3,22],[40,77,46,-2,16]],
-        4: [[30,24,40,-3,10],[70,30,40,3,20],[32,72,40,3,16],[70,76,40,-3,24]]
-    };
-    var stage = document.getElementById('p5-stage'), cv = document.getElementById('p5-part'), cx = cv.getContext('2d');
-    var tokenLg = 0, idLg = null, LG = [], PT = [], raf = 0, frame = 0, mx = -999, my = -999, mvx = 0, mvy = 0, accRGB = '255,204,0';
-    var reduceP = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function dimCanvas(){ cv.width = window.innerWidth; cv.height = window.innerHeight; }
-    function rgbAcc(){
-        var h = getComputedStyle(m).getPropertyValue('--acc').trim().replace('#','');
-        if(h.length === 3) h = h.replace(/(.)/g, '$1$1');
-        var n = parseInt(h, 16); if(h.length === 6 && !isNaN(n)) accRGB = ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255);
-    }
-    // Partículas con los colores del logo: se corta el logo en una grilla y cada celda es un "puntito" de ese color
-    var GRID = 8;
-    var SPC = {};
-    // reduce a la mitad por pasos (promedia bien los colores)
-    function achicar(src, sx, sy, sw, sh, tw, th){
-        var cw = sw, ch = sh, cur = src, csx = sx, csy = sy, csw = sw, csh = sh;
-        do {
-            cw = Math.max(tw, Math.ceil(cw / 2)); ch = Math.max(th, Math.ceil(ch / 2));
-            var c = document.createElement('canvas'); c.width = cw; c.height = ch;
-            var g = c.getContext('2d'); g.imageSmoothingQuality = 'high';
-            g.drawImage(cur, csx, csy, csw, csh, 0, 0, cw, ch);
-            cur = c; csx = 0; csy = 0; csw = cw; csh = ch;
-        } while(cw > tw || ch > th);
-        return cur;
-    }
-    function construirSprites(im){
-        var nw = im.naturalWidth, nh = im.naturalHeight, out = [];
-        var base = achicar(im, 0, 0, nw, nh, GRID * 8, GRID * 8);
-        for(var gy = 0; gy < GRID; gy++){ for(var gx = 0; gx < GRID; gx++){
-            var avg = achicar(base, gx * 8, gy * 8, 8, 8, 1, 1), ok = true;
-            try { var d = avg.getContext('2d').getImageData(0, 0, 1, 1).data; ok = d[3] > 60 && Math.max(d[0], d[1], d[2]) > 50; } catch(e){ ok = true; }
-            var c = document.createElement('canvas'); c.width = c.height = 24;
-            var g = c.getContext('2d');
-            g.drawImage(avg, 0, 0, 1, 1, 0, 0, 24, 24);
-            g.globalCompositeOperation = 'lighter'; g.drawImage(avg, 0, 0, 1, 1, 0, 0, 24, 24);
-            g.globalCompositeOperation = 'destination-in';
-            var rg = g.createRadialGradient(12, 12, 0, 12, 12, 12);
-            rg.addColorStop(0, 'rgba(0,0,0,1)'); rg.addColorStop(.5, 'rgba(0,0,0,.8)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
-            g.fillStyle = rg; g.fillRect(0, 0, 24, 24);
-            out.push({ c:c, ok:ok, gx:gx, gy:gy });
-        } }
-        var buenos = out.filter(function(o){ return o.ok; });
-        return { buenos: buenos.length ? buenos : out };
-    }
-    function logos(id){
-        if(id === idLg) return; idLg = id;
-        var tk = ++tokenLg;
-        Array.prototype.forEach.call(stage.children, function(v){ v.classList.add('out'); });
-        setTimeout(function(){ Array.prototype.slice.call(stage.children).forEach(function(v){ if(v._tk !== tokenLg && v.parentNode) v.parentNode.removeChild(v); }); }, 300);
-        LG = [];
-        var lista = LOGOS[id] || [], pos = PRESETS[Math.min(lista.length, 4)] || [];
-        lista.slice(0, 4).forEach(function(src, k){
-            var P = pos[k]; if(!P) return;
-            var w = document.createElement('div'); w.className = 'p5-lg'; w._tk = tk;
-            w.style.cssText = '--x:'+P[0]+'%;--y:'+P[1]+'%;--r:'+P[3]+'deg;--d:'+P[4]+';--i:'+k;
-            var t = document.createElement('div'); t.className = 'p5-lg-t';
-            var d = document.createElement('div'); d.className = 'p5-lg-in';
-            var gl = new Image(); gl.alt = ''; gl.className = 'p5-glow'; gl.src = src;
-            var im = new Image(); im.alt = '';
-            var L = { w:w, t:t, im:im, x:0, y:0, vx:0, vy:0, rx:0, ry:0, s:1, g:.4, h:0, ph:Math.random() * 6.28 };
-            im.onerror = function(){ if(w.parentNode) w.parentNode.removeChild(w); LG = LG.filter(function(o){ return o !== L; }); };
-            function ajustar(){
-                var nw = im.naturalWidth, nh = im.naturalHeight; if(!nw || !nh) return;
-                var sw = stage.getBoundingClientRect().width * P[2] / 100, mh = window.innerHeight * .27;
-                im.style.width = (nw * Math.min(sw / nw, mh / nh)) + 'px';
-                w.classList.add('listo');   // recién ahora se muestra: nunca se ve a tamaño original
-                if(!L.sp){ if(SPC[src]) L.sp = SPC[src]; else setTimeout(function(){ if(L.sp || !im.naturalWidth) return; try { L.sp = SPC[src] || (SPC[src] = construirSprites(im)); } catch(e){} }, 120); }
-            }
-            im.onload = ajustar;
-            im.src = src;
-            if(im.complete) ajustar();
-            d.appendChild(gl); d.appendChild(im); t.appendChild(d); w.appendChild(t); stage.appendChild(w); LG.push(L);
-        });
-    }
-    function tick(tm){
-        raf = requestAnimationFrame(tick); frame++;
-        if(frame % 20 === 0) rgbAcc();
-        mvx *= .85; mvy *= .85;
-        cx.clearRect(0, 0, cv.width, cv.height);
-        cx.globalCompositeOperation = 'lighter';
-        var algo = false, rojo = (m.getAttribute('data-skin') === 'p2');
-        LG.forEach(function(L){
-            var r = L.im.getBoundingClientRect(); if(!r.width) return;
-            var dentro = mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom, u = 0, v = 0;
-            if(dentro){
-                algo = true;
-                u = (mx - (r.left + r.width / 2)) / (r.width / 2); v = (my - (r.top + r.height / 2)) / (r.height / 2);
-                if(!L.h){ L.vx += mvx * .5 + (Math.random() - .5) * 3; L.vy += mvy * .5 + (Math.random() - .5) * 3; }
-                L.vx += mvx * .12; L.vy += mvy * .12; L.h = 1;
-                if(rojo){
-                    for(var b2 = 0; b2 < 3; b2++){
-                        var an2 = Math.random() * 6.283, vel2 = 1.1 + Math.random() * 2.1;
-                        PT.push({ x:mx, y:my, vx:Math.cos(an2) * vel2, vy:Math.sin(an2) * vel2, life:0, max:36 + Math.random() * 34, sz:1.3 + Math.random() * 2 });
-                    }
-                } else if(L.sp){
-                    var cgx = Math.max(0, Math.min(GRID - 1, Math.floor((u + 1) / 2 * GRID))), cgy = Math.max(0, Math.min(GRID - 1, Math.floor((v + 1) / 2 * GRID))), best = null, bd = 1e9;
-                    L.sp.buenos.forEach(function(o){ var dd = (o.gx - cgx) * (o.gx - cgx) + (o.gy - cgy) * (o.gy - cgy); if(dd < bd){ bd = dd; best = o; } });
-                    for(var b = 0; b < 3 && best; b++){
-                        var an = Math.random() * 6.283, vel = 1.1 + Math.random() * 2.1;
-                        PT.push({ x:mx, y:my, vx:Math.cos(an) * vel, vy:Math.sin(an) * vel, life:0, max:36 + Math.random() * 34, sz:1.3 + Math.random() * 2, sp:best.c });
-                    }
-                }
-            } else L.h = 0;
-            L.vx += -L.x * .08; L.vy += -L.y * .08; L.vx *= .86; L.vy *= .86; L.x += L.vx; L.y += L.vy;
-            L.x = Math.max(-46, Math.min(46, L.x)); L.y = Math.max(-46, Math.min(46, L.y));
-            L.rx += ((dentro ? -v * 16 : 0) - L.rx) * .14; L.ry += ((dentro ? u * 16 : 0) - L.ry) * .14;
-            L.s += ((dentro ? 1.08 : 1) - L.s) * .14;
-            L.g += ((dentro ? 1 : .4 + .15 * Math.sin(tm / 700 + L.ph)) - L.g) * .12;
-            L.t.style.transform = 'translate3d(' + L.x.toFixed(2) + 'px,' + L.y.toFixed(2) + 'px,0) rotateX(' + L.rx.toFixed(2) + 'deg) rotateY(' + L.ry.toFixed(2) + 'deg) scale(' + L.s.toFixed(3) + ')';
-            L.w.style.setProperty('--g', L.g.toFixed(3));
-            if(rojo && PT.length < 300 && Math.random() < .4){
-                PT.push({ x:r.left + Math.random() * r.width, y:r.top + r.height * (.5 + (Math.random() - .5) * 1.2), vx:(Math.random() - .5) * .4, vy:-(.25 + Math.random() * .6), life:0, max:90 + Math.random() * 100, sz:.8 + Math.random() * 1.8 });
-            } else if(L.sp && !rojo && PT.length < 300 && Math.random() < .5){
-                var o = L.sp.buenos[(Math.random() * L.sp.buenos.length) | 0];
-                PT.push({ x:r.left + (o.gx + Math.random()) / GRID * r.width, y:r.top + (o.gy + Math.random()) / GRID * r.height, vx:(Math.random() - .5) * .4, vy:-(.25 + Math.random() * .6), life:0, max:90 + Math.random() * 100, sz:.8 + Math.random() * 1.8, sp:o.c });
-            }
-        });
-        cx.globalAlpha = 1;
-        m.style.cursor = algo ? 'pointer' : '';
-        for(var i = PT.length - 1; i >= 0; i--){
-            var p = PT[i]; p.life++;
-            if(p.life > p.max){ PT.splice(i, 1); continue; }
-            var dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
-            if(d2 < 12100 && d2 > 1){ var dd = Math.sqrt(d2), f = (1 - dd / 110) * .35; p.vx += dx / dd * f - dy / dd * f * .5; p.vy += dy / dd * f + dx / dd * f * .5; }
-            p.vx *= .985; p.vy *= .985; p.x += p.vx + Math.sin((p.life + p.sz * 30) / 18) * .12; p.y += p.vy;
-            var a = Math.sin(Math.PI * p.life / p.max);
-            if(p.sp){
-                var hh = p.sz * 3.4;
-                cx.globalAlpha = a * .25; cx.drawImage(p.sp, p.x - hh * 2.6, p.y - hh * 2.6, hh * 5.2, hh * 5.2);
-                cx.globalAlpha = a; cx.drawImage(p.sp, p.x - hh, p.y - hh, hh * 2, hh * 2);
-            } else {
-                cx.globalAlpha = 1;
-                cx.fillStyle = 'rgba(' + accRGB + ',' + (a * .13).toFixed(3) + ')'; cx.beginPath(); cx.arc(p.x, p.y, p.sz * 3.4, 0, 6.283); cx.fill();
-                cx.fillStyle = 'rgba(' + accRGB + ',' + (a * .95).toFixed(3) + ')'; cx.beginPath(); cx.arc(p.x, p.y, p.sz, 0, 6.283); cx.fill();
-            }
-        }
-    }
-    function arrancar(){ if(reduceP) return; dimCanvas(); rgbAcc(); cancelAnimationFrame(raf); frame = 0; raf = requestAnimationFrame(tick); }
-    function parar(){ cancelAnimationFrame(raf); cx.clearRect(0, 0, cv.width, cv.height); PT.length = 0; mx = my = -999; }
-    window.addEventListener('resize', function(){ if(abierto) dimCanvas(); });
-    m.addEventListener('mousemove', function(e){
-        stage.style.setProperty('--mx', ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3));
-        stage.style.setProperty('--my', ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3));
-        mx = e.clientX; my = e.clientY; mvx = mvx * .5 + (e.movementX || 0) * .5; mvy = mvy * .5 + (e.movementY || 0) * .5;
-    });
-    m.addEventListener('mouseleave', function(){ mx = my = -999; });
-    lista.innerHTML = SEC.map(function(x, i){ return '<button type="button" class="p5-it" style="--n:'+i+'" data-i="'+i+'">'+x[1]+'</button>'; }).join('');
-    var items = lista.querySelectorAll('.p5-it');
-    function nombreSeccion(id){ var t = document.querySelector('#'+id+' .section-title'); return t ? t.textContent : ''; }
-    // Achica el título de abajo a la derecha si con la fuente del tema no entra en pantalla
-    function ajustarPrev(){
-        var max = window.innerWidth * .44;
-        function go(){
-            prev.style.fontSize = '';
-            var w = prev.scrollWidth, fs = parseFloat(getComputedStyle(prev).fontSize);
-            if(w > max) prev.style.fontSize = (fs * max / w).toFixed(1) + 'px';
-        }
-        go(); requestAnimationFrame(go);
-        if(document.fonts && document.fonts.ready) document.fonts.ready.then(go);
-    }
-    function visible(i){
-        var b = items[i], t = b.offsetTop, bt = t + b.offsetHeight, vh = lista.clientHeight;
-        if(t < lista.scrollTop + 8) lista.scrollTop = Math.max(0, t - 8); else if(bt > lista.scrollTop + vh - 8) lista.scrollTop = bt - vh + 8;
-    }
-    function poner(i, sonido, desplazar){
-        if(i < 0) i = SEC.length - 1; if(i >= SEC.length) i = 0;
-        var cambio = (i !== sel);
-        sel = i;
-        Array.prototype.forEach.call(items, function(b, k){ b.classList.toggle('sel', k === i); });
-        m.setAttribute('data-skin', tema(SEC[i][0]));
-        prev.textContent = SEC[i][1]; ajustarPrev();
-        tit.textContent = nombreSeccion(SEC[i][0]);
-        logos(SEC[i][0]);
-        if(desplazar) visible(i);
-        if(sonido && cambio && typeof reproducirSelect === 'function') reproducirSelect();
-    }
-    function abrir(inicio){
-        if(abierto) return; abierto = true;
-        modoInicio = (inicio === true); entrando = false; m.style.pointerEvents = '';
-        m.classList.toggle('inicio', modoInicio); tag.textContent = modoInicio ? 'ENCONTRAR MODS' : 'SECCIONES';
-        var act = document.querySelector('.section-content.active'), idx = 0;
-        if(act) SEC.forEach(function(x, k){ if(x[0] === act.id) idx = k; });
-        lista.scrollTop = 0; sel = -1; idLg = null; poner(idx, false, true);
-        m.classList.add('abierto'); m.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden';
-        arrancar();
-        if(typeof reproducirClick === 'function') reproducirClick();
-    }
-    function cerrar(){
-        if(!abierto) return; abierto = false;
-        m.classList.remove('abierto'); m.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; entrando = false;
-        setTimeout(function(){ if(!abierto) parar(); }, 320); m.style.cursor = '';
-    }
-    function elegir(i){
-        if(entrando) return;
-        var id = SEC[i][0];
-        var link = document.querySelector('[onclick*="cambiarSeccion(\''+id+'\'"]');
-        if(modoInicio && typeof entrarAlSitio === 'function'){
-            // desde la intro: se entra al sitio con el barrido de bandera y se abre la sección elegida
-            entrando = true; m.style.pointerEvents = 'none'; modoInicio = false;
-            entrarAlSitio(function(){ cerrar(); if(link) link.click(); });
-            return;
-        }
-        cerrar();
-        if(link) link.click();
-    }
-    window.abrirMenuInicio = function(){ abrir(true); };
-    lista.addEventListener('mouseover', function(e){ var b = e.target.closest('.p5-it'); if(b) poner(+b.dataset.i, true); });
-    lista.addEventListener('click', function(e){ var b = e.target.closest('.p5-it'); if(b) elegir(+b.dataset.i); });
-    function sobreLogo(x, y){ return LG.some(function(L){ var r = L.im.getBoundingClientRect(); return r.width && x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; }); }
-    document.getElementById('p5-fondo').addEventListener('click', function(e){ if(sobreLogo(e.clientX, e.clientY)) elegir(sel); else cerrar(); });
-    m.querySelector('.p5-slab').addEventListener('click', function(e){ if(sobreLogo(e.clientX, e.clientY)) elegir(sel); });
-    document.addEventListener('keydown', function(e){
-        if(!abierto || entrando) return;
-        if(e.key === 'Escape'){ cerrar(); }
-        else if(e.key === 'ArrowDown'){ e.preventDefault(); poner(sel + 1, true, true); }
-        else if(e.key === 'ArrowUp'){ e.preventDefault(); poner(sel - 1, true, true); }
-        else if(e.key === 'Home'){ e.preventDefault(); poner(0, true, true); }
-        else if(e.key === 'End'){ e.preventDefault(); poner(SEC.length - 1, true, true); }
-        else if(e.key === 'Enter'){ e.preventDefault(); elegir(sel); }
-    });
 })();
 </script>
 <script>
