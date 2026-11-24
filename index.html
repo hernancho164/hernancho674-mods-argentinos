@@ -756,6 +756,28 @@
         .gta-arrow.left { left: 20px; }
         .gta-arrow.right { right: 20px; }
 
+
+        /* --- HL1: MÁS PORTS --- */
+        #hl1mas .ports-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; margin-top:10px; }
+        #hl1mas .port-card { display:flex; flex-direction:column; }
+        #hl1mas .port-card .media-box { display:block; margin-bottom:14px; }
+        #hl1mas .port-card h3 { font-family:'VCRMono',monospace; color:#ffcc00; font-size:1.15rem; margin:0 0 8px; letter-spacing:1px; }
+        #hl1mas .port-card p { margin:0 0 4px; }
+        #hl1mas .port-card .download-container { margin-top:auto; padding-top:16px; }
+        #hl1mas .port-aviso { margin-top:34px; background:#141414; border:3px solid #ffcc00; border-left-width:10px; border-radius:6px; padding:18px 22px; box-shadow:0 8px 16px rgba(0,0,0,0.5); }
+        #hl1mas .port-aviso h3 { font-family:'VCRMono',monospace; color:#ffcc00; font-size:1.1rem; margin:0 0 10px; letter-spacing:1px; text-transform:uppercase; }
+        #hl1mas .port-aviso p { margin:0; line-height:1.6; }
+        #hl1mas .futuros-titulo { font-family:'VCRMono',monospace; color:#ffcc00; font-size:1.4rem; letter-spacing:2px; text-transform:uppercase; margin:42px 0 14px; padding-bottom:8px; border-bottom:3px solid #ffcc00; }
+        #hl1mas .futuros-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; }
+        #hl1mas .futuro-card { display:flex; flex-direction:column; background:#141414; border:3px solid #ffcc00; border-radius:6px; overflow:hidden; box-shadow:0 8px 16px rgba(0,0,0,0.5); }
+        #hl1mas .futuro-img { height:240px; background:#0b0b0b; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+        #hl1mas .futuro-img img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+        #hl1mas .futuro-card.cuadrada .futuro-img img { object-fit:contain; object-position:center; }
+        #hl1mas .futuro-body { padding:16px 18px 18px; }
+        #hl1mas .futuro-body h3 { font-family:'VCRMono',monospace; color:#ffcc00; font-size:1.05rem; margin:0 0 8px; letter-spacing:1px; }
+        #hl1mas .futuro-body p { margin:0; line-height:1.6; }
+        #hl1mas .port-tag { display:inline-block; background:#ffcc00; color:#000; font-weight:bold; font-size:12px; padding:3px 8px; margin-bottom:10px; letter-spacing:1px; align-self:flex-start; }
+
         /* --- APLICACIÓN DE FUENTES PERSONALIZADAS A TÍTULOS ESPECÍFICOS --- */
         #tf2 h2.section-title,
         #tf2classified h2.section-title {
@@ -765,7 +787,8 @@
         }
 
         #hl1 h2.section-title,
-        #hl1opposing h2.section-title {
+        #hl1opposing h2.section-title,
+        #hl1mas h2.section-title {
             font-family: 'VCRMono', monospace;
             font-size: 2rem;
             letter-spacing: 1px;
@@ -1706,6 +1729,7 @@
                 <div class="dropdown-content">
                     <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1', event)">Half-Life 1 Argentino</a>
                     <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1opposing', event)">Opposing Force [DEMO]</a>
+                    <a onmouseenter="reproducirSelect()" onclick="cambiarSeccion('hl1mas', event)">Más Ports</a>
                 </div>
             </div>
 
@@ -1851,6 +1875,48 @@
                 </div>
                 <p>Una versión de las voces argentinas para HL1 hechas para la campaña de Opposing Force, actualmente incompleta.</p>
                 <div class="download-container"><a href="https://gamebanana.com/sounds/85013" target="_blank" class="btn-download">¡Descargar Demo!</a></div>
+            </div>
+
+            <!-- SECCIÓN HALF-LIFE 1: MÁS PORTS -->
+            <div id="hl1mas" class="section-content">
+                <h2 class="section-title">Más Ports de Half-Life</h2>
+                <div class="ports-grid">
+                    <div class="port-card">
+                        <span class="port-tag">PORT</span>
+                        <a class="media-box" href="https://gamebanana.com/sounds/96085" target="_blank" rel="noopener"><img src="hl1mmodarg.png" alt="Half-Life: MMod Argentino"></a>
+                        <h3>Half-Life: MMod Argentino</h3>
+                        <p>Port de las voces argentinas de HL1 para Half-Life: MMod.</p>
+                        <div class="download-container"><a href="https://gamebanana.com/sounds/96085" target="_blank" rel="noopener" class="btn-download">Descarga por GameBanana</a></div>
+                    </div>
+                    <div class="port-card">
+                        <span class="port-tag">PORT</span>
+                        <a class="media-box" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3622694429" target="_blank" rel="noopener"><img src="legacyargentina.png" alt="Half-Life Legacy Argentino"></a>
+                        <h3>Half-Life Legacy Argentino</h3>
+                        <p>Port de las voces argentinas de HL1 para Half-Life Legacy.</p>
+                        <div class="download-container"><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3622694429" target="_blank" rel="noopener" class="btn-download">Ver en Steam Workshop</a></div>
+                    </div>
+                </div>
+                <div class="port-aviso">
+                    <h3>Dónde están los ports para mods como Sven Co-op o Brutal Half-Life</h3>
+                    <p>No es necesario hacer ports para Sven Co-op o Brutal Half-Life ya que puedes simplemente instalar el HL1 Argentino y renombrar la carpeta "valve_addon" a "svencoop_addon" o "bhl_addon" dependiendo del mod en el cual lo quieras instalar, hay excepciones como Delta Particles que incluyen nuevos personajes y nuevos diálogos por lo cual el mod sí funcionará pero se mezclarán entre los diálogos que incluye el mod y el argentino.</p>
+                </div>
+                <h3 class="futuros-titulo">Futuros ports</h3>
+                <div class="futuros-grid">
+                    <div class="futuro-card">
+                        <div class="futuro-img"><img src="conceptoblueshift.png" alt="Half-Life Blue Shift Argentino"></div>
+                        <div class="futuro-body">
+                            <h3>Versión para Half-Life Blue Shift</h3>
+                            <p>Este mod posiblemente llegue luego del Half-Life Opposing Force Argentino, si es que la gente está interesada lo haré.</p>
+                        </div>
+                    </div>
+                    <div class="futuro-card cuadrada">
+                        <div class="futuro-img"><img src="conceptoresurgence.png" alt="Half-Life Resurgence"></div>
+                        <div class="futuro-body">
+                            <h3>Port para Half-Life Resurgence [Garry's Mod]</h3>
+                            <p>Este port se ha planeado desde cuando existía el HL1 Argentina Edition pero fue muchas veces cancelado, posiblemente también llegue cuando se termine el Half-Life Blue Shift Argentino.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="hl2" class="section-content">
@@ -2079,7 +2145,7 @@
                 event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
             } else if(['tf2', 'tf2classified'].includes(idSeccion)) {
                 event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
-            } else if(['hl1', 'hl1opposing'].includes(idSeccion)) {
+            } else if(['hl1', 'hl1opposing', 'hl1mas'].includes(idSeccion)) {
                 event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
             } else if(['dodsource', 'ricochet'].includes(idSeccion)) {
                 event.currentTarget.closest('.dropdown').querySelector('.tab').classList.add('active');
@@ -2655,7 +2721,7 @@
         // Qué grupo suena en cada sección (las que no estén acá quedan en silencio)
         const SECCIONES = {
             tf2: 'tf2', tf2classified: 'tf2',
-            hl1: 'hl1', hl1opposing: 'hl1',
+            hl1: 'hl1', hl1opposing: 'hl1', hl1mas: 'hl1',
             hl2: 'hl2',
             postal2: 'postal2',
             cs16: 'cs16', csother: 'cscz',
